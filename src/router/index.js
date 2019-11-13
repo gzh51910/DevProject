@@ -4,8 +4,8 @@ import Home from '../views/home/Home.vue'
 import Category from '../views/category/Category.vue'
 import Cart from '../views/cart/Cart.vue'
 import Profile from '../views/profile/Profile.vue'
-import Reg from '../views/profile/Reg.vue'
-import Login from '../views/profile/Login.vue'
+import Reg from '../views/reg/Reg.vue'
+import Login from '../views/login/Login.vue'
 Vue.use(VueRouter);
 
 const routes = [
@@ -27,10 +27,10 @@ const routes = [
     }, {
         path: '/profile',
         component: Profile
-    },{
+    }, {
         path: '/login',
         component: Login
-    },{
+    }, {
         path: '/reg',
         component: Reg
     }

@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div id="profile">
+  <div id="login">
     <nav-bar>
       <div class="navLeft" slot="left">
         <i @click="back" class="el-icon-arrow-left"></i>
@@ -8,21 +8,38 @@
       <div class="navCenter" slot="center">
         <h2>用户登录</h2>
       </div>
-      <div class="navCenter" slot="right">
-        <i @click="back" class="el-icon-arrow-left"></i>
-      </div>
     </nav-bar>
+    <tabcontrol :titles="['账号登录','手机动态密码登录']" @tabclick="tabclick" />
+    <login1 v-if="index==1" />
+    <login2 v-if="index==0" />
   </div>
 </template>
 
 <script>
 import NavBar from "../../components/common/navBar/navBar.vue";
+import tabcontrol from "../../components/content/tancontrol/tabcontrol.vue";
+import login1 from "./login1.vue";
+import login2 from "./login2.vue";
 export default {
   data() {
-    return {};
+    return {
+      index: 1
+    };
   },
   components: {
-    NavBar
+    NavBar,
+    tabcontrol,
+    login1,
+    login2
+  },
+  methods: {
+    tabclick(index) {
+      this.index = index;
+    },
+
+    back() {
+      this.$router.replace("/home");
+    }
   }
 };
 </script>
@@ -39,5 +56,8 @@ export default {
 }
 .navCenter h2 {
   font-size: 16px;
+}
+.tab {
+  margin-bottom: 20px;
 }
 </style>
