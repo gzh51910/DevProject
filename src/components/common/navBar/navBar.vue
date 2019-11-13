@@ -24,14 +24,15 @@ export default {
 .nav-bar {
   display: flex;
   height: 40px;
+  background-color: #de4943;
 }
 .left,
 .right {
   width: 60px;
-  background-color: red;
+
 }
 .center {
   flex: 1;
-  background-color: blue;
+
 }
 </style>

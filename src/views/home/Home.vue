@@ -2,7 +2,7 @@
 <template>
   <div id="home">
     <nav-bar>
-      <div slot="center"></div>
+      <div slot="center">111</div>
     </nav-bar>
   </div>
 </template>
