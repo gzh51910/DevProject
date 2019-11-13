@@ -1,5 +1,16 @@
-/* @import "./normalize.css"; */
+@import "./normalize.css";
 body{
     margin: 0;
     padding: 0;
+    font-size: 14px;
+    color: #626365;
+    
+}
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a{
+    text-decoration: none;
 }

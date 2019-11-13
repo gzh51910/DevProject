@@ -34,11 +34,17 @@
 import TabBar from "./components/common/tabbar/Tabbar.vue";
 import TabBarItem from "./components/common/tabbar/TabBarItem.vue";
 export default {
+  data() {
+    return {
+      index: 0
+    };
+  },
   name: "app",
   components: {
     TabBar,
     TabBarItem
-  }
+  },
+  methods: {}
 };
 </script>
 
