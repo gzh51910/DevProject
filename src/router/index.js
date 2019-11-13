@@ -4,6 +4,7 @@ import Home from '../views/home/Home.vue'
 import Category from '../views/category/Category.vue'
 import Cart from '../views/cart/Cart.vue'
 import Profile from '../views/profile/Profile.vue'
+import goodList from '../views/category/page/goodlist.vue'
 Vue.use(VueRouter);
 
 const routes = [
@@ -17,7 +18,8 @@ const routes = [
     },
     {
         path: '/category',
-        component: Category
+        component: Category,
+    
     },
     {
         path: '/cart',
@@ -25,6 +27,10 @@ const routes = [
     }, {
         path: '/profile',
         component: Profile
+    },
+    {
+        path: '/goodlist',
+        component: goodList
     }
 ];
 

@@ -23,15 +23,13 @@ export default {
 <style scoped>
 .nav-bar {
   display: flex;
-  height: 40px;
+  /* height: 40px; */
 }
 .left,
 .right {
   width: 60px;
-  background-color: red;
 }
 .center {
   flex: 1;
-  background-color: blue;
 }
 </style>
