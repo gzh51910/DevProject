@@ -25,14 +25,16 @@ export default {
   display: flex;
   height: 40px;
   background-color: #de4943;
+
 }
 .left,
 .right {
   width: 60px;
-
 }
 .center {
   flex: 1;
 
+
 }
+
 </style>
