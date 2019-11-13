@@ -4,8 +4,8 @@ import Home from '../views/home/Home.vue'
 import Category from '../views/category/Category.vue'
 import Cart from '../views/cart/Cart.vue'
 import Profile from '../views/profile/Profile.vue'
-import Reg from '../views/profile/Reg.vue'
-import Login from '../views/profile/Login.vue'
+import Reg from '../views/reg/Reg.vue'
+import Login from '../views/login/Login.vue'
 import Detail from '../views/detail/Detail.vue'
 import goodList from '../views/category/page/goodlist.vue'
 
@@ -23,7 +23,7 @@ const routes = [
     {
         path: '/category',
         component: Category,
-    
+
     },
     {
         path: '/cart',
@@ -31,13 +31,13 @@ const routes = [
     }, {
         path: '/profile',
         component: Profile
-    },{
+    }, {
         path: '/login',
         component: Login
-    },{
+    }, {
         path: '/reg',
         component: Reg
-    },{
+    }, {
         path: '/goods',
         component: Detail
     },
@@ -45,7 +45,7 @@ const routes = [
         path: '/goodlist',
         component: goodList
     }
-   
+
 ];
 
 const router = new VueRouter({
