@@ -26,6 +26,7 @@ Router.get('/', async (req, res) => {
 // @添加商品
 Router.post('/', async (req, res) => {
 
+
     let sql = `insert into goods(`
     for (let key in req.body) {
         sql += `${key},`
@@ -51,5 +52,11 @@ Router.get('/:id', (req, res) => {
     query(sql, function (data) {
         res.send(data)
     });
+
+    
 })
+
+// @查询单个商品
+
+
 module.exports = Router

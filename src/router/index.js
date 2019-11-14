@@ -7,8 +7,21 @@ import Profile from '../views/profile/Profile.vue'
 import Reg from '../views/reg/Reg.vue'
 import Login from '../views/login/Login.vue'
 import Detail from '../views/detail/Detail.vue'
-import goodList from '../views/category/page/goodlist.vue'
+
 import { my } from "../network";
+
+import Zxg from '../views/category/page/zxg.vue'
+import Zhicai from '../views/category/page/zhicai.vue'
+import Temai from '../views/category/page/temai.vue'
+import Paihang from '../views/category/page/paihang.vue'
+import Mai from '../views/category/page/mai.vue'
+import Li  from '../views/category/page/li.vue'
+import Laojiu from '../views/category/page/laojiu.vue'
+import Hongjiu from '../views/category/page/hongjiu.vue'
+import Datan from '../views/category/page/datan.vue'
+import Baijiu from '../views/category/page/baijiu.vue'
+import Yangjiu from '../views/category/page/yangjiu.vue'
+import Putao from '../views/category/page/putao.vue'
 
 Vue.use(VueRouter);
 
@@ -44,9 +57,57 @@ const routes = [
         component: Detail
     },
     {
-        path: '/goodlist',
-        component: goodList
-    }
+        path: '/zxg',
+        component: Zxg
+    },
+    {
+        path:'/zhicai',
+        component: Zhicai
+    },
+    {
+        path: '/temai',
+        component: Temai
+    },
+    {
+        path: '/paihang',
+        component: Paihang
+    },
+    {
+        path: '/mai',
+        component: Mai
+    },
+    {
+        path: '/li',
+        component: Li
+    },
+    {
+        path: '/datan',
+        component: Datan
+    },
+    {
+        path: '/hongjiu',
+        component: Hongjiu
+    },
+    {
+        path: '/laojiu',
+        component: Laojiu
+    },
+    {
+        path: '/laojiu',
+        component: Laojiu
+    },
+    {
+        path: '/baijiu',
+        component: Baijiu
+    },
+    {
+        path: '/putao',
+        component: Putao
+    },
+    {
+        path: '/yangjiu',
+        component: Yangjiu
+    },
 
 ];
 
