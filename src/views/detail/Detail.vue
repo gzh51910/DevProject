@@ -1,55 +1,54 @@
   <template>
-  <div>
+  <div style="background-color: #f3f5f6;">
     <!-- 顶头 -->
-    <nav-bar class="detailHead">
+    <nav-bar class="detailHead" style="color: white;">
       <div class="left" slot="left">
-        <i class="el-icon-arrow-left"></i>
+        <i class="el-icon-arrow-left" style="color:#fff"></i>
       </div>
-      <div class="center" slot="center">商品详情</div>
+      <div class="center" slot="center" style="color:#fff">商品详情</div>
       <div class="right" slot="right">
-        <i class="el-icon-menu"></i>
+        <i class="el-icon-menu" style="color:#fff"></i>
       </div>
     </nav-bar>
     <!-- 提示头-->
-    <el-row>
-      <div style="background:#2e2e2e">
-        <el-col :span="8">
+    <main style="margin-top:40px">
+      <el-row>
+        <el-col :span="6">
           <div class="grid-content bg-purple" style="background:#2e2e2e;height:40px">
             <i class="el-icon-error"></i>
           </div>
         </el-col>
-        <el-col :span="10">
+        <el-col :span="12">
           <div
             class="grid-content bg-purple-light"
-            style="background: #2e2e2e;text-align: center;color: #fff;font-size: 12px"
+            style="background: #2e2e2e;text-align:center;height:40px"
           >
-            <p style="padding-top:4px">打开酒仙网App</p>
-            <p style="padding-bottom:4px">新人领198元礼包</p>
+            <p style="color: #fff;font-size: 12px;padding-top:4px">打开酒仙网App</p>
+            <p style="padding-bottom:2px;color: #fff;font-size: 12px">新人领198元礼包</p>
           </div>
         </el-col>
-      </div>
-      <el-col :span="6">
-        <div class="grid-content bg-purple right" style="background:#e62929">立即打开</div>
-      </el-col>
-    </el-row>
-    <!-- 商品图片详情 -->
-    <el-carousel height="320px" arrow="never" :autoplay="false" class="banner">
-      <el-carousel-item v-for="item in detailImg" :key="item">
-        <img atl :src="item" style="width:100%;height:100%" />
-      </el-carousel-item>
-    </el-carousel>
-    <!-- 文字介绍 -->
-    <el-row style="padding:0 10px;background:#fff;padding-bottom:20px">
-      <el-col>
-        <h4>整箱红酒7°通天柔红山葡萄甜酒750ml（6瓶装）</h4>
-        <p class="price">
-          <span style="color: #fc5a5a;font-size: 19px;">￥99.00</span>
-          <del style="font-size: 12px;color: #999;padding-left:8px">酒仙价：120.00</del>
-        </p>
-      </el-col>
-    </el-row>
-    <!-- 优惠和金币 -->
-    <!-- <el-row style="margin-top:10px;background:#fff;padding:0 10px">
+        <el-col :span="6">
+          <div class="grid-content bg-purple right" style="background:#e62929">立即打开</div>
+        </el-col>
+      </el-row>
+      <!-- 商品图片详情 -->
+      <el-carousel height="320px" arrow="never" :autoplay="false" class="banner">
+        <el-carousel-item v-for="item in detailImg" :key="item">
+          <img atl :src="item" style="width:100%;height:100%" />
+        </el-carousel-item>
+      </el-carousel>
+      <!-- 文字介绍 -->
+      <el-row style="padding:0 10px;background:#fff;padding-bottom:20px">
+        <el-col>
+          <h4>整箱红酒7°通天柔红山葡萄甜酒750ml（6瓶装）</h4>
+          <p class="price">
+            <span style="color: #fc5a5a;font-size: 19px;float:left">￥99.00</span>
+            <del style="font-size: 12px;color: #999;padding-left:8px">酒仙价：120.00</del>
+          </p>
+        </el-col>
+      </el-row>
+      <!-- 优惠和金币 -->
+      <!-- <el-row style="margin-top:10px;background:#fff;padding:0 10px">
       <el-row style="margin-top:10px">
         <el-col :span="6" style="font-size: 14px;color: #666;">
             优惠
@@ -78,26 +77,29 @@
          <el-col :span="4">
         </el-col>
       </el-row>
-    </el-row>-->
-    <!-- 数量 -->
-    <el-row style="margin-top:10px;background:#fff;padding:0 10px">
-      <el-col :span="4">
-        <p class="textSame">数量</p>
-      </el-col>
-      <el-col :span="10">
-        <el-input-number v-model="num1" :min="1" :max="10" size="small"></el-input-number>
-      </el-col>
-      <el-col :span="4">
-        <el-button type="danger" size="mini">加入购物车</el-button>
-      </el-col>
-    </el-row>
-    <!-- <eval></eval> -->
-    <evl></evl> 
+      </el-row>-->
+      <!-- 规格 -->
+      <size></size>
+      <!-- 数量 -->
+      <el-row style="margin-top:10px;background:#fff;padding:0 10px">
+        <el-col :span="4">
+          <p class="textSame">数量</p>
+        </el-col>
+        <div>
+          <el-input-number v-model="num1" :min="1" :max="10" size="small" class="detailNum"></el-input-number>
+        </div>
+      </el-row>
+      <evl></evl>
+    </main>
+    <detail-footer></detail-footer>
   </div>
 </template>
 <script>
 import navBar from "../../components/common/navBar/navBar.vue";
 import evl from "./Eval.vue";
+import size from "./Size.vue";
+import DetailFooter from "./DetailFooter.vue";
+import {my} from '../../network';
 export default {
   data() {
     return {
@@ -110,52 +112,39 @@ export default {
         "http://img06.jiuxian.com/2017/0821/4874cef2d4574658b7aa8f49969fdf1b5.jpg",
         "http://img08.jiuxian.com/2017/0822/78c0b66acb7a4707aedb70de47000a815.jpg"
       ],
-      Evel: { totalEval: "40932 人评价", goodEval: "98 %" },
-      allEvel: [
-        {
-          photo:
-            " http://img10.jiuxian.com/upheader/avatar/002/04/37/34_avatar_big.jpg",
-
-          username: "大鱼水煮",
-          tag: "酒仙",
-          userTilTwe: "2019-09-08 15:18:11",
-          imgHold:
-            "http://img09.jiuxian.com/eva//2019/0908/b09731dbc54c4077b49503b7fa13d9792.jpg"
-        },
-        {
-          photo:
-            "http://wx.qlogo.cn/mmopen/pVvqjPOlUcxgvHraiaUNjyNv5M3qKkYgyPFO2BtFDTl35hiaTaSfcOeN15ws6OnYaF5N4jTxic91eicklyzy6m7Bvofw6Knfww9t/0",
-          username: " 酒仙酒友",
-          tag: "CLUB",
-          userTilTwe: "2019-09-05 23:21:59",
-          imgHold:
-            "http://img07.jiuxian.com/eva//2019/0905/b94cc556b6b640a88404183d61b126062.jpg"
-        },
-        {
-          photo:
-            " http://img07.jiuxian.com/upheader/temp/b563c40405a04384b85e185df8711074.png",
-          username: " 脱缰野马",
-          tag: "酒仙",
-          userTilTwe: "2019-09-05 16:27:49",
-          imgHold:
-            "http://img06.jiuxian.com/eva//2019/0905/8bb9b8d0505a4afe8c729a330a8c9c702.jpg"
-        }
-      ]
+      Evel: { totalEval: "40932 人评价", goodEval: "98 %" }
     };
+  },
+  async created(){
+    // console.log(this.$route)
+    let {id}=this.$route.params;
+    // let id="5dcbf7772d6ba972dbcda8df";
+    let data=await my.get(`/goods${id}`);
+    console.log(data);
+  },
+  methods:{
+    // addGoods(){
+    //   let query=this.$route.
+    // }
   },
   components: {
     navBar,
-    evl
+    evl,
+    size,
+    DetailFooter
   }
 };
 </script>
-<style>
+<style  lang="css" scoped>
 * {
   margin: 0;
   padding: 0;
 }
-body {
-  background-color: #f3f5f6;
+.detailHead {
+  width: 100%;
+  z-index: 10;
+  position: fixed;
+  top: 0;
 }
 img {
   width: 100%;
@@ -164,7 +153,6 @@ img {
 .left,
 .right,
 .center {
-  color: white;
   line-height: 40px;
   font-size: 16px;
   text-align: center;
@@ -180,10 +168,13 @@ img {
   color: #666;
   text-align: center;
 }
-.floatRight{
-float: right;
+.floatRight {
+  float: right;
 }
-.floatLeft{
-float: left;
+.floatLeft {
+  float: left;
+}
+.detailNum {
+  margin-top: 4px;
 }
 </style>
