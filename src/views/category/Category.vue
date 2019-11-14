@@ -6,7 +6,8 @@
       <div slot="center"><h2 class="headTitle">选酒</h2></div>
       <div slot="right"><a class="navbar"></a></div>
     </nav-bar>
-    <div style="background:#fff;padding:5px 15px;background-color:#ececec">
+    <div class="big">
+      <div style="background:#fff;padding:5px 15px;background-color:#ececec" >
       <el-input placeholder="请输入内容" v-model="input" >
         <template slot="prepend">搜索</template>
       </el-input>
@@ -18,8 +19,10 @@
       v-for="(item,id) in goodslist" 
       :key="id"
       >
-      <div  @click="goto"><i :class="item.class" ></i>{{item.text}}</div></el-col>
+      <div  @click="goto(item.path)"><i :class="item.class" ></i>{{item.text}}</div></el-col>
     </el-row>
+    </div>
+    
   </div>
 </template>
 
@@ -28,65 +31,66 @@ import NavBar from "../../components/common/navBar/navBar.vue";
 export default {
   data() {
     return {
+      input:"",
       goodslist:[
         {
           text:"白酒",
-          path:"/goodslist",
+          path:"/baijiu",
           class:"f1"
         },
         {
           text:"葡萄酒",
-          path:"/goodslist",
+          path:"/putao",
           class:"f2"
         },
         {
           text:"洋酒",
-          path:"/goodslist",
+          path:"/yangjiu",
           class:"f3"
         },
         {
           text:"整箱酒",
-          path:"/goodslist",
+          path:"/zxg",
           class:"f4"
         },
         {
           text:"老酒",
-          path:"/goodslist",
+          path:"/laojiu",
           class:"f5"
         },
         {
           text:"清仓特卖",
-          path:"/goodslist",
+          path:"/temai",
           class:"f6"
         },
         {
           text:"海外直采",
-          path:"/goodslist",
+          path:"/zhicai",
           class:"f7"
         },
         {
           text:"精美大坛",
-          path:"/goodslist",
+          path:"/datan",
           class:"f8"
         },
         {
           text:"红酒整箱",
-          path:"/goodslist",
+          path:"/hongjiu",
           class:"f9"
         },
         {
           text:"值得买",
-          path:"/goodslist",
+          path:"/mai",
           class:"f10"
         },
         {
           text:"销量排行",
-          path:"/goodslist",
+          path:"/paihang",
           class:"f11"
         },
          {
           text:"礼尚往来",
-          path:"/goodslist",
+          path:"/li",
           class:"f12"
         },
       ],
@@ -96,10 +100,8 @@ export default {
     NavBar
   },
   methods: {
-    goto(){
-      this.$router.push('/goodlist');
-      console.log(666);
-      
+    goto(path){
+      this.$router.push(path);  
     }
   },
   watch: {
@@ -110,10 +112,17 @@ export default {
 };
 </script>
 <style>
+.big{
+  margin-top: 0px;
+}
 .head {
+    width: 100%;
     height: 40px;
     background-color: #de4943;
     color: #fff;
+    position: fixed;
+    top:0;
+    z-index: 10;
 }
 .head .back {
     margin-left: 5px;

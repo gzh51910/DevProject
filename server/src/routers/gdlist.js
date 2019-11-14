@@ -26,30 +26,12 @@ Router.get('/',async (req,res)=>{
 // @添加商品
 Router.post('/',async (req,res)=>{
 
-    let sql = `insert into goods(`
-    for(let key in req.body){
-        sql += `${key},`
-    }
-    sql = sql.replace(/,$/,') values(')
-    for(let key in req.body){
-        sql += `"${req.body[key]}",`
-    }
-    sql = sql.replace(/,$/,')');
-    console.log(sql);
-    let result = await query(sql)
-    res.send(result)
+    
 })
 
 // @查询单个商品
 Router.get('/:id',(req,res)=>{
     
-    let {id} = req.params;
-    // 查询数据：
-    let sql = `select * from goods where id=${id}`;
-
-
-    query(sql,function(data){
-        res.send(data)
-    });
+   
 })
 module.exports = Router
