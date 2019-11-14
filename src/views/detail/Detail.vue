@@ -92,7 +92,7 @@
       </el-col>
     </el-row>
     <!-- <eval></eval> -->
-    <evl></evl> 
+    <evl></evl>
   </div>
 </template>
 <script>
@@ -154,9 +154,9 @@ export default {
   margin: 0;
   padding: 0;
 }
-body {
+/* body {
   background-color: #f3f5f6;
-}
+} */
 img {
   width: 100%;
   height: 100%;
@@ -180,10 +180,10 @@ img {
   color: #666;
   text-align: center;
 }
-.floatRight{
-float: right;
+.floatRight {
+  float: right;
 }
-.floatLeft{
-float: left;
+.floatLeft {
+  float: left;
 }
 </style>
