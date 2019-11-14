@@ -1,3 +1,4 @@
+
 import Vue from 'vue'
 
 // 1. 引入Vuex
@@ -22,4 +23,6 @@ let store = new Vuex.Store({
 console.log('store:',store)
 
 // 4. 把store导出并注入Vue实例
+
+
 export default store;

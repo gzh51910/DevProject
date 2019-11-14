@@ -8,7 +8,7 @@ const { formatData } = require('../utils')
 
 // 编写数据接口
 
-const colName = 'gdlist';
+const colName = 'nav';
 
 // @查询所有商品
 Router.get('/', async (req, res) => {

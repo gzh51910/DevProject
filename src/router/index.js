@@ -40,7 +40,7 @@ const routes = [
         path: '/reg',
         component: Reg
     }, {
-        path: '/goods',
+        path: '/goods/:id',
         component: Detail
     },
     {

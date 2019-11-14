@@ -43,9 +43,9 @@
 <script>
 export default {
   data() {
-<<<<<<< HEAD
-    return {};
-=======
+
+   
+
     return {
       value1: 5,
       allEvel: [
@@ -83,7 +83,7 @@ export default {
         }
       ]
     };
->>>>>>> taojuan
+
   }
 };
 </script>
