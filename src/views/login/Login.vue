@@ -38,7 +38,7 @@ export default {
     },
 
     back() {
-      this.$router.replace("/home");
+      window.history.go(-1);
     }
   }
 };

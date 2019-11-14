@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-
+import axios from "axios"
 Vue.config.productionTip = false
 import './assets/js/rem'
-
-import { Button, Icon, Tabs, TabPane, Form, FormItem, Input,Carousel,CarouselItem,Row,Col,InputNumber } from 'element-ui';
+import store from './store'
+import { Button, Icon, Tabs, TabPane, Form, FormItem, Input, Carousel, CarouselItem, Row, Col, InputNumber } from 'element-ui';
 Vue.component(Button.name, Button);
 Vue.component(Icon.name, Icon);
 Vue.component(Tabs.name, Tabs);
@@ -20,9 +20,10 @@ Vue.component(Col.name, Col);
 Vue.component(InputNumber.name, InputNumber);
 
 
-
+Vue.prototype.$axios = axios;
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
 
