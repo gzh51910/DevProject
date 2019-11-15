@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/home/Home.vue'
 import Category from '../views/category/Category.vue'
 import Cart from '../views/cart/Cart.vue'
+import Settlement from '../views/cart/Settlement.vue'
 import Profile from '../views/profile/Profile.vue'
 import Reg from '../views/reg/Reg.vue'
 import Login from '../views/login/Login.vue'
@@ -43,11 +44,15 @@ const routes = [
     {
         path: '/cart',
         component: Cart,
-        // meta: { requiresAuth: true }
+    },
+    {
+        path: '/settlement',
+        component: Settlement,
+        meta: { requiresAuth: true }
     }, {
         path: '/profile',
         component: Profile,
-        // meta: { requiresAuth: true }
+        meta: { requiresAuth: true }
     }, {
         path: '/login',
         component: Login
@@ -55,7 +60,7 @@ const routes = [
         path: '/reg',
         component: Reg
     }, {
-        path: '/goods/:id',
+        path: '/goods',
         component: Detail
     },
     {
@@ -89,10 +94,6 @@ const routes = [
     {
         path: '/hongjiu',
         component: Hongjiu
-    },
-    {
-        path: '/laojiu',
-        component: Laojiu
     },
     {
         path: '/laojiu',

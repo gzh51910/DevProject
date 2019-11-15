@@ -8,37 +8,50 @@ export default {
     // namespaced: true,
 
     state: {
-        goodslist: [
-            {
-                id: "1",
-                name: "huawei mate30 pro",
-                imgurl:
-                    "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3089410232,3830777459&fm=11&gp=0.jpg",
-                price: 5998,
-                qty: 10
+        goodslist: [{
+                "_id": "5dcdfe4d704aa2e5f8fa6cb6",
+                "goods_thumb": "https://img07.jiuxian.com/2019/0716/bbfac7baf70742e69d95564bfc7908762.jpg",
+                "goods_name": "52°小糊涂神250ml（双瓶装）",
+                "proshop2": "限时抢购",
+                "xx": "",
+                "price": "￥58.00 ",
+                "qty": 2,
+                "selected": false,
+                "allSelected": false
             },
             {
-                id: "2",
-                name: "xiaomi9",
-                imgurl:
-                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1571131475&di=2df2d3a54a89db9e09952799acb25261&imgtype=jpg&er=1&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F8488db95efa140b9c50cb4615e2ca337a6981aa7.jpg",
-                price: 2999,
-                qty: 2
+                "_id": "5dcdfe4d704aa2e5f8fa6cb7",
+                "goods_thumb": "https://img09.jiuxian.com/2017/0822/78c0b66acb7a4707aedb70de47000a812.jpg",
+                "goods_name": "【买一送二】52°酒鬼原浆酒500ml",
+                "proshop2": "掌上秒拍",
+                "xx": "满送",
+                "price": "￥199.00 ",
+                "qty": 2,
+                "selected": false,
+                "allSelected": false
             },
             {
-                id: "3",
-                name: "onePlus9 pro",
-                imgurl:
-                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1570536784660&di=d4471f6edf73cace7d98fb05869a9277&imgtype=0&src=http%3A%2F%2Fimg13.360buyimg.com%2Fn1%2Fs450x450_jfs%2Ft28117%2F273%2F1288839750%2F66834%2F8ef15c40%2F5cdd22b8Nbc711aba.jpg",
-                price: 3999,
-                qty: 1
+                "_id": "5dcdfe4d704aa2e5f8fa6cb8",
+                "goods_thumb": "https://img06.jiuxian.com/2019/0902/29e4f1ce36eb46678ba34c7be529e5d52.jpg",
+                "goods_name": "52°白水杜康一坛老酒1000ml",
+                "proshop2": "买赠",
+                "xx": "限时抢购",
+                "price": "￥149.00 ",
+                "qty": 2,
+                "selected": false,
+                "allSelected": false
             }
         ]
     },
-
     getters: {
         totalPrice(state) {
-            return state.goodslist.reduce((prev, item) => prev + item.price * item.qty, 0);
+            let total = 0;
+            state.goodslist.forEach(item => {
+                if (item.selected) {
+                    total += Number(item.price.slice(1)) * item.qty;
+                }
+            })
+            return total
         }
     },
 
@@ -53,19 +66,28 @@ export default {
             //         state.goodslist.splice(idx,1)
             //     }
             // })
-            state.goodslist = state.goodslist.filter(item => item.id != id)
+            state.goodslist = state.goodslist.filter(item => item._id != id)
         },
 
         // 清空购物车
-        clearCart(state) {
-            state.goodslist = []
-        },
+        // clearCart(state) {
+        //     state.goodslist = []
+        // },
 
         // 添加到购物车
         addToCart(state, goods) {
-            state.goodslist.unshift(goods)
+            console.log(1111);
+            // let test=0;
+            // state.goodslist.forEach(item => {
+            //     if (goods._id == item._id) {
+            //         item.qty = item.qty + goods.qty;
+            //         test+=1;
+            //     }
+            // })
+            //  if (test!=0) {
+                 state.goodslist.unshift(goods)
+            //  }
         },
-
         // 修改数量
         changeQty(state, payload) {
             state.goodslist.forEach(item => {
@@ -81,16 +103,24 @@ export default {
     actions: {
         // context: 一个类似于store的对象
         // payload: 触发action时传入的参数
-        async changeQtyAsync(context, { id, qty }) {
+        async changeQtyAsync(context, {
+            id,
+            qty
+        }) {
             console.log('context', context);
             // 发起ajax请求
             // let { data: { data } } = await axios.get(`http://localhost:1910/goods/${id}/kucun`);
-            let { data: { data } } = await my.get(`/goods/${id}/kucun`)
+            let {
+                data: {
+                    data
+                }
+            } = await my.get(`/goods/${id}/kucun`)
             if (qty > data) {
                 qty = data;
             }
             console.log(id, qty, data)
             context.commit('changeQty', { id, qty })
+
         }
     }
 
