@@ -13,11 +13,12 @@
       </div>
       <div class="yz">
         <el-input suffix-icon v-model="input" placeholder="请输入内容"></el-input>
+
         <p></p>
       </div>
       <div class="dt">
         <el-input class="yzm" v-model="input" placeholder="请输入校验码"></el-input>
-        <el-button type="danger">获取验证码</el-button>
+        <el-button type="danger" style="background: #de4b45;">获取验证码</el-button>
       </div>
       <p></p>
       <el-button class="botton" type="danger">立即登录</el-button>
@@ -70,6 +71,7 @@ p {
   width: 100%;
   height: 34px;
   margin: 30px auto;
+  background: #de4b45;
 }
 .btn {
   display: flex;

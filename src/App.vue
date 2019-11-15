@@ -35,9 +35,7 @@ import TabBar from "./components/common/tabbar/Tabbar.vue";
 import TabBarItem from "./components/common/tabbar/TabBarItem.vue";
 export default {
   data() {
-    return {
-      index: 0
-    };
+    return {};
   },
   name: "app",
   components: {
