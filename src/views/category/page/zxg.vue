@@ -1,17 +1,17 @@
-<template  class="mian">
+<template>
   <div>
     <nav-bar class="head">
       <div slot="left">
-        <a class="back"></a>
+        <a class="back" href="#/category"></a>
       </div>
       <div slot="center">
-        <h2 class="headTitle">选酒</h2>
+        <h2 class="headTitle">整箱购</h2>
       </div>
       <div slot="right">
         <a class="navbar"></a>
       </div>
     </nav-bar>
-    <div>
+    <div class="big">
       <el-row class="banner">
         <el-col :span="24">
           <a>
@@ -44,15 +44,21 @@
           </el-col>
         </el-row>
       </div>
-      <el-row :gutter="5">
-        <el-col :span="12" v-for="(item,id) in 6" :key="id">
-          <el-card :body-style="{padding: '0',height:'248px'}">
+      <el-row :gutter="10" class="banner">
+        <el-col
+          :span="11"
+          v-for="(item,id) in 6"
+          :key="id"
+          @click.native="goto('/goods')"
+          style="height:'248px'; width:'176px';background:#fff;margin:5px"
+        >
+          <el-card :body-style="{padding: '0'}"  @click="goto">
             <div style="text-align: center;">
               <img
                 src="http://img06.jiuxian.com/2017/1117/81dd4b2df63e41faac94f6e9fcb8e6734.jpg"
                 class="image"
               />
-              <p class="name">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
             </div>
             <div class="orice">
               <p class="goodlist">
@@ -75,15 +81,21 @@
           </el-col>
         </el-row>
       </div>
-      <el-row :gutter="5">
-        <el-col :span="12" v-for="(item,id) in 4" :key="id">
+      <el-row :gutter="5" class="banner">
+        <el-col
+          :span="11"
+          v-for="(item,id) in 4"
+          :key="id"
+          @click.native="goto('/goods')"
+          style="height:'248px'; width:'176px';background:#fff;margin:5px"
+        >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
                 src="http://img10.jiuxian.com/2019/0926/4a3ab3a9f67f495ba7c880e9178251914.jpg"
                 class="image"
               />
-              <p class="name">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
             </div>
             <div class="orice">
               <p class="goodlist">
@@ -113,15 +125,21 @@
           </el-col>
         </el-row>
       </div>
-      <el-row :gutter="5">
-        <el-col :span="12" v-for="(item,id) in 4" :key="id">
+      <el-row :gutter="5" class="banner">
+        <el-col
+          :span="11"
+          v-for="(item,id) in 4"
+          :key="id"
+          @click.native="goto('/goods')"
+          style="height:'248px'; width:'176px';background:#fff;margin:5px"
+        >
           <el-card :body-style="{padding: '0px',height:'248px'}">
             <div style="text-align: center;">
               <img
                 src="http://img10.jiuxian.com/2017/0707/7b2fc91d759f43799bffd1ba0cc2209c4.jpg"
                 class="image"
               />
-              <p class="name">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
             </div>
             <div class="orice">
               <p class="goodlist">
@@ -144,15 +162,21 @@
           </el-col>
         </el-row>
       </div>
-      <el-row :gutter="5">
-        <el-col :span="12" v-for="(item,id) in 4" :key="id">
+      <el-row :gutter="5" class="banner">
+        <el-col
+          :span="11"
+          v-for="(item,id) in 4"
+          :key="id"
+          @click.native="goto('/goods')"
+          style="height:'248px'; width:'176px';background:#fff;margin:5px"
+        >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
                 src="http://img08.jiuxian.com/2019/0311/832899553f0e453dab9008205aa0c5a64.jpg"
                 class="image"
               />
-              <p class="name">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
             </div>
             <div class="orice">
               <p class="goodlist">
@@ -175,15 +199,21 @@
           </el-col>
         </el-row>
       </div>
-      <el-row :gutter="5">
-        <el-col :span="12" v-for="(item,id) in 4" :key="id">
+      <el-row :gutter="5" class="banner">
+        <el-col
+          :span="11"
+          v-for="(item,id) in 4"
+          :key="id"
+          @click.native="goto('/goods')"
+          style="height:'248px'; width:'176px';background:#fff;margin:5px"
+        >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
                 src="http://img07.jiuxian.com/2019/1107/ac83abf71ef44c7a9a4c346d2ef1fcbe4.jpg"
                 class="image"
               />
-              <p class="name">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
             </div>
             <div class="orice">
               <p class="goodlist">
@@ -215,15 +245,21 @@
           </el-col>
         </el-row>
       </div>
-      <el-row :gutter="5">
-        <el-col :span="12" v-for="(item,id) in 6" :key="id">
+      <el-row :gutter="5" class="banner">
+        <el-col
+          :span="11"
+          v-for="(item,id) in 6"
+          :key="id"
+          @click.native="goto('/goods')"
+          style="height:'248px'; width:'176px';background:#fff;margin:5px"
+        >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
                 src="http://img10.jiuxian.com/2019/1107/761b68cbd06a442fbf7d9015c82de08c4.jpg"
                 class="image"
               />
-              <p class="name">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
             </div>
             <div class="orice">
               <p class="goodlist">
@@ -246,15 +282,21 @@
           </el-col>
         </el-row>
       </div>
-      <el-row :gutter="5">
-        <el-col :span="12" v-for="(item,id) in 4" :key="id">
+      <el-row :gutter="5" class="banner">
+        <el-col
+          :span="11"
+          v-for="(item,id) in 4"
+          :key="id"
+          @click.native="goto('/goods')"
+          style="height:'248px'; width:'176px';background:#fff;margin:5px"
+        >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
                 src="http://img09.jiuxian.com/2014/0630/7eb77227ad39494dba6cde86246cd6034.jpg"
                 class="image"
               />
-              <p class="name">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
             </div>
             <div class="orice">
               <p class="goodlist">
@@ -277,15 +319,21 @@
           </el-col>
         </el-row>
       </div>
-      <el-row :gutter="5">
-        <el-col :span="12" v-for="(item,id) in 5" :key="id">
+      <el-row :gutter="5" class="banner">
+        <el-col
+          :span="11"
+          v-for="(item,id) in 5"
+          :key="id"
+          @click.native="goto('/goods')"
+          style="height:'248px'; width:'176px';background:#fff;margin:5px"
+        >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
                 src="http://img10.jiuxian.com/2017/0503/f1b75021f2a44fe5b0ac61391c24247b4.jpg"
                 class="image"
               />
-              <p class="name">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
             </div>
             <div class="orice">
               <p class="goodlist">
@@ -297,15 +345,21 @@
           </el-card>
         </el-col>
       </el-row>
-      <el-row :gutter="5">
-        <el-col :span="12" v-for="(item,id) in 2" :key="id">
+      <el-row :gutter="5" class="banner">
+        <el-col
+          :span="11"
+          v-for="(item,id) in 2"
+          :key="id"
+          @click.native="goto('/goods')"
+          style="height:'248px'; width:'176px';background:#fff;margin:5px"
+        >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
                 src="http://img10.jiuxian.com/2016/0509/f4e0df8ca8194e4fb3412972af9dee6d4.jpg"
                 class="image"
               />
-              <p class="name">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
             </div>
             <div class="orice">
               <p class="goodlist">
@@ -330,19 +384,33 @@
   </div>
 </template>
 <script>
+
 import NavBar from "../../../components/common/navBar/navBar.vue";
+// import request from '../../../network/'
 export default {
-  data() {
-    return {};
-  },
-  components: {
-    NavBar
-  }
-};
+    data(){
+        return{
+            // list=[]
+        }
+    },
+    components: {
+        NavBar
+    },
+    methods:{
+        goto(){
+            this.$router.push('/goods')
+        }
+    }
+}
 </script>
 <style>
-.mian {
-  overflow-y: auto;
+.big {
+  padding-top: 40px;
+  overflow: auto;
+  background-color: #f5f5f5;
+}
+.banner {
+  padding-left: 10px;
 }
 .banner img {
   width: 100%;
@@ -352,7 +420,7 @@ export default {
   padding-bottom: 5px;
   margin: 0 auto;
 }
-.name {
+.names {
   height: 28px;
   line-height: 14px;
   width: 90%;
@@ -386,7 +454,7 @@ export default {
   width: 95px;
   height: 32px;
 }
-.tn {
+.btn {
   background: #ff0000;
   display: block;
   text-align: right;
@@ -426,5 +494,12 @@ export default {
   color: #280130;
   line-height: 15px;
   font-size: 14px;
+}
+.toTop i {
+  width: 14px;
+  height: 9px;
+  display: block;
+  background: url(../img/top.png) no-repeat;
+  margin: 5px 19px 2px;
 }
 </style>

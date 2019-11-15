@@ -43,6 +43,7 @@
 <script>
 export default {
   data() {
+
     return {
       value1: 5,
       allEvel: [
@@ -80,6 +81,10 @@ export default {
         }
       ]
     };
+
+
+    
+
   }
 };
 </script>

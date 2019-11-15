@@ -1,26 +1,26 @@
 <!--  -->
 <template>
   <div class="content">
-    <el-form label-width="80px" class="form">
-      <div class="phone">
+    <el-form class="form" ref="loginForm" :rules="rules" :model="loginForm">
+      <el-form-item prop="username" :error="errorMsg">
         <el-input
           prefix-icon="el-icon-user-solid
 "
           class="input"
-          v-model="input"
+          v-model="loginForm.username"
           placeholder="用户名/邮箱/手机号"
         ></el-input>
-        <p></p>
-      </div>
+      </el-form-item>
+      <el-form-item prop="password" :error="errorMsg">
+        <el-input prefix-icon="el-icon-lock" v-model="loginForm.password" placeholder="密码"></el-input>
+      </el-form-item>
       <div class="yz">
-        <el-input v-model="input" placeholder="请输入内容"></el-input>
+        <el-input v-model="loginForm.input" placeholder="请输入内容"></el-input>
+
         <p></p>
-      </div>
-      <div class="dt">
-        <el-input prefix-icon="el-icon-lock" v-model="input" placeholder="密码"></el-input>
       </div>
 
-      <el-button class="botton" type="danger">立即登录</el-button>
+      <el-button class="botton" type="danger" @click="submitForm('numberValidateForm')">立即登录</el-button>
     </el-form>
     <ul class="btn">
       <li @click="zhuce">免费注册</li>
@@ -30,15 +30,68 @@
 </template>
 
 <script>
+import { my } from "../../network";
 export default {
   data() {
     return {
-      input: ""
+      errorMsg: "",
+      loginForm: {
+        input: "",
+        username: "",
+        password: ""
+      },
+      rules: {
+        username: [
+          { required: true, message: "请输入用户名", trigger: "blur" },
+          {
+            min: 3,
+            max: 12,
+            message: "长度在 3 到 12 个字符",
+            trigger: "blur"
+          }
+        ],
+        password: [
+          { required: true, message: "请输入密码", trigger: "blur" },
+          { min: 6, max: 20, message: "长度在 6 到 20 个字符", trigger: "blur" }
+        ]
+      }
     };
   },
   methods: {
     zhuce() {
       this.$router.replace("/reg");
+    },
+    submitForm() {
+      this.$refs.loginForm.validate(async valid => {
+        if (valid) {
+          // 校验成功发起ajax请求
+          // console.log("success");
+
+          let { username, password } = this.loginForm;
+
+          let result = await my.get("/login", {
+            username,
+            password
+          });
+          // console.log("result:", result);
+          let { data, headers } = result;
+          if (data.status === 0) {
+            // console.log('不行')
+            this.errorMsg = "用户名或密码错误";
+          } else {
+            let user = data.data[0];
+            // 从响应头中获取Authorization
+            user.Authorization = headers.authorization;
+            this.$store.commit("login", user);
+            let redirectUrl = this.$route.query.redirectUrl || "/profile";
+            // console.log("redirectUrl:", redirectUrl);
+            this.$router.push(redirectUrl);
+          }
+        } else {
+          // console.log("error submit!!");
+          return false;
+        }
+      });
     }
   }
 };
@@ -59,15 +112,12 @@ p {
 .content {
   margin-top: 20px;
 }
-.dt {
-  display: flex;
-  justify-content: space-between;
-}
 
 .botton {
   width: 100%;
   height: 34px;
   margin: 30px auto;
+  background: #de4b45;
 }
 .btn {
   display: flex;

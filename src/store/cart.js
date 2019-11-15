@@ -1,57 +1,97 @@
-import {
-    request
-} from '../network/request';
+
+// import axios from 'axios';
+
+import { my } from '../network';
+// import my from '../Api/my'
 export default {
+    // 设置命名空间
+    // namespaced: true,
+
     state: {
-        goodslist: [{
-                goods_id: "5dcbf7772d6ba972dbcda8fd",
-                goods_thumb: "https://img09.jiuxian.com/2019/0404/c398ad1ef8d34a47a1a7f4e7421e76762.png",
-                goods_name: "45°古井大曲口感浓香型白酒250ml",
-                proshop2: "限时抢购",
-                xx: "买赠",
-                sName: "博酒汇官方旗舰店",
-                price: "￥199.00 ",
-                qty:2
+        goodslist: [
+            {
+                id: "1",
+                name: "huawei mate30 pro",
+                imgurl:
+                    "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3089410232,3830777459&fm=11&gp=0.jpg",
+                price: 5998,
+                qty: 10
             },
             {
-                goods_id: "5dcbf7772d6ba972dbcda905",
-                goods_thumb: "https://img08.jiuxian.com/2018/0102/0f8860587dc84f1992dc8a0e710d31d12.jpg",
-                goods_name: "五粮液股份A级佳宾级小酒版125ml",
-                proshop2: "多买多赠",
-                xx: "限时抢购",
-                sName: "博酒汇官方旗舰店",
-                price: "￥9.90 ",
-                qty:2
+                id: "2",
+                name: "xiaomi9",
+                imgurl:
+                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1571131475&di=2df2d3a54a89db9e09952799acb25261&imgtype=jpg&er=1&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F8488db95efa140b9c50cb4615e2ca337a6981aa7.jpg",
+                price: 2999,
+                qty: 2
             },
             {
-                goods_id: "5dcbf7772d6ba972dbcda8df",
-                goods_thumb: "https://img09.jiuxian.com/2017/0822/78c0b66acb7a4707aedb70de47000a812.jpg",
-                goods_name: "【买一送二】52°酒鬼原浆酒500ml",
-                proshop2: "掌上秒拍",
-                xx: "满送",
-                sName: "",
-                price: "￥199.00 ",
-                qty:2
+                id: "3",
+                name: "onePlus9 pro",
+                imgurl:
+                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1570536784660&di=d4471f6edf73cace7d98fb05869a9277&imgtype=0&src=http%3A%2F%2Fimg13.360buyimg.com%2Fn1%2Fs450x450_jfs%2Ft28117%2F273%2F1288839750%2F66834%2F8ef15c40%2F5cdd22b8Nbc711aba.jpg",
+                price: 3999,
+                qty: 1
             }
         ]
     },
-    getters:{
-            totalPrice(state) {
-                return state.goodslist.reduce((prev, item) => prev + Number(item.price.slice(1)) * item.qty, 0);
-            }
-        },
-    mutations: {
-        removeGoods(state,id) {
-            state.goodslist.forEach((item,index)=>{
-                    if(item.goods_id === id){
-                        state.goodslist.splice(index,1)
-                    }
-                })
-        },
-        // addGoods(id){
-        //     let id
 
-        // }
+    getters: {
+        totalPrice(state) {
+            return state.goodslist.reduce((prev, item) => prev + item.price * item.qty, 0);
+        }
+    },
+
+    //   mutation的调用方式：store.commit(mutation)
+    mutations: {
+        // 删除单个商品
+        // state:上面的state
+        // payload:触发mutation时传入的参数
+        removeFromCart(state, id) {
+            // state.goodslist.forEach((item,idx)=>{
+            //     if(item.id === id){
+            //         state.goodslist.splice(idx,1)
+            //     }
+            // })
+            state.goodslist = state.goodslist.filter(item => item.id != id)
+        },
+
+        // 清空购物车
+        clearCart(state) {
+            state.goodslist = []
+        },
+
+        // 添加到购物车
+        addToCart(state, goods) {
+            state.goodslist.unshift(goods)
+        },
+
+        // 修改数量
+        changeQty(state, payload) {
+            state.goodslist.forEach(item => {
+                if (item.id === payload.id) {
+                    item.qty = payload.qty;
+                }
+            })
+        }
+    },
+
+    // actions：间接修改state的方式
+    // 触发action: store.dispatch(action)
+    actions: {
+        // context: 一个类似于store的对象
+        // payload: 触发action时传入的参数
+        async changeQtyAsync(context, { id, qty }) {
+            console.log('context', context);
+            // 发起ajax请求
+            // let { data: { data } } = await axios.get(`http://localhost:1910/goods/${id}/kucun`);
+            let { data: { data } } = await my.get(`/goods/${id}/kucun`)
+            if (qty > data) {
+                qty = data;
+            }
+            console.log(id, qty, data)
+            context.commit('changeQty', { id, qty })
+        }
     }
 
 }
