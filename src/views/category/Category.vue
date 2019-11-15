@@ -111,9 +111,9 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="css" scoped>
 .big{
-  margin-top: 40px;
+  margin-top: 0px;
 }
 .head {
     width: 100%;

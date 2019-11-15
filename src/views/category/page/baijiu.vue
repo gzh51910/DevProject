@@ -96,50 +96,6 @@ export default {
   background-color: #fff;
   /* overflow: auto; */
 }
-/* .head {
-    width: 100%;
-    height: 40px;
-    background-color: #de4943;
-    color: #fff;
-    position: fixed;
-    top:0;
-    z-index: 10;
-}
-.head .back {
-    margin-left: 5px;
-    width: 30px;
-    height: 40px;
-    position: absolute;
-    top: 0;
-    display: block;
-    background: url(../img/headBack.jpg) no-repeat;
-}
-.head .headTitle {
-    width: 220px;
-    font-size: 16px;
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-    line-height: 40px
-}
-.head .navbar {
-    background: url(../img/headIcon.png) no-repeat;
-}
-.head .navbar {
-    background-position: -150px 6px;
-    right: 10px;
-    width: 30px;
-    height: 40px;
-    display: block;
-    position: absolute;
-}
-.banner {
-  padding-left: 0px;
-}
-.banner img {
-  width: 100%;
-  height: auto;
-}
 
 .sIcon {
   background: url(../img/searchIcon.png) no-repeat;
@@ -181,5 +137,5 @@ export default {
 }
 .price{
   color: red;
-} */
+} 
 </style>
