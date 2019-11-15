@@ -41,15 +41,15 @@ export default {
        this.$router.push('/cart');
    },
      addToCart(){
-       let {goodslist:goods} = this.$store.state.cart;
+       let {goodslist:data} = this.$store.state.cart;
        let goods= {
                 "_id": goods._id,
-                "goods_thumb": goods.goods_thumb,
-                "goods_name": goods.goods_name,
-                "proshop2": goods.proshop2?goods.proshop2:"",
-                "xx":goods.xx?goods.xx:"",
-                "price": goods.price.slice(0,1)=="￥"?goods.price:"￥"+goods.price,
-                "qty":goods.qty ,
+                "goods_thumb": data.goods_thumb,
+                "goods_name": data.goods_name,
+                "proshop2": data.proshop2?data.proshop2:"",
+                "xx":data.xx?data.xx:"",
+                "price": data.price.slice(0,1)=="￥"?data.price:"￥"+goods.price,
+                "qty":data.qty ,
                 "selected": false,
                 "allSelected": false
             }
