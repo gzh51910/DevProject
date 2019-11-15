@@ -43,11 +43,11 @@ const routes = [
     {
         path: '/cart',
         component: Cart,
-        meta: { requiresAuth: true }
+        // meta: { requiresAuth: true }
     }, {
         path: '/profile',
         component: Profile,
-        meta: { requiresAuth: true }
+        // meta: { requiresAuth: true }
     }, {
         path: '/login',
         component: Login
@@ -120,11 +120,11 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth) {
         // 获取token
-        let { Authorization } = JSON.parse(localStorage.getItem('user'));
+        // let { Authorization } = JSON.parse(localStorage.getItem('user'));
         // console.log(router);
 
-        // let $store = router.app.$store
-        // let Authorization = router.app.$store.state.common.user.Authorization;
+        let $store = router.app.$store
+        let Authorization = $store.state.common.user.Authorization;
         console.log('校验结果：', Authorization)
         if (Authorization) {
             // 登录则放行

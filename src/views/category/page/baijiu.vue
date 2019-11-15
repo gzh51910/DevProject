@@ -5,7 +5,7 @@
         <a class="back" href="#/category"></a>
       </div>
       <div slot="center">
-        <div>
+        <div style=" line-height: 40px">
           <em class="input-em sIcon"></em>
           <input
             style="width:260px;height28px;border-radius:5px;"
@@ -18,7 +18,7 @@
         <a class="navbar"></a>
       </div>
     </nav-bar>
-    <div class="baibig">
+    <div class="baibig" :db="db">
       <div 
       style="height:80px;text-align:center;line-height:40px;margin:40px 0 10px;">
         <el-row :gutter="20">
@@ -35,25 +35,27 @@
       <el-row :gutter="5" class="banner">
           <el-col
             :span="11"
-            v-for="(item,id) in 5"
+            v-for="(item,id) in goods1"
             :key="id"
-             @click.native="goto('/goods')"
-            style="height:'248px'; width:'176px';background:#fff;margin:5px"
-          >
-            <el-card :body-style="{padding: '0',height:'248px'}">
-              <div style="text-align: center;">
-                <img
-                  src="http://img10.jiuxian.com/2017/0503/f1b75021f2a44fe5b0ac61391c24247b4.jpg"
-                  class="image"
-                />
-                <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+             @click.native="goto(item._id,db)"
+          style="height:'248px'; width:'176px';background:#fff;margin:5px"
+        >
+           <el-card :body-style="{padding: '0',height:'248px'}">
+            <div style="text-align: center;">
+              <img
+                :src="item.goods_thumb"
+                class="image"
+              />
+              <p class="names">{{item.goods_name}}</p>
+            </div>
+            <div class="orice">
+              <p class="goodlist">
+                <span class="price">{{item.price}}</span>
+                <del>{{item.shop_price}}</del>
+              </p>
+              <div style=" position: absolute;bottom:5px ;right:0px"> 
+                <el-button type="danger" size="mini">点击购买</el-button>
               </div>
-              <div class="orice">
-                <p class="goodlist">
-                  <span class="price">￥333</span>
-                  <del>666</del>
-                </p>
-                <a href>点击购买</a>
               </div>
             </el-card>
           </el-col>
@@ -63,11 +65,21 @@
 </template>
 <script>
 import NavBar from "../../../components/common/navBar/navBar.vue";
+import {my} from '../../../network'
+import "../../../assets/css/list.css"
 export default {
   data() {
     return {
-      input1: ""
+      input1: "",
+      goods1 : [],
+      db:"sheet1"
     };
+    
+  },
+  async created(){
+    let db = {gather:"sheet1"}
+    let {data:{data:goods}}= await my.get("/gdlist",db)
+    this.goods1=goods
   },
   components: {
     NavBar
@@ -83,6 +95,50 @@ export default {
 .baibig {
   background-color: #fff;
   /* overflow: auto; */
+}
+/* .head {
+    width: 100%;
+    height: 40px;
+    background-color: #de4943;
+    color: #fff;
+    position: fixed;
+    top:0;
+    z-index: 10;
+}
+.head .back {
+    margin-left: 5px;
+    width: 30px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    display: block;
+    background: url(../img/headBack.jpg) no-repeat;
+}
+.head .headTitle {
+    width: 220px;
+    font-size: 16px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 40px
+}
+.head .navbar {
+    background: url(../img/headIcon.png) no-repeat;
+}
+.head .navbar {
+    background-position: -150px 6px;
+    right: 10px;
+    width: 30px;
+    height: 40px;
+    display: block;
+    position: absolute;
+}
+.banner {
+  padding-left: 0px;
+}
+.banner img {
+  width: 100%;
+  height: auto;
 }
 
 .sIcon {
@@ -123,4 +179,7 @@ export default {
   margin-right: 10px;
   padding: 0 15px;
 }
+.price{
+  color: red;
+} */
 </style>

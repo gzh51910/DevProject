@@ -11,7 +11,7 @@
         <a class="navbar"></a>
       </div>
     </nav-bar>
-    <div class="big">
+    <div class="big" :db="db">
       <el-row class="banner">
         <el-col :span="24">
           <a>
@@ -44,28 +44,32 @@
           </el-col>
         </el-row>
       </div>
-      <el-row :gutter="10" class="banner">
+      <el-row :gutter="5" class="banner">
         <el-col
           :span="11"
-          v-for="(item,id) in 6"
-          :key="id"
-          @click.native="goto('/goods')"
+          v-for="(item) in goods1"
+          :key="item._id"
+          @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
-          <el-card :body-style="{padding: '0'}"  @click="goto">
+          <el-card :body-style="{padding: '0'}">
             <div style="text-align: center;">
               <img
-                src="http://img06.jiuxian.com/2017/1117/81dd4b2df63e41faac94f6e9fcb8e6734.jpg"
+                :src="item.goods_thumb"
                 class="image"
               />
-              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
               <p class="goodlist">
-                <span class="price">￥333</span>
-                <del>666</del>
+                <span class="price">￥{{item.price}}</span>
+                <del>{{item.shop_price}}</del>
               </p>
-              <a href>点击购买</a>
+              <div 
+                style=" position: absolute;bottom:5px ;right:0px"> 
+                <el-button type="danger" size="mini">点击购买</el-button>
+              </div>
+             
             </div>
           </el-card>
         </el-col>
@@ -84,25 +88,68 @@
       <el-row :gutter="5" class="banner">
         <el-col
           :span="11"
-          v-for="(item,id) in 4"
+          v-for="(item,id) in goods2"
           :key="id"
-          @click.native="goto('/goods')"
+          @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
-                src="http://img10.jiuxian.com/2019/0926/4a3ab3a9f67f495ba7c880e9178251914.jpg"
+                :src="item.goods_thumb"
                 class="image"
               />
-              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
               <p class="goodlist">
-                <span class="price">￥333</span>
-                <del>666</del>
+                <span class="price">￥{{item.price}}</span>
+                <del>{{item.shop_price}}</del>
               </p>
-              <a href>点击购买</a>
+              <div 
+                style=" position: absolute;bottom:5px ;right:0px"> 
+                <el-button type="danger" size="mini">点击购买</el-button>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+      <div class="banner">
+        <el-row>
+          <el-col>
+            <a href>
+              <img
+                src="https://img10.jiuxian.com/bill/2018/0117/4429e09b09c74cd7a90e280a4f6d5c6f.jpg"
+              />
+            </a>
+          </el-col>
+        </el-row>
+      </div>
+      <el-row :gutter="5" class="banner">
+        <el-col
+          :span="11"
+          v-for="(item,id) in goods3"
+          :key="id"
+         @click.native="goto(item._id,db)"
+          style="height:'248px'; width:'176px';background:#fff;margin:5px"
+        >
+          <el-card :body-style="{padding: '0',height:'248px'}">
+            <div style="text-align: center;">
+              <img
+                :src="item.goods_thumb"
+                class="image"
+              />
+              <p class="names">{{item.goods_name}}</p>
+            </div>
+            <div class="orice">
+              <p class="goodlist">
+                <span class="price">￥{{item.price}}</span>
+                <del>{{item.shop_price}}</del>
+              </p>
+               <div 
+                style=" position: absolute;bottom:5px ;right:0px"> 
+                <el-button type="danger" size="mini">点击购买</el-button>
+              </div>
             </div>
           </el-card>
         </el-col>
@@ -128,25 +175,28 @@
       <el-row :gutter="5" class="banner">
         <el-col
           :span="11"
-          v-for="(item,id) in 4"
+          v-for="(item,id) in goods4"
           :key="id"
-          @click.native="goto('/goods')"
+          @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
-          <el-card :body-style="{padding: '0px',height:'248px'}">
+           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
-                src="http://img10.jiuxian.com/2017/0707/7b2fc91d759f43799bffd1ba0cc2209c4.jpg"
+                :src="item.goods_thumb"
                 class="image"
               />
-              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
               <p class="goodlist">
-                <span class="price">￥333</span>
-                <del>666</del>
+                <span class="price">￥{{item.price}}</span>
+                <del>{{item.shop_price}}</del>
               </p>
-              <a href>点击购买</a>
+               <div 
+                style=" position: absolute;bottom:5px ;right:0px"> 
+                <el-button type="danger" size="mini">点击购买</el-button>
+              </div>
             </div>
           </el-card>
         </el-col>
@@ -165,25 +215,28 @@
       <el-row :gutter="5" class="banner">
         <el-col
           :span="11"
-          v-for="(item,id) in 4"
+          v-for="(item,id) in goods1"
           :key="id"
-          @click.native="goto('/goods')"
+          @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
-                src="http://img08.jiuxian.com/2019/0311/832899553f0e453dab9008205aa0c5a64.jpg"
+                :src="item.goods_thumb"
                 class="image"
               />
-              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
               <p class="goodlist">
-                <span class="price">￥333</span>
-                <del>666</del>
+                <span class="price">￥{{item.price}}</span>
+                <del>{{item.shop_price}}</del>
               </p>
-              <a href>点击购买</a>
+               <div 
+                style=" position: absolute;bottom:5px ;right:0px"> 
+                <el-button type="danger" size="mini">点击购买</el-button>
+              </div>
             </div>
           </el-card>
         </el-col>
@@ -202,25 +255,28 @@
       <el-row :gutter="5" class="banner">
         <el-col
           :span="11"
-          v-for="(item,id) in 4"
+          v-for="(item,id) in goods2"
           :key="id"
-          @click.native="goto('/goods')"
+          @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
-          <el-card :body-style="{padding: '0',height:'248px'}">
+           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
-                src="http://img07.jiuxian.com/2019/1107/ac83abf71ef44c7a9a4c346d2ef1fcbe4.jpg"
+                :src="item.goods_thumb"
                 class="image"
               />
-              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
               <p class="goodlist">
-                <span class="price">￥333</span>
-                <del>666</del>
+                <span class="price">￥{{item.price}}</span>
+                <del>{{item.shop_price}}</del>
               </p>
-              <a href>点击购买</a>
+               <div 
+                style=" position: absolute;bottom:5px ;right:0px"> 
+                <el-button type="danger" size="mini">点击购买</el-button>
+              </div>
             </div>
           </el-card>
         </el-col>
@@ -248,25 +304,27 @@
       <el-row :gutter="5" class="banner">
         <el-col
           :span="11"
-          v-for="(item,id) in 6"
+          v-for="(item,id) in goods3"
           :key="id"
-          @click.native="goto('/goods')"
+          @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
-          <el-card :body-style="{padding: '0',height:'248px'}">
+           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
-                src="http://img10.jiuxian.com/2019/1107/761b68cbd06a442fbf7d9015c82de08c4.jpg"
+                :src="item.goods_thumb"
                 class="image"
               />
-              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
               <p class="goodlist">
-                <span class="price">￥333</span>
-                <del>666</del>
+                <span class="price">￥{{item.price}}</span>
+                <del>{{item.shop_price}}</del>
               </p>
-              <a href>点击购买</a>
+              <div style=" position: absolute;bottom:5px ;right:0px"> 
+                <el-button type="danger" size="mini">点击购买</el-button>
+              </div>
             </div>
           </el-card>
         </el-col>
@@ -285,25 +343,27 @@
       <el-row :gutter="5" class="banner">
         <el-col
           :span="11"
-          v-for="(item,id) in 4"
+          v-for="(item,id) in goods4"
           :key="id"
-          @click.native="goto('/goods')"
+          @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
-          <el-card :body-style="{padding: '0',height:'248px'}">
+           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
-                src="http://img09.jiuxian.com/2014/0630/7eb77227ad39494dba6cde86246cd6034.jpg"
+                :src="item.goods_thumb"
                 class="image"
               />
-              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
               <p class="goodlist">
-                <span class="price">￥333</span>
-                <del>666</del>
+                <span class="price">￥{{item.price}}</span>
+                <del>{{item.shop_price}}</del>
               </p>
-              <a href>点击购买</a>
+              <div style=" position: absolute;bottom:5px ;right:0px"> 
+                <el-button type="danger" size="mini">点击购买</el-button>
+              </div>
             </div>
           </el-card>
         </el-col>
@@ -322,25 +382,27 @@
       <el-row :gutter="5" class="banner">
         <el-col
           :span="11"
-          v-for="(item,id) in 5"
+          v-for="(item,id) in goods1"
           :key="id"
-          @click.native="goto('/goods')"
+          @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
-          <el-card :body-style="{padding: '0',height:'248px'}">
+           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
               <img
-                src="http://img10.jiuxian.com/2017/0503/f1b75021f2a44fe5b0ac61391c24247b4.jpg"
+                :src="item.goods_thumb"
                 class="image"
               />
-              <p class="names">53°茅台生肖酒国博十二生肖纪念酒500ML*12瓶</p>
+              <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
               <p class="goodlist">
-                <span class="price">￥333</span>
-                <del>666</del>
+                <span class="price">￥{{item.price}}</span>
+                <del>{{item.shop_price}}</del>
               </p>
-              <a href>点击购买</a>
+              <div style=" position: absolute;bottom:5px ;right:0px"> 
+                <el-button type="danger" size="mini">点击购买</el-button>
+              </div>
             </div>
           </el-card>
         </el-col>
@@ -350,7 +412,7 @@
           :span="11"
           v-for="(item,id) in 2"
           :key="id"
-          @click.native="goto('/goods')"
+          @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
           <el-card :body-style="{padding: '0',height:'248px'}">
@@ -366,7 +428,10 @@
                 <span class="price">￥333</span>
                 <del>666</del>
               </p>
-              <a href>点击购买</a>
+              <div style=" position: absolute;bottom:5px ;right:0px"> 
+                <el-button type="danger" size="mini">点击购买</el-button>
+              </div>
+             
             </div>
           </el-card>
         </el-col>
@@ -386,31 +451,88 @@
 <script>
 
 import NavBar from "../../../components/common/navBar/navBar.vue";
-// import request from '../../../network/'
+import {my} from '../../../network'
+import "../../../assets/css/list.css"
 export default {
     data(){
         return{
-            // list=[]
+          goods1 : [],
+          goods2 : [],
+          goods3 : [],
+          goods4 : [],
+          db :"sheet4"
         }
     },
+   
+  async created(){
+     let db = {gather:"sheet4"}
+    let {data:{data:goods}}= await my.get("/gdlist",db)
+    this.goods1=goods.splice(0,6);
+    this.goods2=goods.splice(0,4);
+    this.goods3=goods.splice(0,6);
+    this.goods4=goods.splice(0,7);
+  },
     components: {
         NavBar
     },
     methods:{
-        goto(){
-            this.$router.push('/goods')
+        goto(id,db){
+            this.$router.push({path:'/goods',params:{id,db}});
+            console.log(id,db);
+            
         }
     }
 }
 </script>
 <style scoped>
 .big {
-  padding-top: 40px;
   overflow: auto;
+  margin-top: 40px;
   background-color: #f5f5f5;
 }
+/* .price{
+  color: red;
+}
+.head {
+ 
+    width: 100%;
+    height: 40px;
+    background-color: #de4943;
+    color: #fff;
+    position: fixed;
+    top:0;
+    z-index: 10;
+}
+.head .back {
+    margin-left: 5px;
+    width: 30px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    display: block;
+    background: url(../img/headBack.jpg) no-repeat;
+}
+.head .headTitle {
+    width: 220px;
+    font-size: 16px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 40px
+}
+.head .navbar {
+    background: url(../img/headIcon.png) no-repeat;
+}
+.head .navbar {
+    background-position: -150px 6px;
+    right: 10px;
+    width: 30px;
+    height: 40px;
+    display: block;
+    position: absolute;
+}
 .banner {
-  padding-left: 10px;
+  padding-left: 0px;
 }
 .banner img {
   width: 100%;
@@ -433,10 +555,11 @@ export default {
 .orice {
   display: inline-block;
   height: 32px;
-  width: 95px;
+  width: 160px;
   margin: 5px 5% 0;
   position: relative;
   overflow: hidden;
+
 }
 .orice span {
   display: inline-block;
@@ -453,7 +576,9 @@ export default {
 .goodlist {
   width: 95px;
   height: 32px;
+  float: left;
 }
+
 .btn {
   background: #ff0000;
   display: block;
@@ -501,5 +626,5 @@ export default {
   display: block;
   background: url(../img/top.png) no-repeat;
   margin: 5px 19px 2px;
-}
+} */
 </style>

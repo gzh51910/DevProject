@@ -113,7 +113,7 @@ export default {
 </script>
 <style scoped>
 .big{
-  margin-top: 0px;
+  margin-top: 40px;
 }
 .head {
     width: 100%;
@@ -139,6 +139,7 @@ export default {
     text-align: center;
     overflow: hidden;
     white-space: nowrap;
+    line-height: 40px
 }
 .head .navbar {
     background: url(./img/headIcon.png) no-repeat;
