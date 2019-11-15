@@ -38,12 +38,9 @@
           @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
-           <el-card :body-style="{padding: '0',height:'248px'}">
+          <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
-              <img
-                :src="item.goods_thumb"
-                class="image"
-              />
+              <img :src="item.goods_thumb" class="image" />
               <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
@@ -51,7 +48,7 @@
                 <span class="price">￥{{item.price}}</span>
                 <del>{{item.shop_price}}</del>
               </p>
-              <div style=" position: absolute;bottom:5px ;right:0px"> 
+              <div style=" position: absolute;bottom:5px ;right:0px">
                 <el-button type="danger" size="mini">点击购买</el-button>
               </div>
             </div>
@@ -77,12 +74,9 @@
           @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
-           <el-card :body-style="{padding: '0',height:'248px'}">
+          <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
-              <img
-                :src="item.goods_thumb"
-                class="image"
-              />
+              <img :src="item.goods_thumb" class="image" />
               <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
@@ -90,7 +84,7 @@
                 <span class="price">￥{{item.price}}</span>
                 <del>{{item.shop_price}}</del>
               </p>
-              <div style=" position: absolute;bottom:5px ;right:0px"> 
+              <div style=" position: absolute;bottom:5px ;right:0px">
                 <el-button type="danger" size="mini">点击购买</el-button>
               </div>
             </div>
@@ -113,15 +107,12 @@
           :span="11"
           v-for="(item,id) in goods1"
           :key="id"
-           @click.native="goto(item._id,db)"
+          @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
-           <el-card :body-style="{padding: '0',height:'248px'}">
+          <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
-              <img
-                :src="item.goods_thumb"
-                class="image"
-              />
+              <img :src="item.goods_thumb" class="image" />
               <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
@@ -129,7 +120,7 @@
                 <span class="price">￥{{item.price}}</span>
                 <del>{{item.shop_price}}</del>
               </p>
-              <div style=" position: absolute;bottom:5px ;right:0px"> 
+              <div style=" position: absolute;bottom:5px ;right:0px">
                 <el-button type="danger" size="mini">点击购买</el-button>
               </div>
             </div>
@@ -138,7 +129,7 @@
       </el-row>
 
       <div class="bottomBtn">
-        <a  class="toTop">
+        <a class="toTop">
           <i></i>
           <span>
             返回
@@ -151,33 +142,34 @@
 </template>
 <script>
 import NavBar from "../../../components/common/navBar/navBar.vue";
-import "../../../assets/css/list.css"
-import {my} from '../../../network'
+import "../../../assets/css/list.css";
+import { my } from "../../../network";
 export default {
-     data(){
-        return{
-          goods1 : [],
-          goods2 : [],
-          goods3 : [], 
-          db:"sheet8"
-        }
-    },
-   
-  async created(){
-    let db = {gather:"sheet8"}
-    let {data:{data:goods}}= await my.get("/gdlist",db)
-    this.goods1=goods.splice(0,14);
-    this.goods2=goods.splice(0,10);
+  data() {
+    return {
+      goods1: [],
+      goods2: [],
+      goods3: [],
+      db: "sheet8"
+    };
+  },
 
+  async created() {
+    let db = { gather: "sheet8" };
+    let {
+      data: { data: goods }
+    } = await my.get("/gdlist", db);
+    this.goods1 = goods.splice(0, 14);
+    this.goods2 = goods.splice(0, 10);
   },
   components: {
     NavBar
   },
-   methods:{
-        goto(){
-            this.$router.push('/goods')
-        }
+  methods: {
+    goto(id, db) {
+      this.$router.push({ path: "/goods", params: { id, db } });
     }
+  }
 };
 </script>
 <style scoped>

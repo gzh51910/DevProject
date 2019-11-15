@@ -489,6 +489,7 @@ export default {
   overflow: auto;
   margin-top: 40px;
   background-color: #f5f5f5;
+  
 }
 /* .price{
   color: red;
