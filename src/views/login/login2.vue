@@ -12,7 +12,12 @@
         ></el-input>
       </el-form-item>
       <el-form-item prop="password" :error="errorMsg">
-        <el-input prefix-icon="el-icon-lock" v-model="loginForm.password" placeholder="密码"></el-input>
+        <el-input
+          type="password"
+          prefix-icon="el-icon-lock"
+          v-model="loginForm.password"
+          placeholder="密码"
+        ></el-input>
       </el-form-item>
       <div class="yz">
         <el-input v-model="loginForm.input" placeholder="请输入内容"></el-input>

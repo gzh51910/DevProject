@@ -117,14 +117,14 @@ export default {
   components: {
     NavBar
   },
-   methods:{
-        goto(){
-            this.$router.push('/goods')
-        }
+  methods: {
+    goto() {
+      this.$router.push("/goods");
     }
+  }
 };
 </script>
-<style>
+<style  scoped>
 .hongbig {
   overflow: auto;
   background-color: #d4b9e4;

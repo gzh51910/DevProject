@@ -36,11 +36,17 @@
       <p></p>
 
       <el-form-item prop="password">
-        <el-input prefix-icon="el-icon-lock" v-model="regForm.password" placeholder="请输入密码"></el-input>
+        <el-input
+          type="password"
+          prefix-icon="el-icon-lock"
+          v-model="regForm.password"
+          placeholder="请输入密码"
+        ></el-input>
       </el-form-item>
 
       <el-form-item prop="confirmPassword">
         <el-input
+          type="password"
           prefix-icon="el-icon-lock"
           v-model="regForm.confirmPassword"
           placeholder="请再次确认密码"
@@ -55,7 +61,7 @@
 
 <script>
 import NavBar from "../../components/common/navBar/navBar.vue";
-import {my } from "../../network";
+import { my } from "../../network";
 export default {
   data() {
     var checkUsername = (rule, value, callback) => {

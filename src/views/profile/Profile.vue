@@ -20,7 +20,7 @@
             <img src="../../assets/img/login/userPhoto.png" alt />
             <div class="Proname">
               <div class="prousername">
-                <p class="userName">{{username}}</p>
+                <p class="userName">{{user}}</p>
                 <p class="ad">立享CLUB会员</p>
               </div>
               <div class="download">下载客户端 美酒随时抢</div>
@@ -62,7 +62,7 @@
           </el-col>
         </el-row>
         <div class="profilebtn">
-          <el-button class="botton" type="danger">退出登录</el-button>
+          <el-button class="botton" type="danger" @click="logout">退出登录</el-button>
         </div>
       </article>
     </scroll>
@@ -75,7 +75,6 @@ import Scroll from "../../components/common/scroll/scroll.vue";
 export default {
   data() {
     return {
-      username: "wo",
       list: [
         {
           id: Date.now() + 1,
@@ -135,9 +134,25 @@ export default {
     NavBar,
     Scroll
   },
+  computed: {
+    user() {
+      // if (this.$store.state.common.user.Authorization) {
+      return this.$store.state.common.user.username;
+      // }
+    }
+  },
   methods: {
     back() {
       window.history.go(-1);
+    },
+    logout() {
+      console.log(111);
+
+      this.$store.commit("logout");
+
+      // 在需要登录权限的页面退出登录
+      // 需要跳转到登录页面
+      this.$router.replace("/login");
     }
   }
 };
@@ -160,6 +175,8 @@ export default {
 }
 #profile .navRight i {
   font-size: 20px;
+  color: #fff;
+  line-height: 44px;
 }
 #profile .navCenter {
   line-height: 44px;
@@ -274,6 +291,7 @@ export default {
   padding: 0 5%;
   box-sizing: border-box;
   color: #626365;
+  text-align: center;
 }
 .grid-content img {
   width: 100%;

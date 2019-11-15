@@ -16,7 +16,7 @@ import Zhicai from '../views/category/page/zhicai.vue'
 import Temai from '../views/category/page/temai.vue'
 import Paihang from '../views/category/page/paihang.vue'
 import Mai from '../views/category/page/mai.vue'
-import Li  from '../views/category/page/li.vue'
+import Li from '../views/category/page/li.vue'
 import Laojiu from '../views/category/page/laojiu.vue'
 import Hongjiu from '../views/category/page/hongjiu.vue'
 import Datan from '../views/category/page/datan.vue'
@@ -55,6 +55,7 @@ const routes = [
         path: '/reg',
         component: Reg
     }, {
+        name: 'goods',
         path: '/goods/:id',
         component: Detail
     },
@@ -63,7 +64,7 @@ const routes = [
         component: Zxg
     },
     {
-        path:'/zhicai',
+        path: '/zhicai',
         component: Zhicai
     },
     {
@@ -120,11 +121,11 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth) {
         // 获取token
-        let { Authorization } = JSON.parse(localStorage.getItem('user'));
+        // let { Authorization } = JSON.parse(localStorage.getItem('user'));
         // console.log(router);
 
-        // let $store = router.app.$store
-        // let Authorization = router.app.$store.state.common.user.Authorization;
+        let $store = router.app.$store
+        let Authorization = $store.state.common.user.Authorization;
         console.log('校验结果：', Authorization)
         if (Authorization) {
             // 登录则放行
