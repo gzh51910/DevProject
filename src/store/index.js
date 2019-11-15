@@ -24,5 +24,4 @@ console.log('store:',store)
 
 // 4. 把store导出并注入Vue实例
 
-
 export default store;

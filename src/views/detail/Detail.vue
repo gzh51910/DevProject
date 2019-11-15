@@ -77,6 +77,7 @@
          <el-col :span="4">
         </el-col>
       </el-row>
+<<<<<<< HEAD
       </el-row>-->
       <!-- 规格 -->
       <size></size>
@@ -92,6 +93,7 @@
       <evl></evl>
     </main>
     <detail-footer></detail-footer>
+
   </div>
 </template>
 <script>
@@ -140,12 +142,15 @@ export default {
   margin: 0;
   padding: 0;
 }
+
 .detailHead {
   width: 100%;
   z-index: 10;
   position: fixed;
   top: 0;
 }
+
+
 img {
   width: 100%;
   height: 100%;
@@ -170,11 +175,17 @@ img {
 }
 .floatRight {
   float: right;
+
 }
 .floatLeft {
   float: left;
 }
 .detailNum {
   margin-top: 4px;
+
+}
+.floatLeft {
+  float: left;
+
 }
 </style>
