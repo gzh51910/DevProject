@@ -5,11 +5,10 @@ let Router = express.Router();
 const { token, formatData } = require('../utils')
 
 let loginRouter = require('./login');
-let goodsRouter = require('./goods');
 let userRouter = require('./user');
 let regRouter = require('./reg');
 let gdlist = require('./gdlist');
-
+let goods = require('./goods');
 // 跨域解决方案CORS
 Router.use((req, res, next) => {
     // 支持CORS跨域，只需要设置响应头
@@ -36,10 +35,10 @@ Router.use((req, res, next) => {
 Router.use(express.json(), express.urlencoded({ extended: false }));
 
 Router.use('/login', loginRouter)
-Router.use('/goods', goodsRouter)
 Router.use('/user', userRouter)
 Router.use('/reg', regRouter);
 Router.use('/gdlist', gdlist);
+Router.use('/goods', goods);
 Router.get('/verify', (req, res) => {
     // 获取请求头上的token
 

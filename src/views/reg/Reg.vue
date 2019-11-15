@@ -30,7 +30,7 @@
       </el-form-item>
 
       <div class="dt">
-        <el-input class="yzm" v-model="input" placeholder="请输入校验码"></el-input>
+        <el-input class="yzm"  placeholder="请输入校验码"></el-input>
         <el-button type="danger" style="background: #de4b45;">获取验证码</el-button>
       </div>
       <p></p>
@@ -55,7 +55,7 @@
 
 <script>
 import NavBar from "../../components/common/navBar/navBar.vue";
-import {my } from "../../network";
+import { my } from "../../network";
 export default {
   data() {
     var checkUsername = (rule, value, callback) => {
@@ -106,6 +106,9 @@ export default {
     NavBar
   },
   methods: {
+    open() {
+        this.$message.error('该用户已注册');
+      },
     back() {
       window.history.go(-1);
     },
@@ -117,13 +120,25 @@ export default {
 
           let { username, password } = this.regForm;
 
-          let { data } = await my.post("/reg", {
-            username,
-            password
+          //检测是否已注册
+          let {
+            data: { data: jc }
+          } = await my.get("/gdlist", {
+            gather: "user",
+            condition: "username",
+            condition_value: username
           });
-          console.log(data);
-          if (data.status === 1) {
-            this.$router.replace("/login");
+          if (jc.length > 0) {
+            this.open()
+          } else {
+            let { data } = await my.post("/reg", {
+              username,
+              password
+            });
+            console.log(data);
+            if (data.status === 1) {
+              this.$router.replace("/login");
+            }
           }
         } else {
           console.log("error submit!!");
