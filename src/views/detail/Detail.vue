@@ -78,10 +78,10 @@ export default {
     };
   },
   async created() {
-    let id = "5dcdffeb704aa2e5f8fa6d6c";
+    let {id,db}=this.$route.params;
     let {
       data: { data: goods }
-    } = await my.get("/goods", { gather: "sheet4", _id: id });
+    } = await my.get("/goods", { gather: db, _id: id });
     this.goods = goods[0]
     this.goods.qty=1;
     console.log(goods);

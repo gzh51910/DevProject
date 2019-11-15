@@ -60,7 +60,8 @@ const routes = [
         path: '/reg',
         component: Reg
     }, {
-        path: '/goods',
+        name:"goods",
+        path: '/goods/:id',
         component: Detail
     },
     {

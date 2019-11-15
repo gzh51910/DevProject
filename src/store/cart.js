@@ -76,15 +76,14 @@ export default {
 
         // 添加到购物车
         addToCart(state, goods) {
-            console.log(1111);
-            // let test=0;
+            // var test=0;
             // state.goodslist.forEach(item => {
             //     if (goods._id == item._id) {
             //         item.qty = item.qty + goods.qty;
             //         test+=1;
             //     }
             // })
-            //  if (test!=0) {
+            //  if (test==0) {
                  state.goodslist.unshift(goods)
             //  }
         },
