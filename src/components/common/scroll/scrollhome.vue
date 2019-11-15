@@ -17,9 +17,15 @@ export default {
   },
 
   mounted() {
-    this.$nextTick(() => {
-      this.scroll = new BScroll(this.$refs.wrapper, { click: true, tab: true });
+    // this.$nextTick(() => {
+    this.scroll = new BScroll(this.$refs.wrapper, {
+      startX: 0,
+      srcollX: true,
+      scrollY: false,
+      eventPassthrough: "vertical",
+      click: true
     });
+    // });
   }
 };
 </script>

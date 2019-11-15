@@ -17,7 +17,7 @@ import Zhicai from '../views/category/page/zhicai.vue'
 import Temai from '../views/category/page/temai.vue'
 import Paihang from '../views/category/page/paihang.vue'
 import Mai from '../views/category/page/mai.vue'
-import Li  from '../views/category/page/li.vue'
+import Li from '../views/category/page/li.vue'
 import Laojiu from '../views/category/page/laojiu.vue'
 import Hongjiu from '../views/category/page/hongjiu.vue'
 import Datan from '../views/category/page/datan.vue'
@@ -60,7 +60,7 @@ const routes = [
         path: '/reg',
         component: Reg
     }, {
-        name:"goods",
+        name: "goods",
         path: '/goods/:id',
         component: Detail
     },
@@ -69,7 +69,7 @@ const routes = [
         component: Zxg
     },
     {
-        path:'/zhicai',
+        path: '/zhicai',
         component: Zhicai
     },
     {

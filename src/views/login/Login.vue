@@ -9,9 +9,9 @@
         <h2>用户登录</h2>
       </div>
     </nav-bar>
-    <tabcontrol :titles="['账号登录','手机动态密码登录']" @tabclick="tabclick" />
-    <login1 v-if="index==1" />
-    <login2 v-if="index==0" />
+    <tabcontrol :titles="['手机动态密码登录','账号登录']" @tabclick="tabclick" />
+    <login1 v-if="index==0" />
+    <login2 v-if="index==1" />
   </div>
 </template>
 
