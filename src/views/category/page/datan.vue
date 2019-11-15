@@ -154,7 +154,7 @@ export default {
     }
 };
 </script>
-<style>
+<style lang="css" scoped>
 .tanbig {
   overflow: auto;
   background-color: #f5f5f5;

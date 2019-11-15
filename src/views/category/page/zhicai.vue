@@ -122,7 +122,7 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="css" scoped>
 .haibig{
     overflow: auto;
     background-color: #006699;

@@ -8,13 +8,10 @@ import './assets/js/rem'
 import store from './store'
 
 
+import { Button, Icon, Tabs, TabPane, Form, FormItem, Input,Carousel,CarouselItem,Row,Col,InputNumber,Rate,Checkbox,Card,Badge} from 'element-ui';
 
 
-
-import { Button, Icon, Tabs, TabPane, Form, FormItem, Input,Carousel,CarouselItem,Row,Col,InputNumber,Rate,Checkbox,Card} from 'element-ui';
-
-
-
+Vue.component(Badge.name,Badge)
 Vue.component(Button.name, Button);
 Vue.component(Icon.name, Icon);
 Vue.component(Tabs.name, Tabs);

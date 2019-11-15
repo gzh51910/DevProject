@@ -104,7 +104,7 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="css" scoped>
 .tebig{
     overflow: auto;
     background-color: #f5f5f5;

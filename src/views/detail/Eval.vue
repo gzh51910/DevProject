@@ -88,7 +88,7 @@ export default {
   }
 };
 </script>
-<style  scoped>
+<style  lang="css" scoped>
 .floatRight {
   float: right;
 }

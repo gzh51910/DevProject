@@ -403,7 +403,7 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="css" scoped>
 .big {
   padding-top: 40px;
   overflow: auto;

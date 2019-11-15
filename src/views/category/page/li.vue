@@ -104,7 +104,7 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="css" scoped>
 .libig{
     overflow: auto;
     background-color: #e8e8e0;

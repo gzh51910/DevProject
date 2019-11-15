@@ -340,7 +340,7 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="css" scoped>
 .mian {
   overflow-y: auto;
 }

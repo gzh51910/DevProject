@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/home/Home.vue'
 import Category from '../views/category/Category.vue'
 import Cart from '../views/cart/Cart.vue'
+import Settlement from '../views/cart/Settlement.vue'
 import Profile from '../views/profile/Profile.vue'
 import Reg from '../views/reg/Reg.vue'
 import Login from '../views/login/Login.vue'
@@ -43,6 +44,10 @@ const routes = [
     {
         path: '/cart',
         component: Cart,
+    },
+    {
+        path: '/settlement',
+        component: Settlement,
         meta: { requiresAuth: true }
     }, {
         path: '/profile',
@@ -55,7 +60,7 @@ const routes = [
         path: '/reg',
         component: Reg
     }, {
-        path: '/goods/:id',
+        path: '/goods',
         component: Detail
     },
     {
@@ -95,10 +100,6 @@ const routes = [
         component: Laojiu
     },
     {
-        path: '/laojiu',
-        component: Laojiu
-    },
-    {
         path: '/baijiu',
         component: Baijiu
     },
@@ -120,11 +121,11 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth) {
         // 获取token
-        let { Authorization } = JSON.parse(localStorage.getItem('user'));
+        // let { Authorization } = JSON.parse(localStorage.getItem('user'));
         // console.log(router);
 
-        // let $store = router.app.$store
-        // let Authorization = router.app.$store.state.common.user.Authorization;
+        let $store = router.app.$store
+        let Authorization =$store.state.common.user.Authorization;
         console.log('校验结果：', Authorization)
         if (Authorization) {
             // 登录则放行
