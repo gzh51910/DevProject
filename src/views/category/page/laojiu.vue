@@ -229,7 +229,7 @@ export default {
     }
 };
 </script>
-<style>
+<style scoped>
 .laobig {
   overflow: auto;
   background-color: #bab6aa;
