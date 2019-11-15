@@ -7,9 +7,7 @@ Vue.config.productionTip = false
 import './assets/js/rem'
 import store from './store'
 
-
-import { Button, Icon, Tabs, TabPane, Form, FormItem, Input,Carousel,CarouselItem,Row,Col,InputNumber,Rate,Checkbox,Card,Badge} from 'element-ui';
-
+import { Button, Icon, Tabs, Message, TabPane, Form, FormItem, Input,Carousel,CarouselItem,Row,Col,InputNumber,Rate,Checkbox,Card,Badge} from 'element-ui';
 
 Vue.component(Badge.name,Badge)
 Vue.component(Button.name, Button);
@@ -26,7 +24,8 @@ Vue.component(Col.name, Col);
 Vue.component(InputNumber.name, InputNumber);
 Vue.component(Rate.name, Rate);
 Vue.component(Checkbox.name, Checkbox);
-Vue.component(Card.name,Card)
+Vue.component(Card.name,Card);
+Vue.prototype.$message = Message;
 
 
 Vue.prototype.$axios = axios;

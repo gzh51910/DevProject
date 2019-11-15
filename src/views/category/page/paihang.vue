@@ -175,8 +175,8 @@ export default {
     NavBar
   },
   methods: {
-    goto() {
-      this.$router.push("/goods");
+    goto(id, db) {
+      this.$router.push({ path: "/goods", params: { id, db } });
     }
   }
 };

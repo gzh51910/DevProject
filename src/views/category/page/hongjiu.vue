@@ -38,12 +38,9 @@
           @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
-           <el-card :body-style="{padding: '0',height:'248px'}">
+          <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
-              <img
-                :src="item.goods_thumb"
-                class="image"
-              />
+              <img :src="item.goods_thumb" class="image" />
               <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
@@ -51,7 +48,7 @@
                 <span class="price">￥{{item.price}}</span>
                 <del>{{item.shop_price}}</del>
               </p>
-              <div style=" position: absolute;bottom:5px ;right:0px"> 
+              <div style=" position: absolute;bottom:5px ;right:0px">
                 <el-button type="danger" size="mini">点击购买</el-button>
               </div>
             </div>
@@ -77,12 +74,9 @@
           @click.native="goto(item._id,db)"
           style="height:'248px'; width:'176px';background:#fff;margin:5px"
         >
-           <el-card :body-style="{padding: '0',height:'248px'}">
+          <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
-              <img
-                :src="item.goods_thumb"
-                class="image"
-              />
+              <img :src="item.goods_thumb" class="image" />
               <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
@@ -90,7 +84,7 @@
                 <span class="price">￥{{item.price}}</span>
                 <del>{{item.shop_price}}</del>
               </p>
-              <div style=" position: absolute;bottom:5px ;right:0px"> 
+              <div style=" position: absolute;bottom:5px ;right:0px">
                 <el-button type="danger" size="mini">点击购买</el-button>
               </div>
             </div>
@@ -113,13 +107,13 @@
 <script>
 import NavBar from "../../../components/common/navBar/navBar.vue";
 import { my } from "../../../network";
-import "../../../assets/css/list.css"
+import "../../../assets/css/list.css";
 export default {
-    data() {
+  data() {
     return {
       goods1: [],
       goods2: [],
-      db:"sheet9"
+      db: "sheet9"
     };
   },
 
@@ -134,11 +128,11 @@ export default {
   components: {
     NavBar
   },
-   methods:{
-        goto(){
-            this.$router.push('/goods')
-        }
+  methods: {
+    goto(id, db) {
+      this.$router.push({ path: "/goods", params: { id, db } });
     }
+  }
 };
 </script>
 <style scoped>

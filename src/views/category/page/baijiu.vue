@@ -85,8 +85,8 @@ export default {
     NavBar
   },
   methods: {
-    goto(path){
-       this.$router.push(path);  
+    goto(id, db) {
+      this.$router.push({ path: "/goods", params: { id, db } });
     }
   },
 };
