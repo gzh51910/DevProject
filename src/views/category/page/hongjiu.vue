@@ -124,7 +124,7 @@ export default {
     }
 };
 </script>
-<style>
+<style scoped>
 .hongbig {
   overflow: auto;
   background-color: #d4b9e4;

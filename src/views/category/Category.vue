@@ -111,7 +111,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .big{
   margin-top: 0px;
 }
