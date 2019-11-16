@@ -19,72 +19,69 @@
         </div>
       </div>
     </nav-bar>
-    <!-- <scroll class="content"> -->
-    <el-carousel height="180px" indicator-position="none">
-      <el-carousel-item v-for="item in slider" :key="item.id">
-        <img class="sliderimg" :src="item.src" alt />
-      </el-carousel-item>
-    </el-carousel>
-    <article class="article">
-      <el-backtop target=".article" :bottom="500" :right="100">
-        <div
-          style="{
-        height: 100%;
-        width: 100%;
-        background-color: #f2f5f6;
-        box-shadow: 0 0 6px rgba(0,0,0, .12);
-        text-align: center;
-        line-height: 40px;
-        color: #1989fa;
-      }"
-          class="abc"
-        >UP</div>
-      </el-backtop>
-      <div class="select">
-        <div class="select1" v-for="item in teb" :key="item.id">
-          <img :src="item.src" alt />
+    <scroll class="content" ref="a" :probe-type="3" @scroll="contentScroll">
+      <el-carousel height="180px" indicator-position="none">
+        <el-carousel-item v-for="item in slider" :key="item.id">
+          <img class="sliderimg" :src="item.src" alt />
+        </el-carousel-item>
+      </el-carousel>
+      <article class="article">
+        <div class="select">
+          <div class="select1" v-for="item in teb" :key="item.id">
+            <img :src="item.src" alt />
+          </div>
         </div>
-      </div>
-      <div class="ly">
-        <img :src="ly.src1" alt />
-        <div class="ly1">
-          <img :src="ly.src2" alt />
-          <img :src="ly.src3" alt />
+        <div class="ly">
+          <img :src="ly.src1" alt />
+          <div class="ly1">
+            <img :src="ly.src2" alt />
+            <img :src="ly.src3" alt />
+          </div>
         </div>
-      </div>
-      <div class="homes">
-        <img src="../../assets/img/home/23e12867518b4a779bd6530e694e817f.jpg" alt />
-        <el-carousel class="ss" height="20px" indicator-position="none" direction="vertical">
-          <el-carousel-item v-for="item in wenzi" :key="item">
-            <p class="wenzislider">{{item}}</p>
-          </el-carousel-item>
-        </el-carousel>
-      </div>
-      <auto></auto>
-      <photo></photo>
-      <itemFlex></itemFlex>
-      <jxpd></jxpd>
-      <bktj></bktj>
-    </article>
+        <div class="homes">
+          <img src="../../assets/img/home/23e12867518b4a779bd6530e694e817f.jpg" alt />
+          <el-carousel class="ss" height="20px" indicator-position="none" direction="vertical">
+            <el-carousel-item v-for="item in wenzi" :key="item">
+              <p class="wenzislider">{{item}}</p>
+            </el-carousel-item>
+          </el-carousel>
+        </div>
+        <!-- <scrollx class="scrollx"> -->
+        <div class="outer-wrapper" ref="outerScroll">
+          <auto></auto>
+        </div>
 
-    <!-- </scroll> -->
+        <!-- </scrollx> -->
+        <photo></photo>
+        <itemFlex></itemFlex>
+        <jxpd></jxpd>
+        <bktj></bktj>
+      </article>
+    </scroll>
+    <backtop @click.native="backclick" v-show="isshow"></backtop>
   </div>
 </template>
 
 <script>
+import BScroll from "@better-scroll/core";
+import NestedScroll from "@better-scroll/nested-scroll";
 import NavBar from "../../components/common/navBar/navBarhome.vue";
-// import scroll from "../../components/common/scroll/scroll.vue";
+import scroll from "../../components/common/scroll/scroll.vue";
+import backtop from "../../components/content/backTop/backtop.vue";
 import { my } from "../../network";
 import auto from "./auto.vue";
 import photo from "./photo.vue";
 import itemFlex from "./itemFlex.vue";
 import jxpd from "./jxpd.vue";
 import bktj from "./bktj.vue";
+BScroll.use(NestedScroll);
 export default {
   data() {
     return {
       input: "",
       color: "",
+      saveY: 0,
+      isshow: false,
       slider: [],
       teb: [],
       ly: [],
@@ -96,8 +93,27 @@ export default {
       ]
     };
   },
+  activated() {
+    this.$refs.a.scrollTo(0, this.saveY, 0);
+
+    console.log("home enter 设置位置");
+  },
+  deactivated() {
+    this.saveY = this.$refs.a.gety();
+    console.log(this.saveY);
+
+    console.log("home leave 记录位置");
+  },
   mounted: function() {
-    window.addEventListener("scroll", this.handleScroll, true); // 监听（绑定）滚轮滚动事件
+    this.outerScroll = new BScroll(this.$refs.outerScroll, {
+      nestedScroll: true,
+      scrollX: true,
+      scrollY: false,
+      bounce: {
+        left: false,
+        right: false
+      }
+    });
   },
   methods: {
     handleScroll(e) {
@@ -108,16 +124,28 @@ export default {
       } else {
         this.color = "";
       }
+    },
+    backclick() {
+      this.$refs.a.scrollTo(0, 0);
+    },
+    contentScroll(position) {
+      if (-position.y >= 250) {
+        this.color = " background: #e5383b";
+      } else {
+        this.color = "";
+      }
+      this.isshow = -position.y > 500;
     }
   },
   components: {
     NavBar,
-    // scroll,
+    scroll,
     auto,
     photo,
     itemFlex,
     jxpd,
-    bktj
+    bktj,
+    backtop
   },
   async created() {
     let {
@@ -137,6 +165,9 @@ export default {
 };
 </script>
 <style scoped>
+.outer-wrapper {
+  overflow: hidden;
+}
 .abc {
   position: absolute;
   top: 0;
