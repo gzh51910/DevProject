@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="zxg">
     <nav-bar class="head">
       <div slot="left">
         <a class="back" href="#/category"></a>
@@ -11,6 +11,7 @@
         <a class="navbar"></a>
       </div>
     </nav-bar>
+    <scroll class="content" ref="a" :probe-type="3">
     <div class="big" :db="db">
       <el-row class="banner">
         <el-col :span="24">
@@ -437,7 +438,7 @@
         </el-col>
       </el-row>
       <div class="bottomBtn">
-        <a href class="toTop">
+        <a  class="toTop" @click="backclick">
           <i></i>
           <span>
             返回
@@ -446,11 +447,13 @@
         </a>
       </div>
     </div>
+    </scroll>
   </div>
 </template>
 <script>
 
 import NavBar from "../../../components/common/navBar/navBar.vue";
+import scroll from "../../../components/common/scroll/scroll.vue";
 import {my} from '../../../network'
 import "../../../assets/css/list.css"
 export default {
@@ -473,7 +476,8 @@ export default {
     this.goods4=goods.splice(0,7);
   },
     components: {
-        NavBar
+        NavBar,
+        scroll
     },
     methods:{
         goto(id,db){
@@ -482,6 +486,10 @@ export default {
             console.log(id,db);
             
         }
+        ,
+      backclick() {
+      this.$refs.a.scrollTo(0, 0);
+      }
     }
 }
 </script>
@@ -492,141 +500,13 @@ export default {
   background-color: #f5f5f5;
   
 }
-/* .price{
-  color: red;
+.zxg{
+  height: 100vh;
+   margin-top:40px; 
 }
-.head {
- 
-    width: 100%;
-    height: 40px;
-    background-color: #de4943;
-    color: #fff;
-    position: fixed;
-    top:0;
-    z-index: 10;
-}
-.head .back {
-    margin-left: 5px;
-    width: 30px;
-    height: 40px;
-    position: absolute;
-    top: 0;
-    display: block;
-    background: url(../img/headBack.jpg) no-repeat;
-}
-.head .headTitle {
-    width: 220px;
-    font-size: 16px;
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-    line-height: 40px
-}
-.head .navbar {
-    background: url(../img/headIcon.png) no-repeat;
-}
-.head .navbar {
-    background-position: -150px 6px;
-    right: 10px;
-    width: 30px;
-    height: 40px;
-    display: block;
-    position: absolute;
-}
-.banner {
-  padding-left: 0px;
-}
-.banner img {
-  width: 100%;
-  height: auto;
-}
-.kong ul {
-  padding-bottom: 5px;
-  margin: 0 auto;
-}
-.names {
-  height: 28px;
-  line-height: 14px;
-  width: 90%;
-  margin: 2% 5%;
-  font-size: 12px;
-  color: #000;
-  text-align: center;
+.content {
+  height: calc(100% - 49px);
   overflow: hidden;
 }
-.orice {
-  display: inline-block;
-  height: 32px;
-  width: 160px;
-  margin: 5px 5% 0;
-  position: relative;
-  overflow: hidden;
 
-}
-.orice span {
-  display: inline-block;
-  text-align: left;
-  font-weight: bold;
-  font-size: 14px;
-  width: 48px;
-}
-.orice del {
-  color: #7a7a7a;
-  font-size: 12px;
-  padding-left: 3px;
-}
-.goodlist {
-  width: 95px;
-  height: 32px;
-  float: left;
-}
-
-.btn {
-  background: #ff0000;
-  display: block;
-  text-align: right;
-  width: 64px;
-  height: 24px;
-  line-height: 24px;
-  color: #fff;
-  text-align: center;
-  font-size: 12px;
-  border-radius: 3px;
-  margin-top: 4px;
-}
-.image {
-  width: 140px;
-  width: 140px;
-  text-align: center;
-}
-.bottomBtn {
-  width: 100%;
-  height: 116px;
-  padding: 30px 0px;
-}
-.toTop {
-  width: 50px;
-  height: 50px;
-  display: block;
-  margin: 0 auto;
-  border-radius: 50px;
-  border: 3px solid #ff2753;
-  background-color: #fff;
-}
-.toTop span {
-  width: 100%;
-  height: auto;
-  display: block;
-  text-align: center;
-  color: #280130;
-  line-height: 15px;
-  font-size: 14px;
-}
-.toTop i {
-  width: 14px;
-  height: 9px;
-  display: block;
-  background: url(../img/top.png) no-repeat;
-  margin: 5px 19px 2px;
-} */
 </style>

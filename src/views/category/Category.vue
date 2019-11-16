@@ -104,11 +104,6 @@ export default {
       this.$router.push(path);  
     }
   },
-  watch: {
-    $route:{
-
-    }
-  },
 };
 </script>
 <style lang="css" scoped>

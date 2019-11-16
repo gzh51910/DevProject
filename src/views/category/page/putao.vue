@@ -1,109 +1,122 @@
 <template>
-  <div>
+  <div class="putao">
     <nav-bar class="head">
       <div slot="left">
         <a class="back" href="#/category"></a>
       </div>
       <div slot="center">
-        <div style=" line-height: 40px">
-          <em class="input-em sIcon"></em>
-          <input
-            style="width:260px;height28px;border-radius:5px;"
-            type="text"
+        <div style="line-height:40px">
+          <el-input
+            prefix-icon="el-icon-search"
+            style="width:92%"
+            size="mini"
+            v-model="input"
             placeholder="硬核返场购 津贴每满299减20"
-          />
+          ></el-input>
         </div>
       </div>
       <div slot="right">
         <a class="navbar"></a>
       </div>
     </nav-bar>
-    <div class="baibig" :db="db">
-      <div 
-       style="height:80px;text-align:center;line-height:40px;margin:40px 0 10px;">
-        <el-row :gutter="20">
-          <el-col :span="6">综合</el-col>
-          <el-col :span="6">销量</el-col>
-          <el-col :span="6">价格</el-col>
-          <el-col :span="6">筛选</el-col>
-        </el-row>
-        <div class="flil">
-          <a>酒仙配送</a>
-          <a>CLUB会员价</a>
+    <scroll class="content" ref="a" :probe-type="3">
+      <div class="baibig" :db="db">
+        <div style="height:80px;text-align:center;line-height:40px;margin:40px 0 10px;">
+          <el-row :gutter="20">
+            <el-col :span="6">综合</el-col>
+            <el-col :span="6">销量</el-col>
+            <el-col :span="6">价格</el-col>
+            <el-col :span="6">筛选</el-col>
+          </el-row>
+          <div class="flil">
+            <a>酒仙配送</a>
+            <a>CLUB会员价</a>
+          </div>
         </div>
-      </div>
-      <el-row :gutter="5" class="banner">
-         <el-col
+        <el-row :gutter="5" class="banner">
+          <el-col
             :span="11"
             v-for="(item,id) in goods1"
             :key="id"
-              @click.native="goto(item._id,db)"
-          style="height:'248px'; width:'176px';background:#fff;margin:5px"
-        >
-           <el-card :body-style="{padding: '0',height:'248px'}">
-            <div style="text-align: center;">
-              <img
-                :src="item.goods_thumb"
-                class="image"
-              />
-              <p class="names">{{item.goods_name}}</p>
-            </div>
-            <div class="orice">
-              <p class="goodlist">
-                <span class="price">{{item.price}}</span>
-                <del>{{item.shop_price}}</del>
-              </p>
-              <div style=" position: absolute;bottom:5px ;right:0px"> 
-                <el-button type="danger" size="mini">点击购买</el-button>
+            @click.native="goto(item._id,db)"
+            style="height:'248px'; width:'176px';background:#fff;margin:5px"
+          >
+            <el-card :body-style="{padding: '0',height:'248px'}">
+              <div style="text-align: center;">
+                <img :src="item.goods_thumb" class="image" />
+                <p class="names">{{item.goods_name}}</p>
               </div>
+              <div class="orice">
+                <p class="goodlist">
+                  <span class="price">{{item.price}}</span>
+                  <del>{{item.shop_price}}</del>
+                </p>
+                <div style=" position: absolute;bottom:5px ;right:0px">
+                  <el-button type="danger" size="mini">点击购买</el-button>
+                </div>
               </div>
             </el-card>
           </el-col>
         </el-row>
-      <div class="bottomBtn">
-        <a class="toTop">
-          <i></i>
-          <span>
-            返回
-            <br />顶部
-          </span>
-        </a>
+        <div class="bottomBtn">
+          <a class="toTop" @click="backclick">
+            <i></i>
+            <span>
+              返回
+              <br />顶部
+            </span>
+          </a>
+        </div>
       </div>
-    </div>
+    </scroll>
   </div>
 </template>
 <script>
 import NavBar from "../../../components/common/navBar/navBar.vue";
-import {my} from '../../../network';
-import "../../../assets/css/list.css"
+import scroll from "../../../components/common/scroll/scroll.vue";
+import { my } from "../../../network";
+import "../../../assets/css/list.css";
 export default {
   data() {
     return {
-      input1: "",
-      goods1 : [],
-      db:"sheet2"
+      input: "",
+      goods1: [],
+      db: "sheet2"
     };
-    
   },
-  async created(){
-    let db = {gather:"sheet2"}
-    let {data:{data:goods}}= await my.get("/gdlist",db)
-    this.goods1=goods
+  async created() {
+    let db = { gather: "sheet2" };
+    let {
+      data: { data: goods }
+    } = await my.get("/gdlist", db);
+    this.goods1 = goods;
   },
   components: {
-    NavBar
+    NavBar,
+    scroll
   },
-   methods:{
-      goto(id, db) {
-      this.$router.push({name: "goods", params: { id, db } });
+  methods: {
+    goto(id, db) {
+      this.$router.push({ name: "goods", params: { id, db } });
+    },
+    backclick() {
+      this.$refs.a.scrollTo(0, 0);
     }
-    }
+  }
 };
 </script>
 <style scoped>
+.putao{
+  height: 100vh;
+   margin-top:40px; 
+}
 .baibig {
   background-color: #fff;
   /* overflow: auto; */
+}
+.content {
+  height: calc(100% - 49px);
+  overflow: hidden;
 }
 /* .head {
     width: 100%;

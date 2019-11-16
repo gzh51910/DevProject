@@ -26,9 +26,9 @@
         <div slot="item-text">我的</div>
       </TabBarItem>
     </tab-bar>
-    <keep-alive>
+    <!-- <keep-alive> -->
       <router-view></router-view>
-    </keep-alive>
+    <!-- </keep-alive> -->
   </div>
 </template>
 

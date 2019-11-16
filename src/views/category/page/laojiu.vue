@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="laojiu">
     <nav-bar class="head">
       <div slot="left">
         <a class="back" href="#/category"></a>
@@ -11,6 +11,7 @@
         <a class="navbar"></a>
       </div>
     </nav-bar>
+     <scroll class="content" ref="a" :probe-type="3">
     <el-row style="margin-top:40px" class="banner">
       <el-col :span="24">
         <a style="display:block;background:#bab6aa">
@@ -196,7 +197,7 @@
         </el-col>
       </el-row>
       <div class="bottomBtn">
-        <a class="toTop">
+        <a class="toTop" @click="backclick">
           <i></i>
           <span>
             返回
@@ -205,10 +206,12 @@
         </a>
       </div>
     </div>
+     </scroll>
   </div>
 </template>
 <script>
 import NavBar from "../../../components/common/navBar/navBar.vue";
+import scroll from "../../../components/common/scroll/scroll.vue";
 import "../../../assets/css/list.css";
 import { my } from "../../../network";
 export default {
@@ -235,12 +238,16 @@ export default {
     this.goods5 = goods.splice(0, 16);
   },
   components: {
-    NavBar
+    NavBar,
+    scroll
   },
   methods: {
      goto(id, db) {
       this.$router.push({name: "goods", params: { id, db } });
-    }
+    },
+     backclick() {
+      this.$refs.a.scrollTo(0, 0);
+    },
   }
 };
 </script>
@@ -248,6 +255,14 @@ export default {
 .laobig {
   overflow: auto;
   background-color: #bab6aa;
+}
+.laojiu{
+  height: 100vh;
+   margin-top:40px; 
+}
+.content {
+  height: calc(100% - 49px);
+  overflow: hidden;
 }
 /* .head {
     width: 100%;

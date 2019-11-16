@@ -1,23 +1,25 @@
 <template>
-  <div>
+  <div class="baijiu">
     <nav-bar class="head">
       <div slot="left">
         <a class="back" href="#/category"></a>
       </div>
       <div slot="center">
-        <div style=" line-height: 40px">
-          <em class="input-em sIcon"></em>
-          <input
-            style="width:260px;height28px;border-radius:5px;"
-            type="text"
+        <div style="line-height:40px">
+          <el-input
+            prefix-icon="el-icon-search"
+            style="width:92%"
+            size="mini"
+            v-model="input"
             placeholder="硬核返场购 津贴每满299减20"
-          />
+          ></el-input>
         </div>
       </div>
       <div slot="right">
         <a class="navbar"></a>
       </div>
     </nav-bar>
+    <scroll class="content" ref="a" :probe-type="3">
     <div class="baibig" :db="db">
       <div 
       style="height:80px;text-align:center;line-height:40px;margin:40px 0 10px;">
@@ -60,9 +62,8 @@
             </el-card>
           </el-col>
         </el-row>
-    </div>
-     <div class="bottomBtn">
-        <a class="toTop">
+      <div class="bottomBtn">
+        <a class="toTop" @click="backclick">
           <i></i>
           <span>
             返回
@@ -70,16 +71,19 @@
           </span>
         </a>
       </div>
+    </div>
+    </scroll>
   </div>
 </template>
 <script>
 import NavBar from "../../../components/common/navBar/navBar.vue";
+import scroll from "../../../components/common/scroll/scroll.vue";
 import {my} from '../../../network'
 import "../../../assets/css/list.css"
 export default {
   data() {
     return {
-      input1: "",
+      input: "",
       goods1 : [],
       db:"sheet1"
     };
@@ -91,21 +95,33 @@ export default {
     this.goods1=goods
   },
   components: {
-    NavBar
+    NavBar,
+    scroll
   },
   methods: {
      goto(id, db) {
       this.$router.push({name: "goods", params: { id, db } });
-    }
+    },
+      backclick() {
+      this.$refs.a.scrollTo(0, 0);
+    },
   },
 };
 </script>
 <style scoped>
+.baijiu{
+  height: 100vh;
+  margin-top:40px; 
+}
 .baibig {
+ 
   background-color: #fff;
   /* overflow: auto; */
 }
-
+.content {
+  height: calc(100% - 49px);
+  overflow: hidden;
+}
 .sIcon {
   background: url(../img/searchIcon.png) no-repeat;
   background-size: 120px 40px;
