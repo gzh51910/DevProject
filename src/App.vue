@@ -26,7 +26,7 @@
         <div slot="item-text">我的</div>
       </TabBarItem>
     </tab-bar>
-    <keep-alive>
+    <keep-alive include="Home">
       <router-view></router-view>
     </keep-alive>
   </div>
@@ -43,6 +43,10 @@ export default {
   components: {
     TabBar,
     TabBarItem
+  },
+  created(){
+      this.$store.dispatch('adddata')
+   
   },
   methods: {}
 };

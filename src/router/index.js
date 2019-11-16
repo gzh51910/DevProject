@@ -9,6 +9,7 @@ import Reg from '../views/reg/Reg.vue'
 import Login from '../views/login/Login.vue'
 import Detail from '../views/detail/Detail.vue'
 import homeDetail from '../views/detail/homeDetail.vue'
+import homeList from '../views/detail/homeList.vue'
 
 import { my } from "../network";
 
@@ -33,10 +34,15 @@ const routes = [
         path: '',
         redirect: '/home'
     },
-    {
+    {name:"home",
         path: '/home',
         component: Home
     },
+    {
+    name: 'homelist',
+    path: '/homelist',
+    component: homeList
+},
     {
         path: '/category',
         component: Category,

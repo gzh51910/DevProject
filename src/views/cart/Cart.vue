@@ -80,9 +80,14 @@ export default {
   data() {
     return {};
   },
+  created(){
+console.log(this.$store.state.cart.goodslist);
+
+  },
   computed: {
     goodslist() {
       return this.$store.state.cart.goodslist;
+      
     },
     totalPrice() {
       return this.$store.getters.totalPrice;
@@ -141,7 +146,7 @@ export default {
   height: 100vh;
 }
 .con{
-  height: calc(100% - 50px);
+  height: calc(100% - 90px);
   overflow: hidden;
 }
 body {

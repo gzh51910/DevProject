@@ -1,4 +1,4 @@
-  <template>
+<template>
   <div class="detail" style="background-color: #f3f5f6;">
     <!-- 顶头 -->
     <nav-bar class="detailHead" style="color: white;">

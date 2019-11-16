@@ -9,7 +9,11 @@
         <i class="el-icon-star-on"></i>
         <p>收藏</p>
       </el-col>
-      <el-col :span="4" style="font-size: 14px;color: #626365;position:relative" @click.native="goto">
+      <el-col
+        :span="4"
+        style="font-size: 14px;color: #626365;position:relative"
+        @click.native="goto"
+      >
         <i class="el-icon-goods"></i>
         <p>购物车</p>
         <div class="detailTag">
@@ -30,6 +34,8 @@
   </div>
 </template>
 <script>
+ import {my} from '../../network';
+import { log } from 'util';
 export default {
   data() {
     return {};
@@ -44,11 +50,14 @@ export default {
     goto() {
       this.$router.push("/cart");
     },
-    addToCart() {
+    async addToCart() {
+     
+      
       if(this.goods){
         let data = this.goods;
         console.log("111111",data)
       let goods = {
+        // username:this.$store.state.common.user.username,
         _id: data._id,
         goods_thumb: data.goods_thumb,
         goods_name: data.goods_name,
@@ -59,13 +68,24 @@ export default {
         selected: false,
         allSelected: false
       };
-      this.$store.commit("addToCart", goods);
+      // this.$store.commit("addToCart", goods);
+             console.log(this.$store.state.common.user.username);
+      let username=this.$store.state.common.user.username
+    
+     let { data:data1 } = await my.post("/cart", {
+             username,
+              goods
+            });
+            console.log(data1);
+            this.$store.dispatch('adddata')
+
       } 
     },
-    homeAddToCart() {
+    async homeAddToCart() {
       if (this.homeGoods) {
         let data = this.homeGoods;
         console.log("2222222",data);
+         let username=this.$store.state.common.user.username
         let goods = {
           _id: data.pid,
           goods_thumb: data.imgPath,
@@ -78,7 +98,12 @@ export default {
           allSelected: false
         };
         console.log(goods)
-        this.$store.commit("addToCart", goods);
+     let { data:data1 } = await my.post("/cart", {
+            username,
+              goods
+            });
+              this.$store.dispatch('adddata')
+            
       }
     },
   }
