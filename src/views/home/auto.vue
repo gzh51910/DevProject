@@ -2,7 +2,7 @@
 <template>
   <div class="auto1">
     <div class="auto">
-      <div class="autoitem" v-for="item in gdlist" :key="item.id" @click="ceshi">
+      <div class="autoitem" v-for="item in gdlist" :key="item.id" @click="ceshi(item.id,db)">
         <img :src="item.proImg" alt />
         <span class="name">{{item.proName}}</span>
         <span class="price">￥{{item.jxPrice}}</span>
@@ -17,6 +17,7 @@ import { my } from "../../network";
 export default {
   data() {
     return {
+      db: "gdlist",
       gdlist: []
     };
   },
@@ -29,8 +30,8 @@ export default {
     this.gdlist = gdlist;
   },
   methods: {
-    ceshi() {
-      console.log(111);
+    ceshi(id, db) {
+      this.$router.push({ name: "homelist", params: { id, db } });
     }
   }
 };
