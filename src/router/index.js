@@ -8,7 +8,7 @@ import Profile from '../views/profile/Profile.vue'
 import Reg from '../views/reg/Reg.vue'
 import Login from '../views/login/Login.vue'
 import Detail from '../views/detail/Detail.vue'
-
+import homeDetail from '../views/detail/homeDetail.vue'
 
 import { my } from "../network";
 
@@ -50,6 +50,10 @@ const routes = [
         component: Settlement,
         meta: { requiresAuth: true }
     }, {
+        name:'hdetail',
+        path: '/hdetail',
+        component: homeDetail,
+    },{
         path: '/profile',
         component: Profile,
         meta: { requiresAuth: true }

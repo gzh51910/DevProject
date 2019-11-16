@@ -9,7 +9,7 @@ export default {
 
     state: {
         goodslist: [{
-                "_id": "5dcdfe4d704aa2e5f8fa6cb6",
+                "_id": "5dcdfe4d704aa2e5f8fa6c6",
                 "goods_thumb": "https://img07.jiuxian.com/2019/0716/bbfac7baf70742e69d95564bfc7908762.jpg",
                 "goods_name": "52°小糊涂神250ml（双瓶装）",
                 "proshop2": "限时抢购",
@@ -74,18 +74,18 @@ export default {
         //     state.goodslist = []
         // },
 
-        // 添加到购物车
+        // 列表页添加到购物车
         addToCart(state, goods) {
-            // var test=0;
-            // state.goodslist.forEach(item => {
-            //     if (goods._id == item._id) {
-            //         item.qty = item.qty + goods.qty;
-            //         test+=1;
-            //     }
-            // })
-            //  if (test==0) {
+            var test=0;
+            state.goodslist.forEach(item => {
+                if (goods._id == item._id) {
+                    item.qty = item.qty + goods.qty;
+                    test+=1;
+                }
+            })
+             if (test==0) {
                  state.goodslist.unshift(goods)
-            //  }
+             }
         },
         // 修改数量
         changeQty(state, payload) {

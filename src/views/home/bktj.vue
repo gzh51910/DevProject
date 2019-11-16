@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     goto(id, db) {
-      this.$router.push({ name: "goods", params: { id, db } });
+      this.$router.push({ name: "hdetail", params: { id, db } });
       console.log(id, db);
     }
   }
