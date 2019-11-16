@@ -1,32 +1,13 @@
 <template>
   <div style="padding:20px">
-      <el-table
-      :data="aaa"
-      style="width: 100%">
-      <el-table-column
-        prop="_id"
-        label="id"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="commonProductInfo.pname"
-        label="商品名"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="commonProductInfo.actPrice"
-        label="价格">
-      </el-table-column>
+    <el-table :data="aaa" style="width: 100%">
+      <el-table-column prop="_id" label="id" width="250"></el-table-column>
+      <el-table-column prop="commonProductInfo.pname" label="商品名" width="450"></el-table-column>
+      <el-table-column prop="commonProductInfo.actPrice" label="价格" width="80"></el-table-column>
+      <el-table-column prop="commonProductInfo.pid" label="库存"></el-table-column>
+      <el-table-column prop="commonProductInfo.brandId" label="销量"></el-table-column>
+      
     </el-table>
-                
-    <el-pagination
-        class="pagination"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        background
-        layout="prev, pager, next"
-        :total="1000">
-    </el-pagination>
   </div>
 </template>
 <script>
@@ -55,7 +36,7 @@ export default {
           name: "王小虎",
           address: "上海市普陀区金沙江路 1516 弄"
         },
-         {
+        {
           date: "2016-05-02",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1518 弄"
@@ -75,24 +56,24 @@ export default {
           name: "王小虎",
           address: "上海市普陀区金沙江路 1516 弄"
         },
-         {
+        {
           date: "2016-05-02",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1518 弄"
-        },
+        }
       ],
       aaa: []
     };
   },
 
   methods: {
-      handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
-      },
-      handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
-      }
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
     },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+    }
+  },
 
   async created() {
     let {
@@ -100,7 +81,7 @@ export default {
     } = await this.$axios.get("http://localhost:1910/gdlist", {
       params: { gather: "list" }
     });
-    this.aaa = list
+    this.aaa = list;
     console.log(this.aaa);
   }
 };
