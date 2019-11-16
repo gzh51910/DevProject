@@ -56,6 +56,15 @@
           </el-card>
         </el-col>
       </el-row>
+       <div class="bottomBtn">
+        <a class="toTop">
+          <i></i>
+          <span>
+            返回
+            <br />顶部
+          </span>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -82,8 +91,8 @@ export default {
     NavBar
   },
   methods: {
-    goto(id, db) {
-      this.$router.push({ path: "/goods", params: { id, db } });
+     goto(id, db) {
+      this.$router.push({name: "goods", params: { id, db } });
     }
   },
   mounted() {

@@ -20,7 +20,7 @@
     </nav-bar>
     <div class="baibig" :db="db">
       <div 
-      style="height:80px;text-align:center;line-height:40px;margin:40px 0 10px;">
+       style="height:80px;text-align:center;line-height:40px;margin:40px 0 10px;">
         <el-row :gutter="20">
           <el-col :span="6">综合</el-col>
           <el-col :span="6">销量</el-col>
@@ -60,6 +60,15 @@
             </el-card>
           </el-col>
         </el-row>
+      <div class="bottomBtn">
+        <a class="toTop">
+          <i></i>
+          <span>
+            返回
+            <br />顶部
+          </span>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -85,8 +94,8 @@ export default {
     NavBar
   },
    methods:{
-     goto(id, db) {
-      this.$router.push({ path: "/goods", params: { id, db } });
+      goto(id, db) {
+      this.$router.push({name: "goods", params: { id, db } });
     }
     }
 };
