@@ -19,61 +19,48 @@
         </div>
       </div>
     </nav-bar>
-    <!-- <scroll class="content"> -->
-    <el-carousel height="180px" indicator-position="none">
-      <el-carousel-item v-for="item in slider" :key="item.id">
-        <img class="sliderimg" :src="item.src" alt />
-      </el-carousel-item>
-    </el-carousel>
-    <article class="article">
-      <el-backtop target=".article" :bottom="500" :right="100">
-        <div
-          style="{
-        height: 100%;
-        width: 100%;
-        background-color: #f2f5f6;
-        box-shadow: 0 0 6px rgba(0,0,0, .12);
-        text-align: center;
-        line-height: 40px;
-        color: #1989fa;
-      }"
-          class="abc"
-        >UP</div>
-      </el-backtop>
-      <div class="select">
-        <div class="select1" v-for="item in teb" :key="item.id">
-          <img :src="item.src" alt />
+    <scroll class="content" ref="a" :probe-type="3" @scroll="contentScroll">
+      <el-carousel height="180px" indicator-position="none">
+        <el-carousel-item v-for="item in slider" :key="item.id">
+          <img class="sliderimg" :src="item.src" alt />
+        </el-carousel-item>
+      </el-carousel>
+      <article class="article">
+        <div class="select">
+          <div class="select1" v-for="item in teb" :key="item.id">
+            <img :src="item.src" alt />
+          </div>
         </div>
-      </div>
-      <div class="ly">
-        <img :src="ly.src1" alt />
-        <div class="ly1">
-          <img :src="ly.src2" alt />
-          <img :src="ly.src3" alt />
+        <div class="ly">
+          <img :src="ly.src1" alt />
+          <div class="ly1">
+            <img :src="ly.src2" alt />
+            <img :src="ly.src3" alt />
+          </div>
         </div>
-      </div>
-      <div class="homes">
-        <img src="../../assets/img/home/23e12867518b4a779bd6530e694e817f.jpg" alt />
-        <el-carousel class="ss" height="20px" indicator-position="none" direction="vertical">
-          <el-carousel-item v-for="item in wenzi" :key="item">
-            <p class="wenzislider">{{item}}</p>
-          </el-carousel-item>
-        </el-carousel>
-      </div>
-      <auto></auto>
-      <photo></photo>
-      <itemFlex></itemFlex>
-      <jxpd></jxpd>
-      <bktj></bktj>
-    </article>
-
-    <!-- </scroll> -->
+        <div class="homes">
+          <img src="../../assets/img/home/23e12867518b4a779bd6530e694e817f.jpg" alt />
+          <el-carousel class="ss" height="20px" indicator-position="none" direction="vertical">
+            <el-carousel-item v-for="item in wenzi" :key="item">
+              <p class="wenzislider">{{item}}</p>
+            </el-carousel-item>
+          </el-carousel>
+        </div>
+        <auto></auto>
+        <photo></photo>
+        <itemFlex></itemFlex>
+        <jxpd></jxpd>
+        <bktj></bktj>
+      </article>
+    </scroll>
+    <backtop @click.native="backclick" v-show="isshow"></backtop>
   </div>
 </template>
 
 <script>
 import NavBar from "../../components/common/navBar/navBarhome.vue";
-// import scroll from "../../components/common/scroll/scroll.vue";
+import scroll from "../../components/common/scroll/scroll.vue";
+import backtop from "../../components/content/backTop/backtop.vue";
 import { my } from "../../network";
 import auto from "./auto.vue";
 import photo from "./photo.vue";
@@ -85,6 +72,8 @@ export default {
     return {
       input: "",
       color: "",
+      saveY: 0,
+      isshow: false,
       slider: [],
       teb: [],
       ly: [],
@@ -95,6 +84,16 @@ export default {
         "温馨提示 谨防上当受骗 造成财产损失"
       ]
     };
+  },
+  activated() {
+    this.$refs.a.scrollTo(0, this.saveY, 0);
+    console.log("home enter 设置位置");
+  },
+  deactivated() {
+    this.saveY = this.$refs.a.gety();
+    console.log(this.saveY);
+
+    console.log("home leave 记录位置");
   },
   mounted: function() {
     window.addEventListener("scroll", this.handleScroll, true); // 监听（绑定）滚轮滚动事件
@@ -108,16 +107,23 @@ export default {
       } else {
         this.color = "";
       }
+    },
+    backclick() {
+      this.$refs.a.scrollTo(0, 0);
+    },
+    contentScroll(position) {
+      this.isshow = -position.y > 500;
     }
   },
   components: {
     NavBar,
-    // scroll,
+    scroll,
     auto,
     photo,
     itemFlex,
     jxpd,
-    bktj
+    bktj,
+    backtop
   },
   async created() {
     let {

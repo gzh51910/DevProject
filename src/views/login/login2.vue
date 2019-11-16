@@ -27,7 +27,7 @@
 
       <el-button class="botton" type="danger" @click="submitForm('numberValidateForm')">立即登录</el-button>
     </el-form>
-    <ul class="btn">
+    <ul class="btn1">
       <li @click="zhuce">免费注册</li>
       <li>找回密码</li>
     </ul>
@@ -124,13 +124,13 @@ p {
   margin: 30px auto;
   background: #de4b45;
 }
-.btn {
+.btn1 {
   display: flex;
   width: 84%;
   margin: 0 auto;
   justify-content: space-between;
 }
-.btn li {
+.btn1 li {
   border-bottom: 1px solid #626365;
 }
 </style>
