@@ -46,7 +46,12 @@
             </el-carousel-item>
           </el-carousel>
         </div>
-        <auto></auto>
+        <!-- <scrollx class="scrollx"> -->
+        <div class="outer-wrapper" ref="outerScroll">
+          <auto></auto>
+        </div>
+
+        <!-- </scrollx> -->
         <photo></photo>
         <itemFlex></itemFlex>
         <jxpd></jxpd>
@@ -58,6 +63,8 @@
 </template>
 
 <script>
+import BScroll from "@better-scroll/core";
+import NestedScroll from "@better-scroll/nested-scroll";
 import NavBar from "../../components/common/navBar/navBarhome.vue";
 import scroll from "../../components/common/scroll/scroll.vue";
 import backtop from "../../components/content/backTop/backtop.vue";
@@ -67,6 +74,7 @@ import photo from "./photo.vue";
 import itemFlex from "./itemFlex.vue";
 import jxpd from "./jxpd.vue";
 import bktj from "./bktj.vue";
+BScroll.use(NestedScroll);
 export default {
   data() {
     return {
@@ -87,6 +95,7 @@ export default {
   },
   activated() {
     this.$refs.a.scrollTo(0, this.saveY, 0);
+
     console.log("home enter 设置位置");
   },
   deactivated() {
@@ -96,7 +105,15 @@ export default {
     console.log("home leave 记录位置");
   },
   mounted: function() {
-    window.addEventListener("scroll", this.handleScroll, true); // 监听（绑定）滚轮滚动事件
+    this.outerScroll = new BScroll(this.$refs.outerScroll, {
+      nestedScroll: true,
+      scrollX: true,
+      scrollY: false,
+      bounce: {
+        left: false,
+        right: false
+      }
+    });
   },
   methods: {
     handleScroll(e) {
@@ -112,6 +129,11 @@ export default {
       this.$refs.a.scrollTo(0, 0);
     },
     contentScroll(position) {
+      if (-position.y >= 250) {
+        this.color = " background: #e5383b";
+      } else {
+        this.color = "";
+      }
       this.isshow = -position.y > 500;
     }
   },
@@ -143,6 +165,9 @@ export default {
 };
 </script>
 <style scoped>
+.outer-wrapper {
+  overflow: hidden;
+}
 .abc {
   position: absolute;
   top: 0;

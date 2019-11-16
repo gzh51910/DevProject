@@ -2,7 +2,7 @@
 <template>
   <div class="auto1">
     <div class="auto">
-      <div class="autoitem" v-for="item in gdlist" :key="item.id">
+      <div class="autoitem" v-for="item in gdlist" :key="item.id" @click="ceshi">
         <img :src="item.proImg" alt />
         <span class="name">{{item.proName}}</span>
         <span class="price">￥{{item.jxPrice}}</span>
@@ -27,13 +27,17 @@ export default {
       gather: "gdlist"
     });
     this.gdlist = gdlist;
+  },
+  methods: {
+    ceshi() {
+      console.log(111);
+    }
   }
 };
 </script>
 <style scoped>
 .auto1 {
-  width: 100%;
-  overflow-x: scroll;
+  width: 1000px;
 }
 .auto {
   width: 1100px;
