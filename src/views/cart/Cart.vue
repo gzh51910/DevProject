@@ -1,7 +1,7 @@
 
 <template style="background: #f3f5f6;">
   <!-- 头-->
-  <div>
+  <div class="cart"  style="padding-top:40px">
     <navBar style="background: #f3f5f6;color:#333" class="cartHead">
       <div class="left" slot="left">
         <i class="el-icon-arrow-left" @click="$router.back(-1)"></i>
@@ -11,7 +11,8 @@
         <i class="el-icon-menu" style></i>
       </div>
     </navBar>
-    <main style="margin-top:40px">
+    <scroll class="con">
+    <main>
       <!--提示说明 -->
       <el-row class="cartTip" style="color: #ff3333;">
         <i class="el-icon-warning" style="float:left;margin-left:6px;margin-top:4px"></i>
@@ -68,18 +69,25 @@
         <div class="cartRight goto" @click="gotopay">去结算({{listLength}})</div>
       </el-row>
     </main>
+    </scroll>
   </div>
 </template>
 
 <script>
 import navBar from "../../components/common/navBar/navBar.vue";
+import scroll from "../../components/common/scroll/scroll.vue";
 export default {
   data() {
     return {};
   },
+  created(){
+console.log(this.$store.state.cart.goodslist);
+
+  },
   computed: {
     goodslist() {
       return this.$store.state.cart.goodslist;
+      
     },
     totalPrice() {
       return this.$store.getters.totalPrice;
@@ -128,11 +136,19 @@ export default {
     }
   },
   components: {
-    navBar
+    navBar,
+    scroll
   }
 };
 </script>
 <style  lang="css" scoped>
+.cart{
+  height: 100vh;
+}
+.con{
+  height: calc(100% - 90px);
+  overflow: hidden;
+}
 body {
   background: #f3f5f6;
 }

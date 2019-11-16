@@ -1,5 +1,5 @@
-  <template>
-  <div class="detail" style="background-color: #f3f5f6;">
+<template>
+  <div style="background-color: #f3f5f6;">
     <!-- 顶头 -->
     <nav-bar class="detailHead" style="color: white;">
       <div class="left" slot="left" @click="$router.back(-1)">
@@ -11,7 +11,6 @@
       </div>
     </nav-bar>
     <!-- 提示头-->
-     <scroll class="con">
     <main style="margin-top:40px">
       <el-row v-if="show">
         <el-col :span="6">
@@ -36,14 +35,14 @@
         </el-col>
       </el-row>
       <!-- 商品图片详情 -->
-        <img :src="goods.goods_thumb" alt="">
+        <img :src="homeGoods.imgPath" alt="">
       <!-- 文字介绍 -->
       <el-row style="padding:0 10px;background:#fff;padding-bottom:20px">
         <el-col>
-          <h4>{{goods.goods_name}}</h4>
+          <h4>{{homeGoods.pname}}</h4>
           <p class="price">
-            <span style="color: #fc5a5a;font-size: 19px;float:left">￥{{goods.price}}</span>
-            <del style="font-size: 12px;color: #999;padding-left:8px">酒仙价：￥{{goods.shop_price}}</del>
+            <span style="color: #fc5a5a;font-size: 19px;float:left">￥{{homeGoods.actPrice}}</span>
+            <del style="font-size: 12px;color: #999;padding-left:8px">酒仙价：￥{{homeGoods.jxPrice}}</del>
           </p>
         </el-col>
       </el-row>
@@ -55,13 +54,12 @@
           <p class="textSame">数量</p>
         </el-col>
         <div>
-          <el-input-number v-model="num1" :min="1" :max="10" size="small" class="detailNum"  @change="addNum($event)"></el-input-number>
+          <el-input-number v-model="num" :min="1" :max="10" size="small" class="detailNum"  @change="homeAddNum($event)"></el-input-number>
         </div>
       </el-row>
       <evl></evl>
     </main>
-    </scroll>
-    <detail-footer :goods="goods"></detail-footer>
+    <detail-footer :homeGoods="homeGoods"></detail-footer>
   </div>
 </template>
 <script>
@@ -70,54 +68,46 @@ import evl from "./Eval.vue";
 import size from "./Size.vue";
 import DetailFooter from "./DetailFooter.vue";
  import {my} from '../../network';
- import scroll from "../../components/common/scroll/scroll.vue";
 export default {
   data() {
     return {
-      num1: 1,
+      num: 1,
       show:true,
       Evel: { totalEval: "40932 人评价", goodEval: "98 %" },
-      goods:[]
+      homeGoods:[]
     };
   },
   async created() {
     let {id,db}=this.$route.params;
-    console.log(id,db)
     let {
       data: { data: goods }
     } = await my.get("/goods", { gather: db, _id: id });
-    this.goods = goods[0]
-    this.goods.qty=1;
-    console.log("=============",goods);
+    this.homeGoods = goods[0].commonProductInfo
+    this.homeGoods.qty=1;
+    console.log(this.homeGoods);
   },
   methods:{
     removeItem(){
       this.show=false
     },
-    addNum(num){
-      this.goods.qty=num;
+    homeAddNum(num){
+      this.homeGoods.qty=num;
     }
   },
   components: {
     navBar,
     evl,
     size,
-    DetailFooter,scroll
+    DetailFooter
   }
 };
 </script>
 <style  lang="css" scoped>
-.detail{
-  height: 100vh;
-}
 * {
   margin: 0;
   padding: 0;
 }
-.con{
-  height: calc(100% - 50px);
-  overflow: hidden;
-}
+
 .detailHead {
   width: 100%;
   z-index: 10;
