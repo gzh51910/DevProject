@@ -23,10 +23,9 @@
       <div class="baibig" :db="db">
         <div style="height:80px;text-align:center;line-height:40px;margin:40px 0 10px;">
           <el-row :gutter="20">
-            <el-col :span="6">综合</el-col>
-            <el-col :span="6">销量</el-col>
-            <el-col :span="6">价格</el-col>
-            <el-col :span="6">筛选</el-col>
+
+            <el-col :span="6" v-for="(item) in text" :key="item.id" @click.native="change">{{item}}</el-col>
+
           </el-row>
           <div class="flil">
             <a>酒仙配送</a>
@@ -81,7 +80,11 @@ export default {
     return {
       input: "",
       goods1: [],
-      db: "sheet2"
+
+      db: "sheet2",
+      text:["综合","销量","价格","筛选"],
+    
+
     };
   },
   async created() {
@@ -90,6 +93,12 @@ export default {
       data: { data: goods }
     } = await my.get("/gdlist", db);
     this.goods1 = goods;
+
+    this.goods1.forEach((item) => {
+      item.price=item.price.slice(1); 
+    });
+
+
   },
   components: {
     NavBar,
@@ -101,14 +110,40 @@ export default {
     },
     backclick() {
       this.$refs.a.scrollTo(0, 0);
+
+    },
+     change(){
+      let seft=this
+      seft.sorts=!seft.sorts
+      console.log(this.sorts);
+
+      function compare(price) {
+        return function(object1,object2){
+          var val1 = object1[price];
+          var val2 = object2[price];
+          if(seft.sorts==true){
+            return val1-val2;
+          }else if(seft.sorts==false){
+            return val2-val1;
+          }else{
+            return 0;
+          }
+        }
+      }
+      
+      this.goods1=this.goods1.sort(compare("price"))
+      console.log(this.goods1);
+     
+
     }
+
   }
 };
 </script>
 <style scoped>
 .putao{
   height: 100vh;
-   margin-top:40px; 
+  margin-top:40px; 
 }
 .baibig {
   background-color: #fff;

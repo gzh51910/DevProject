@@ -502,6 +502,7 @@ export default {
 }
 .zxg{
   height: 100vh;
+
    margin-top:40px; 
 }
 .content {
