@@ -41,7 +41,7 @@ export default {
   data() {
     return {};
   },
-  props: ["goods", "homeGoods", "id","hListgoods"],
+  props: ["goods", "homeGoods", "id", "hListgoods"],
   computed: {
     goodsNumber() {
       return this.$store.state.cart.goodslist.length;
@@ -51,8 +51,7 @@ export default {
     goto() {
       this.$router.push("/cart");
     },
-      addHomeList() {
-    
+    addHomeList() {
       // if (this.goods) {
       //   let data = this.goods;
       //   console.log("111111", data);
@@ -94,36 +93,39 @@ export default {
         let goods_name = data.goods_name;
         console.log(this.$store.state.cart.goodslist);
         let username = this.$store.state.common.user.username;
-console.log(this.id);
+        console.log(this.id);
 
-console.log(this.$store.state.cart.goodslist);
+        console.log(this.$store.state.cart.goodslist);
 
-        let current = this.$store.state.cart.goodslist.filter(item => item.id == this.id)[0]
-        console.log("current",current);
-        if(current){
-
-        //  let  qty1=current.qty+1;
-           let { data } = await axios.patch(`http://10.3.136.140:1910/cart/${this.id}`, {
-               qty:current.qty+1
-                });
-          this.$store.dispatch('adddata')
-                console.log(data);
-                
-        }else{
+        let current = this.$store.state.cart.goodslist.filter(
+          item => item.id == this.id
+        )[0];
+        console.log("current", current);
+        if (current) {
+          //  let  qty1=current.qty+1;
+          let { data } = await axios.patch(
+            `http://10.3.136.140:1910/cart/${this.id}`,
+            {
+              qty: current.qty + 1
+            }
+          );
+          this.$store.dispatch("adddata");
+          console.log(data);
+        } else {
           let { data: data1 } = await my.post("/cart", {
-          username,
-          selected,
-          allSelected,
-          price,
-          id,
-          qty,
-          goods_thumb,
-          goods_name
-        });
-        console.log(data1);
-        this.$store.dispatch("adddata");
+            username,
+            selected,
+            allSelected,
+            price,
+            id,
+            qty,
+            goods_thumb,
+            goods_name
+          });
+          console.log(data1);
+          this.$store.dispatch("adddata");
         }
-    
+
         //    this.$store.state.cart.goodslist.forEach(async item=>{
         //       if(item.id==this.id){
         //       let qty1=qty++;

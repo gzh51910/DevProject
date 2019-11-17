@@ -34,15 +34,16 @@ const routes = [
         path: '',
         redirect: '/home'
     },
-    {name:"home",
+    {
+        name: "home",
         path: '/home',
         component: Home
     },
     {
-    name: 'homelist',
-    path: '/homelist',
-    component: homeList
-},
+        name: 'homelist',
+        path: '/homelist/:id',
+        component: homeList
+    },
     {
         path: '/category',
         component: Category,
@@ -50,16 +51,17 @@ const routes = [
     {
         path: '/cart',
         component: Cart,
+        meta: { requiresAuth: true }
     },
     {
         path: '/settlement',
         component: Settlement,
         meta: { requiresAuth: true }
     }, {
-        name:'hdetail',
+        name: 'hdetail',
         path: '/hdetail',
         component: homeDetail,
-    },{
+    }, {
         path: '/profile',
         component: Profile,
         meta: { requiresAuth: true }

@@ -95,6 +95,7 @@ import navBar from "../../components/common/navBar/navBar.vue";
 import scroll from "../../components/common/scroll/scroll.vue";
 // import { my } from "../../network";
 import axios from "axios";
+import { my } from "../../network";
 export default {
   data() {
     return {};
