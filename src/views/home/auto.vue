@@ -2,7 +2,7 @@
 <template>
   <div class="auto1">
     <div class="auto">
-      <div class="autoitem" v-for="item in gdlist" :key="item.id" @click="ceshi(item.id,db)">
+      <div class="autoitem" v-for="item in gdlist" :key="item._id" @click="ceshi(item._id,db)">
         <img :src="item.proImg" alt />
         <span class="name">{{item.proName}}</span>
         <span class="price">￥{{item.jxPrice}}</span>

@@ -34,8 +34,8 @@
   </div>
 </template>
 <script>
- import {my} from '../../network';
-import { log } from 'util';
+import { my } from "../../network";
+import { log } from "util";
 export default {
   data() {
     return {};
@@ -51,61 +51,62 @@ export default {
       this.$router.push("/cart");
     },
     async addToCart() {
-     
-      
-      if(this.goods){
+      if (this.goods) {
         let data = this.goods;
-        console.log("111111",data)
-      let goods = {
-        // username:this.$store.state.common.user.username,
-        _id: data._id,
-        goods_thumb: data.goods_thumb,
-        goods_name: data.goods_name,
-        proshop2: data.proshop2 ? data.proshop2 : "",
-        xx: data.xx ? data.xx : "",
-        price: data.price.slice(0, 1) == "￥" ? data.price : "￥" + data.price,
-        qty: data.qty,
-        selected: false,
-        allSelected: false
-      };
-      // this.$store.commit("addToCart", goods);
-             console.log(this.$store.state.common.user.username);
-      let username=this.$store.state.common.user.username
-    
-     let { data:data1 } = await my.post("/cart", {
-             username,
-              goods
-            });
-            console.log(data1);
-            this.$store.dispatch('adddata')
-
-      } 
-    },
-    async homeAddToCart() {
-      if (this.homeGoods) {
-        let data = this.homeGoods;
-        console.log("2222222",data);
-         let username=this.$store.state.common.user.username
+        console.log("111111", data);
+        let id = data._id;
         let goods = {
-          _id: data.pid,
-          goods_thumb: data.imgPath,
-          goods_name: data.pname,
-          proshop2:"",
-          xx:"",
-          price:"￥" + data.actPrice,
+          // username:this.$store.state.common.user.username,
+          _id: data._id,
+          goods_thumb: data.goods_thumb,
+          goods_name: data.goods_name,
+          proshop2: data.proshop2 ? data.proshop2 : "",
+          xx: data.xx ? data.xx : "",
+          price:
+            data.price.slice(0, 1) == "￥" ? data.price : "￥" + data.price,
           qty: data.qty,
           selected: false,
           allSelected: false
         };
-        console.log(goods)
-     let { data:data1 } = await my.post("/cart", {
-            username,
-              goods
-            });
-              this.$store.dispatch('adddata')
-            
+        // this.$store.commit("addToCart", goods);
+        console.log(this.$store.state.common.user.username);
+        let username = this.$store.state.common.user.username;
+
+        let { data: data1 } = await my.post("/cart", {
+          username,
+          goods,
+          id
+        });
+        console.log(data1);
+        this.$store.dispatch("adddata");
       }
     },
+    async homeAddToCart() {
+      if (this.homeGoods) {
+        let data = this.homeGoods;
+        console.log("2222222", data);
+        let id = data.pid;
+        let username = this.$store.state.common.user.username;
+        let goods = {
+          _id: data.pid,
+          goods_thumb: data.imgPath,
+          goods_name: data.pname,
+          proshop2: "",
+          xx: "",
+          price: "￥" + data.actPrice,
+          qty: data.qty,
+          selected: false,
+          allSelected: false
+        };
+        console.log(goods);
+        let { data: data1 } = await my.post("/cart", {
+          username,
+          goods,
+          id
+        });
+        this.$store.dispatch("adddata");
+      }
+    }
   }
 };
 </script>
