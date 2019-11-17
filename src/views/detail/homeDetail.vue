@@ -59,7 +59,7 @@
       </el-row>
       <evl></evl>
     </main>
-    <detail-footer :homeGoods="homeGoods"></detail-footer>
+    <detail-footer :homeGoods="homeGoods" :id='id'></detail-footer>
   </div>
 </template>
 <script>
@@ -74,7 +74,8 @@ export default {
       num: 1,
       show:true,
       Evel: { totalEval: "40932 人评价", goodEval: "98 %" },
-      homeGoods:[]
+      homeGoods:[],
+      id:""
     };
   },
   async created() {
@@ -84,7 +85,8 @@ export default {
     } = await my.get("/goods", { gather: db, _id: id });
     this.homeGoods = goods[0].commonProductInfo
     this.homeGoods.qty=1;
-    console.log(this.homeGoods);
+    this.id=goods[0]._id
+    console.log(goods);
   },
   methods:{
     removeItem(){
