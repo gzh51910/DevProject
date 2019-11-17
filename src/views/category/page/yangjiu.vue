@@ -105,7 +105,7 @@ export default {
       backclick() {
       this.$refs.a.scrollTo(0, 0);
     },
-<<<<<<< HEAD
+
      change(){
       let seft=this
       seft.sorts=!seft.sorts
@@ -127,8 +127,7 @@ export default {
       this.goods1=this.goods1.sort(compare("price"))
       console.log(this.goods1);
      }
-=======
->>>>>>> taojuan
+
   },
  
 };
@@ -141,10 +140,9 @@ export default {
 }
 .yangjiu{
   height: 100vh;
-<<<<<<< HEAD
+
   margin-top:40px; 
-=======
->>>>>>> taojuan
+
 }
 .content {
   height: calc(100% - 49px);

@@ -83,8 +83,7 @@ export default {
 
       db: "sheet2",
       text:["综合","销量","价格","筛选"],
-
-      db: "sheet2"
+    
 
     };
   },
