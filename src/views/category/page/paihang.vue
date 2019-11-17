@@ -195,7 +195,7 @@ export default {
 }
 .paihang{
   height: 100vh;
-   margin-top:40px; 
+  margin-top:40px; 
 }
 .content {
   height: calc(100% - 49px);
