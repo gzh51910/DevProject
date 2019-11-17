@@ -110,6 +110,7 @@ export default {
       this.$refs.a.scrollTo(0, 0);
     },
 
+
     change(){
       let seft=this
       seft.sorts=!seft.sorts
@@ -132,6 +133,7 @@ export default {
       console.log(this.goods1);
       
     }
+
 
   },
 };

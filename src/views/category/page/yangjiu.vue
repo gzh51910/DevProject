@@ -140,9 +140,6 @@ export default {
 }
 .yangjiu{
   height: 100vh;
-
-  margin-top:40px; 
-
 }
 .content {
   height: calc(100% - 49px);
