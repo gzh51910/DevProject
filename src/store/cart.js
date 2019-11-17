@@ -25,7 +25,7 @@ export default {
 
     //   mutation的调用方式：store.commit(mutation)
     mutations: {
-     
+  
         addlist(state,list){
             state.goodslist=list
         },
@@ -72,18 +72,19 @@ export default {
     // actions：间接修改state的方式
     // 触发action: store.dispatch(action)
     actions: {
+        
         // context: 一个类似于store的对象
         // payload: 触发action时传入的参数
         async ['adddata'](store) {
             const {rootState,commit } = store
             console.log("11111",rootState.common.user.username) // 打印根 state
                 const { data:{data}} = await my.get('/cart', {gather: "cart",username:rootState.common.user.username})
-                let arr=[]
-                data.forEach(item=>{
-                    arr.push(item.goods)
-                })
-                commit('addlist', arr)
-                console.log(arr);
+                // let arr=[]
+                // data.forEach(item=>{
+                //     arr.push(item.goods)
+                // })
+                commit('addlist', data)
+                console.log(data);
                 
            
         }

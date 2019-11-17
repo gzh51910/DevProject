@@ -61,7 +61,7 @@
       <evl></evl>
     </main>
     </scroll>
-    <detail-footer :goods="goods"></detail-footer>
+    <detail-footer :hListgoods="goods"></detail-footer>
   </div>
 </template>
 <script>

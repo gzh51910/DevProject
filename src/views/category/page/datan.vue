@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div class="datan">
     <nav-bar class="head">
       <div slot="left">
         <a class="back" href="#/category"></a>
@@ -12,6 +12,7 @@
         <a class="navbar"></a>
       </div>
     </nav-bar>
+     <scroll class="content" ref="a" :probe-type="3">
     <el-row style="margin-top:40px" class="banner">
       <el-col :span="24">
         <a style="display:block;background:#f5f5f5">
@@ -19,6 +20,7 @@
         </a>
       </el-col>
     </el-row>
+   
     <div class="tanbig" :db="db">
       <div class="banner">
         <el-row>
@@ -130,7 +132,7 @@
       </el-row>
 
       <div class="bottomBtn">
-        <a class="toTop">
+        <a class="toTop"  @click="backclick">
           <i></i>
           <span>
             返回
@@ -139,10 +141,12 @@
         </a>
       </div>
     </div>
+    </scroll>
   </div>
 </template>
 <script>
 import NavBar from "../../../components/common/navBar/navBar.vue";
+import scroll from "../../../components/common/scroll/scroll.vue";
 import "../../../assets/css/list.css";
 import { my } from "../../../network";
 export default {
@@ -164,16 +168,28 @@ export default {
     this.goods2 = goods.splice(0, 10);
   },
   components: {
-    NavBar
+    NavBar,
+    scroll
   },
   methods: {
-    goto(id, db) {
-      this.$router.push({ path: "/goods", params: { id, db } });
-    }
+     goto(id, db) {
+      this.$router.push({name: "goods", params: { id, db } });
+    },
+      backclick() {
+      this.$refs.a.scrollTo(0, 0);
+    },
   }
 };
 </script>
 <style scoped>
+.datan{
+  height: 100vh;
+   margin-top:40px; 
+}
+.content {
+  height: calc(100% - 49px);
+  overflow: hidden;
+}
 .tanbig {
   overflow: auto;
   background-color: #f5f5f5;

@@ -1,93 +1,110 @@
 
 <template style="background: #f3f5f6;">
   <!-- 头-->
-  <div class="cart"  style="padding-top:40px">
-    <navBar style="background: #f3f5f6;color:#333" class="cartHead">
-      <div class="left" slot="left">
-        <i class="el-icon-arrow-left" @click="$router.back(-1)"></i>
-      </div>
-      <div class="center" slot="center">购物车</div>
-      <div class="right" slot="right" style="z-index:1000">
-        <i class="el-icon-menu" style></i>
-      </div>
-    </navBar>
-    <scroll class="con">
-    <main>
-      <!--提示说明 -->
-      <el-row class="cartTip" style="color: #ff3333;">
-        <i class="el-icon-warning" style="float:left;margin-left:6px;margin-top:4px"></i>
-        <p style="float:left;margin-left:10px;">自营商品实付满100元免运费，偏远地区满500免运费</p>
-      </el-row>
-
-      <el-row
-        style="background:#f3f5f6;margin-top:8px;margin-bottom:2px"
-        v-for="item in goodslist"
-        :key="item.goods_id"
-      >
-        <!-- 商品店铺 -->
-        <el-row class="sName">
-          <el-checkbox
-            v-model="item.allSelected"
-            :span="4"
-            class="sNameCheckbox"
-            @click.native="coupleSel(item._id)"
-          ></el-checkbox>
-          <span class="sNameText">博酒汇官方旗舰店</span>
-        </el-row>
-        <!-- 商品信息 -->
-        <el-row style="padding:20px 0px 30px 0px;min-height:80px">
-          <el-checkbox
-            v-model="item.selected"
-            class="goodsCheckbox"
-            @click.native="singleSel(item._id)"
-          ></el-checkbox>
-          <el-col :span="6" style="margin-left:40px">
-            <div class="cartPhoto">
-              <img :src="item.goods_thumb" alt />
-            </div>
-          </el-col>
-          <el-col :span="14" style="padding-left:10px">
-            <p>{{item.goods_name}}</p>
-            <em class="cartPrice">{{item.price}}</em>
-            <span class="textOri" v-if="item.proshop2">{{item.proshop2}}</span>
-            <span class="textPul" v-if="item.xx">{{item.xx}}</span>
-          </el-col>
-          <el-input-number v-model="item.qty" :min="1" :max="10" size="small" class="goodsNum"></el-input-number>
-          <a href="#" class="removeGoods" @click="removeGoods(item._id)">删除</a>
-        </el-row>
-      </el-row>
-      <!-- 总计 -->
-      <el-row class="totalPrice totalBox" style="padding-bottom:40px;">
-        <el-checkbox v-model="selectAll" class="totalCheckout"></el-checkbox>
-        <p class="cartLeft AllCheckText">全选</p>
-        <div class="cartLeft">
-          <p>
-            合计：
-            <span style="color: #ff3333;">￥{{totalPrice.toFixed(2)}}</span>
-          </p>
+  <div>
+    <div class="cart" style="padding-top:40px" v-if="goodslist.length">
+      <navBar style="background: #f3f5f6;color:#333" class="cartHead">
+        <div class="left" slot="left">
+          <i class="el-icon-arrow-left" @click="$router.back(-1)"></i>
         </div>
-        <div class="cartRight goto" @click="gotopay">去结算({{listLength}})</div>
-      </el-row>
-    </main>
-    </scroll>
+        <div class="center" slot="center">购物车</div>
+        <div class="right" slot="right" style="z-index:1000">
+          <i class="el-icon-menu" style></i>
+        </div>
+      </navBar>
+      <scroll class="con">
+        <main>
+          <!--提示说明 -->
+          <el-row class="cartTip" style="color: #ff3333;">
+            <i class="el-icon-warning" style="float:left;margin-left:6px;margin-top:4px"></i>
+            <p style="float:left;margin-left:10px;">自营商品实付满100元免运费，偏远地区满500免运费</p>
+          </el-row>
+
+          <el-row
+            style="background:#f3f5f6;margin-top:8px;margin-bottom:2px"
+            v-for="item in goodslist"
+            :key="item.goods_id"
+          >
+            <!-- 商品店铺 -->
+            <el-row class="sName">
+              <el-checkbox
+                v-model="item.allSelected"
+                :span="4"
+                class="sNameCheckbox"
+                @click.native="coupleSel(item._id)"
+              ></el-checkbox>
+              <span class="sNameText">博酒汇官方旗舰店</span>
+            </el-row>
+            <!-- 商品信息 -->
+            <el-row style="padding:20px 0px 30px 0px;min-height:80px">
+              <el-checkbox
+                v-model="item.selected"
+                class="goodsCheckbox"
+                @click.native="singleSel(item._id)"
+              ></el-checkbox>
+              <el-col :span="6" style="margin-left:40px">
+                <div class="cartPhoto">
+                  <img :src="item.goods_thumb" alt />
+                </div>
+              </el-col>
+              <el-col :span="14" style="padding-left:10px">
+                <p>{{item.goods_name}}</p>
+                <em class="cartPrice">{{item.price}}</em>
+                <span class="textOri" v-if="item.proshop2">{{item.proshop2}}</span>
+                <span class="textPul" v-if="item.xx">{{item.xx}}</span>
+              </el-col>
+              <el-input-number v-model="item.qty" :min="1" :max="10" size="small" class="goodsNum"></el-input-number>
+              <a href="#" class="removeGoods" @click="removeGoods(item.id)">删除</a>
+            </el-row>
+          </el-row>
+          <!-- 总计 -->
+          <el-row class="totalPrice totalBox" style="padding-bottom:40px;">
+            <el-checkbox v-model="selectAll" class="totalCheckout"></el-checkbox>
+            <p class="cartLeft AllCheckText">全选</p>
+            <div class="cartLeft">
+              <p>
+                合计：
+                <span style="color: #ff3333;">￥{{totalPrice.toFixed(2)}}</span>
+              </p>
+            </div>
+            <div class="cartRight goto" @click="gotopay">去结算({{listLength}})</div>
+          </el-row>
+        </main>
+      </scroll>
+    </div>
+    <div v-else>
+      <navBar style="background: #f3f5f6;color:#333" class="cartHead">
+        <div class="left" slot="left">
+          <i class="el-icon-arrow-left" @click="$router.back(-1)"></i>
+        </div>
+        <div class="center" slot="center">购物车</div>
+        <div class="right" slot="right" style="z-index:1000">
+          <i class="el-icon-menu" style></i>
+        </div>
+      </navBar>
+      <div class="kongBox">
+        <div class="nothing"></div>
+        <p style="color:#ccc">购物车空空如也!</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import navBar from "../../components/common/navBar/navBar.vue";
 import scroll from "../../components/common/scroll/scroll.vue";
+// import { my } from "../../network";
+import axios from "axios";
 export default {
   data() {
     return {};
   },
-  created(){
-console.log(this.$store.state.cart.goodslist);
-
+  created() {
+    console.log(this.$store.state.cart.goodslist);
   },
   computed: {
     goodslist() {
       return this.$store.state.cart.goodslist;
-      
     },
     totalPrice() {
       return this.$store.getters.totalPrice;
@@ -131,8 +148,10 @@ console.log(this.$store.state.cart.goodslist);
         }
       });
     },
-    removeGoods(id) {
-      this.$store.commit("removeFromCart", id);
+    async removeGoods(id) {
+      let { data } = await axios.delete(`http://10.3.136.140:1910/cart/${id}`);
+      console.log(data);
+      this.$store.dispatch("adddata");
     }
   },
   components: {
@@ -142,10 +161,14 @@ console.log(this.$store.state.cart.goodslist);
 };
 </script>
 <style  lang="css" scoped>
-.cart{
+body {
+  background: #ccc;
+  position: relative;
+}
+.cart {
   height: 100vh;
 }
-.con{
+.con {
   height: calc(100% - 90px);
   overflow: hidden;
 }
@@ -294,5 +317,24 @@ em {
   width: 98px;
   font-size: 16px;
   text-align: center;
+}
+.kongBox{
+   width: 80px;
+  height: 80px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right:0;
+  bottom: 0;
+  margin: auto;
+}
+.nothing {
+  width: 45px;
+  height: 45px;
+  background: url(../../assets/img/detail/kong.png);
+  background-size: 100% 100%;
+  margin: 0 auto;
+
 }
 </style>

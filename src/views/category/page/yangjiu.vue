@@ -1,23 +1,25 @@
 <template>
-  <div>
+  <div class="yangjiu">
     <nav-bar class="head">
       <div slot="left">
         <a class="back" href="#/category"></a>
       </div>
       <div slot="center">
-        <div style=" line-height: 40px">
-          <em class="input-em sIcon"></em>
-          <input
-            style="width:260px;height28px;border-radius:5px;"
-            type="text"
+       <div style="line-height:40px">
+          <el-input
+            prefix-icon="el-icon-search"
+            style="width:92%"
+            size="mini"
+            v-model="input"
             placeholder="硬核返场购 津贴每满299减20"
-          />
+          ></el-input>
         </div>
       </div>
       <div slot="right">
         <a class="navbar"></a>
       </div>
     </nav-bar>
+    <scroll class="content" ref="a" :probe-type="3">
     <div class="baibig" :db="db">
       <div style="height:80px;text-align:center;line-height:40px;margin:40px 0 10px;">
         <el-row :gutter="20">
@@ -56,17 +58,28 @@
           </el-card>
         </el-col>
       </el-row>
+       <div class="bottomBtn">
+        <a class="toTop" @click="backclick">
+          <i></i>
+          <span>
+            返回
+            <br />顶部
+          </span>
+        </a>
+      </div>
     </div>
+    </scroll>
   </div>
 </template>
 <script>
 import NavBar from "../../../components/common/navBar/navBar.vue";
+import scroll from "../../../components/common/scroll/scroll.vue";
 import { my } from "../../../network";
 import "../../../assets/css/list.css";
 export default {
   data() {
     return {
-      input1: "",
+      input: "",
       goods1: [],
       db: "sheet3"
     };
@@ -79,22 +92,32 @@ export default {
     this.goods1 = goods;
   },
   components: {
-    NavBar
+    NavBar,
+    scroll
   },
   methods: {
-    goto(id, db) {
-      this.$router.push({ path: "/goods", params: { id, db } });
-    }
+     goto(id, db) {
+      this.$router.push({name: "goods", params: { id, db } });
+    },
+      backclick() {
+      this.$refs.a.scrollTo(0, 0);
+    },
   },
-  mounted() {
-    window.addEventListener("scroll", this.scrollToTop);
-  }
+ 
 };
 </script>
 <style scoped>
 .baibig {
   background-color: #fff;
+  margin-top:40px; 
   /* overflow: auto; */
+}
+.yangjiu{
+  height: 100vh;
+}
+.content {
+  height: calc(100% - 49px);
+  overflow: hidden;
 }
 /* .head {
     width: 100%;
