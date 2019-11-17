@@ -109,6 +109,7 @@ export default {
       backclick() {
       this.$refs.a.scrollTo(0, 0);
     },
+<<<<<<< HEAD
     change(){
       let seft=this
       seft.sorts=!seft.sorts
@@ -131,6 +132,8 @@ export default {
       console.log(this.goods1);
       
     }
+=======
+>>>>>>> taojuan
   },
 };
 </script>

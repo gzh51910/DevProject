@@ -195,7 +195,11 @@ export default {
 }
 .paihang{
   height: 100vh;
+<<<<<<< HEAD
   margin-top:40px; 
+=======
+   margin-top:40px; 
+>>>>>>> taojuan
 }
 .content {
   height: calc(100% - 49px);

@@ -23,7 +23,9 @@
       <div class="baibig" :db="db">
         <div style="height:80px;text-align:center;line-height:40px;margin:40px 0 10px;">
           <el-row :gutter="20">
+
             <el-col :span="6" v-for="(item) in text" :key="item.id" @click.native="change">{{item}}</el-col>
+
           </el-row>
           <div class="flil">
             <a>酒仙配送</a>
@@ -78,8 +80,12 @@ export default {
     return {
       input: "",
       goods1: [],
+
       db: "sheet2",
-      text:["综合","销量","价格","筛选"]
+      text:["综合","销量","价格","筛选"],
+
+      db: "sheet2"
+
     };
   },
   async created() {
@@ -88,9 +94,12 @@ export default {
       data: { data: goods }
     } = await my.get("/gdlist", db);
     this.goods1 = goods;
+
     this.goods1.forEach((item) => {
       item.price=item.price.slice(1); 
     });
+
+
   },
   components: {
     NavBar,
@@ -102,6 +111,7 @@ export default {
     },
     backclick() {
       this.$refs.a.scrollTo(0, 0);
+
     },
      change(){
       let seft=this
@@ -124,7 +134,10 @@ export default {
       
       this.goods1=this.goods1.sort(compare("price"))
       console.log(this.goods1);
-     }
+     
+
+    }
+
   }
 };
 </script>
