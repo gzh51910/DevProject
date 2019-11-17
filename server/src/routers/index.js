@@ -9,7 +9,9 @@ let userRouter = require('./user');
 let regRouter = require('./reg');
 let gdlist = require('./gdlist');
 let goods = require('./goods');
+let userlist = require('./userlist');
 let cart = require('./cart');
+let backgdlist = require('./backgdlist');
 // 跨域解决方案CORS
 Router.use((req, res, next) => {
     // 支持CORS跨域，只需要设置响应头
@@ -41,6 +43,8 @@ Router.use('/reg', regRouter);
 Router.use('/gdlist', gdlist);
 Router.use('/goods', goods);
 Router.use('/cart', cart);
+Router.use('/userlist', userlist);
+Router.use('/backgdlist', backgdlist);
 Router.get('/verify', (req, res) => {
     // 获取请求头上的token
 

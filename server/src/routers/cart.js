@@ -2,16 +2,17 @@ const express = require('express');
 
 const Router = express.Router();
 
-const { create } = require('../db/mongodb');
+const { create,find,remove, update} = require('../db/mongodb');
 const { formatData } = require('../utils')
 
 
 const colName = 'cart'
 
 Router.post('/', async (req, res) => {
-    let {username, goods} = req.body;
+    let {username,id,selected,allSelected,price,qty,goods_thumb,goods_name} = req.body;
 
-    let result = await create(colName, {username, goods})
+
+    let result = await create(colName, {username,id,selected,allSelected,price,qty,goods_thumb,goods_name})
 
     if (result.insertedCount > 0) {
         res.send(formatData());
