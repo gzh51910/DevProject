@@ -80,6 +80,8 @@ export default {
       // }
     },
     async addToCart() {
+      console.log("1111");
+
       if (this.goods) {
         let data = this.goods;
         let id = this.id;
@@ -91,15 +93,13 @@ export default {
         let goods_thumb = data.goods_thumb;
         let goods_name = data.goods_name;
         let username = this.$store.state.common.user.username;
-        let current = this.$store.state.cart.goodslist.filter(item => item.id == this.id)[0]
-        if(current){
-
         let current = this.$store.state.cart.goodslist.filter(
           item => item.id == this.id
         )[0];
+        console.log(this.id);
+        console.log(this.$store.state.cart.goodslist);
         console.log("current", current);
         if (current) {
-          //  let  qty1=current.qty+1;
           let { data } = await axios.patch(
             `http://10.3.136.140:1910/cart/${this.id}`,
             {
@@ -122,35 +122,7 @@ export default {
           console.log(data1);
           this.$store.dispatch("adddata");
         }
-
-        //    this.$store.state.cart.goodslist.forEach(async item=>{
-        //       if(item.id==this.id){
-        //       let qty1=qty++;
-        //         let { data } = await axios.patch(`http://10.3.136.140:1910/cart/${this.id}`, {
-        //         qty1
-        //         });
-        //         this.$store.dispatch('adddata')
-        //         console.log("22222",data);
-        //       }
-        //       else{
-        //  console.log(this.$store.state.common.user.username);
-        //   let username=this.$store.state.common.user.username
-        //            let { data:data1 } = await my.post("/cart", {
-        //          username,
-        //       selected,
-        //       allSelected,
-        //       price,
-        //           id,
-        //           qty ,
-        //           goods_thumb,
-        //           goods_name
-        //         });
-        //         console.log(data1);
-        //         this.$store.dispatch('adddata')
-        //       }
-        // })
       }
-    }
     },
     async homeAddToCart() {
       if (this.homeGoods) {

@@ -140,16 +140,14 @@ router.beforeEach((to, from, next) => {
 
         let { Authorization } = JSON.parse(localStorage.getItem('user') || '[]');
         console.log(router);
-
         // let $store = router.app.$store
         // let Authorization = $store.state.common.user.Authorization;
         console.log('校验结果：', Authorization)
         if (Authorization) {
             // 登录则放行
             next();
-
             // 发送校验请求
-            router.app.$axios.get('http://localhost:1910/verify', {
+            router.app.$axios.get('http://10.3.136.140:1910/verify', {
                 headers: {
                     Authorization
                 }
