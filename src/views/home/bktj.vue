@@ -6,7 +6,7 @@
       <el-col v-for="item in list" :key="item._id" :span="12">
         <div class="b-list1" @click="goto(item._id,db)">
           <span class="xsqg" :style="{'background':item.promo[0].backColor}">{{item.promo[0].name}}</span>
-          <img :src="item.commonProductInfo.imgPath" alt />
+          <img v-lazy="item.commonProductInfo.imgPath" alt />
           <span class="name">{{item.commonProductInfo.pname}}</span>
           <div class="b-price">
             <span class="price">￥{{item.commonProductInfo.jxPrice}}</span>

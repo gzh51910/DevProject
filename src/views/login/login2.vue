@@ -20,9 +20,8 @@
         ></el-input>
       </el-form-item>
       <div class="yz">
-        <el-input v-model="loginForm.input" placeholder="请输入内容"></el-input>
-
-        <p></p>
+        <VerifySlider :success="handle"></VerifySlider>
+        <p>{{mes}}</p>
       </div>
 
       <el-button class="botton" type="danger" @click="submitForm('numberValidateForm')">立即登录</el-button>
@@ -36,10 +35,13 @@
 
 <script>
 import { my } from "../../network";
+import { VerifySlider } from "vue-verify-slider";
+
 export default {
   data() {
     return {
       errorMsg: "",
+      mes: "",
       loginForm: {
         input: "",
         username: "",
@@ -61,6 +63,9 @@ export default {
         ]
       }
     };
+  },
+  components: {
+    VerifySlider
   },
   methods: {
     zhuce() {
@@ -97,6 +102,9 @@ export default {
           return false;
         }
       });
+    },
+    handle() {
+      this.mes = "验证通过";
     }
   }
 };

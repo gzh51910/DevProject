@@ -41,7 +41,7 @@
         >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
-              <img :src="item.goods_thumb" class="image" />
+              <img v-lazy="item.goods_thumb" class="image" />
               <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
@@ -73,7 +73,7 @@
         >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
-              <img :src="item.goods_thumb" class="image" />
+              <img v-lazy="item.goods_thumb" class="image" />
               <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
@@ -109,7 +109,7 @@
         >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
-              <img :src="item.goods_thumb" class="image" />
+              <img v-lazy="item.goods_thumb" class="image" />
               <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
@@ -145,7 +145,7 @@
         >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
-              <img :src="item.goods_thumb" class="image" />
+              <img v-lazy="item.goods_thumb" class="image" />
               <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">
@@ -181,7 +181,7 @@
         >
           <el-card :body-style="{padding: '0',height:'248px'}">
             <div style="text-align: center;">
-              <img :src="item.goods_thumb" class="image" />
+              <img v-lazy="item.goods_thumb" class="image" />
               <p class="names">{{item.goods_name}}</p>
             </div>
             <div class="orice">

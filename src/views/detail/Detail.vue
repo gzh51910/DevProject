@@ -36,7 +36,7 @@
           </el-col>
         </el-row>
         <!-- 商品图片详情 -->
-        <img :src="goods.goods_thumb" alt />
+        <img class="imgdetail" v-lazy="goods.goods_thumb" alt />
         <!-- 文字介绍 -->
         <el-row style="padding:0 10px;background:#fff;padding-bottom:20px">
           <el-col>
@@ -76,52 +76,52 @@ import navBar from "../../components/common/navBar/navBar.vue";
 import evl from "./Eval.vue";
 import size from "./Size.vue";
 import DetailFooter from "./DetailFooter.vue";
- import {my} from '../../network';
- import scroll from "../../components/common/scroll/scroll.vue";
+import { my } from "../../network";
+import scroll from "../../components/common/scroll/scroll.vue";
 export default {
   data() {
     return {
       num1: 1,
-      show:true,
+      show: true,
       Evel: { totalEval: "40932 人评价", goodEval: "98 %" },
-      goods:[],
-      id:""
+      goods: [],
+      id: ""
     };
   },
-    watch:{
-      $route:function(newVal,oldVal){
-          console.log(newVal,oldVal);
-   
-              this.getData();
-          
-      }
+  watch: {
+    $route: function(newVal, oldVal) {
+      console.log(newVal, oldVal);
+
+      this.getData();
+    }
   },
   async created() {
-    this.getData()
+    this.getData();
   },
-  methods:{
-    removeItem(){
-      this.show=false
+  methods: {
+    removeItem() {
+      this.show = false;
     },
-    addNum(num){
-      this.goods.qty=num;
+    addNum(num) {
+      this.goods.qty = num;
     },
-     async getData(){
-    let {id,db}=this.$route.params;
-    let {
-      data: { data: goods }
-    } = await my.get("/goods", { gather: db, _id: id });
-    this.goods = goods[0]
-    this.goods.qty=1;
-    this.id=id
-    console.log("=============",goods);
-  }
+    async getData() {
+      let { id, db } = this.$route.params;
+      let {
+        data: { data: goods }
+      } = await my.get("/goods", { gather: db, _id: id });
+      this.goods = goods[0];
+      this.goods.qty = 1;
+      this.id = id;
+      console.log("=============", goods);
+    }
   },
   components: {
     navBar,
     evl,
     size,
-    DetailFooter,scroll
+    DetailFooter,
+    scroll
   }
 };
 </script>
@@ -193,5 +193,9 @@ img {
 }
 .floatLeft {
   float: left;
+}
+.imgdetail {
+  width: 100%;
+  height: 100%;
 }
 </style>

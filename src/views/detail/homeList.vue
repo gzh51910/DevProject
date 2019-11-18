@@ -36,7 +36,7 @@
           </el-col>
         </el-row>
         <!-- 商品图片详情 -->
-        <img :src="goods.proImg" alt />
+        <img v-lazy="goods.proImg" alt />
         <!-- 文字介绍 -->
         <el-row style="padding:0 10px;background:#fff;padding-bottom:20px">
           <el-col>

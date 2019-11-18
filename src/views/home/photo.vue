@@ -2,7 +2,7 @@
 <template>
   <div class="photo">
     <div class="photo1" v-for="item in nav" :key="item.id">
-      <img :src="item.src" alt />
+      <img v-lazy="item.src" alt />
     </div>
   </div>
 </template>

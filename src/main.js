@@ -6,7 +6,10 @@ import axios from "axios"
 Vue.config.productionTip = false
 import './assets/js/rem'
 import store from './store'
-
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload, {
+  loading: require('./assets/img/home/loading.jpg')
+})
 
 
 
