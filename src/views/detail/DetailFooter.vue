@@ -83,7 +83,6 @@ export default {
     async addToCart() {
       if (this.goods) {
         let data = this.goods;
-        console.log("111111", data);
         let id = this.id;
         let qty = data.qty;
         let selected = false;
@@ -92,14 +91,8 @@ export default {
           data.price.slice(0, 1) == "￥" ? data.price : "￥" + data.price;
         let goods_thumb = data.goods_thumb;
         let goods_name = data.goods_name;
-        console.log(this.$store.state.cart.goodslist);
         let username = this.$store.state.common.user.username;
-console.log(this.id);
-
-console.log(this.$store.state.cart.goodslist);
-
         let current = this.$store.state.cart.goodslist.filter(item => item.id == this.id)[0]
-        console.log("current",current);
         if(current){
 
         //  let  qty1=current.qty+1;
@@ -123,33 +116,6 @@ console.log(this.$store.state.cart.goodslist);
         console.log(data1);
         this.$store.dispatch("adddata");
         }
-    
-        //    this.$store.state.cart.goodslist.forEach(async item=>{
-        //       if(item.id==this.id){
-        //       let qty1=qty++;
-        //         let { data } = await axios.patch(`http://10.3.136.140:1910/cart/${this.id}`, {
-        //         qty1
-        //         });
-        //         this.$store.dispatch('adddata')
-        //         console.log("22222",data);
-        //       }
-        //       else{
-        //  console.log(this.$store.state.common.user.username);
-        //   let username=this.$store.state.common.user.username
-        //            let { data:data1 } = await my.post("/cart", {
-        //          username,
-        //       selected,
-        //       allSelected,
-        //       price,
-        //           id,
-        //           qty ,
-        //           goods_thumb,
-        //           goods_name
-        //         });
-        //         console.log(data1);
-        //         this.$store.dispatch('adddata')
-        //       }
-        // })
       }
     },
     async homeAddToCart() {

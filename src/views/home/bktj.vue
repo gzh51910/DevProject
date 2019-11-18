@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="bktj">
-    <h4>爆款推荐</h4>
+    <h4 style="width:100%;height:65px;line-height:33px;text-align: center;color: #666666;font-size: 12px;">爆款推荐</h4>
     <el-row :gutter="0" class="b-list">
       <el-col v-for="item in list" :key="item._id" :span="12">
         <div class="b-list1" @click="goto(item._id,db)">

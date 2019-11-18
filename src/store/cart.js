@@ -85,8 +85,6 @@ export default {
                 // })
                 commit('addlist', data)
                 console.log(data);
-                
-           
         }
     }
 

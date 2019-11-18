@@ -1,4 +1,3 @@
-<!--  -->
 <template>
   <div class="itemFlex">
     <img src="../../assets/img/home/1.jpg" alt />
