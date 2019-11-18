@@ -68,7 +68,7 @@
         <evl></evl>
       </main>
     </scroll>
-    <detail-footer :hListgoods="goods"></detail-footer>
+    <detail-footer :hListgoods="goods" :id="id"></detail-footer>
   </div>
 </template>
 <script>
@@ -84,7 +84,8 @@ export default {
       num1: 1,
       show: true,
       Evel: { totalEval: "40932 人评价", goodEval: "98 %" },
-      goods: []
+      goods: [],
+      id: ""
     };
   },
   async created() {
@@ -95,6 +96,7 @@ export default {
     } = await my.get("/goods", { gather: db, _id: id });
     this.goods = goods[0];
     this.goods.qty = 1;
+    this.id = goods[0]._id;
     console.log("=============", goods);
   },
   methods: {
