@@ -37,7 +37,8 @@ const routes = [
     {
         name: "home",
         path: '/home',
-        component: Home
+        component: Home,
+        meta: { keepAlive: true }
     },
     {
         name: 'homelist',
@@ -133,12 +134,12 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth) {
-        // 获取token
-        // let { Authorization } = JSON.parse(localStorage.getItem('user'));
-        // console.log(router);
 
-        let $store = router.app.$store
-        let Authorization = $store.state.common.user.Authorization;
+        let { Authorization } = JSON.parse(localStorage.getItem('user') || '[]');
+        console.log(router);
+
+        // let $store = router.app.$store
+        // let Authorization = $store.state.common.user.Authorization;
         console.log('校验结果：', Authorization)
         if (Authorization) {
             // 登录则放行

@@ -12,135 +12,137 @@
         <a class="navbar"></a>
       </div>
     </nav-bar>
-     <scroll class="content" ref="a" :probe-type="3">
-    <el-row style="margin-top:40px" class="banner">
-      <el-col :span="24">
-        <a style="display:block;background:#f5f5f5">
-          <img src="https://img07.jiuxian.com/bill/2017/1012/dbe13e18484448c4a3af7ae0e5bc75ce.jpg" />
-        </a>
-      </el-col>
-    </el-row>
-   
-    <div class="tanbig" :db="db">
-      <div class="banner">
-        <el-row>
-          <el-col :span="24">
-            <a href>
-              <img
-                src="https://img10.jiuxian.com/bill/2017/1012/04fdc638c8d94bee8024d49b7cbe389d.jpg"
-              />
-            </a>
-          </el-col>
-        </el-row>
-      </div>
-      <el-row :gutter="10" class="banner">
-        <el-col
-          :span="11"
-          v-for="(item,id) in goods1"
-          :key="id"
-          @click.native="goto(item._id,db)"
-          style="height:'248px'; width:'176px';background:#fff;margin:5px"
-        >
-          <el-card :body-style="{padding: '0',height:'248px'}">
-            <div style="text-align: center;">
-              <img :src="item.goods_thumb" class="image" />
-              <p class="names">{{item.goods_name}}</p>
-            </div>
-            <div class="orice">
-              <p class="goodlist">
-                <span class="price">￥{{item.price}}</span>
-                <del>{{item.shop_price}}</del>
-              </p>
-              <div style=" position: absolute;bottom:5px ;right:0px">
-                <el-button type="danger" size="mini">点击购买</el-button>
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
-      <div class="banner">
-        <el-row>
-          <el-col :span="24">
-            <a href>
-              <img
-                src="https://img09.jiuxian.com/bill/2017/1012/cc6b11847cd149928a412436662b590e.jpg"
-              />
-            </a>
-          </el-col>
-        </el-row>
-      </div>
-      <el-row :gutter="10" class="banner">
-        <el-col
-          :span="11"
-          v-for="(item,id) in goods2"
-          :key="id"
-          @click.native="goto(item._id,db)"
-          style="height:'248px'; width:'176px';background:#fff;margin:5px"
-        >
-          <el-card :body-style="{padding: '0',height:'248px'}">
-            <div style="text-align: center;">
-              <img :src="item.goods_thumb" class="image" />
-              <p class="names">{{item.goods_name}}</p>
-            </div>
-            <div class="orice">
-              <p class="goodlist">
-                <span class="price">￥{{item.price}}</span>
-                <del>{{item.shop_price}}</del>
-              </p>
-              <div style=" position: absolute;bottom:5px ;right:0px">
-                <el-button type="danger" size="mini">点击购买</el-button>
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
-      <div class="banner">
-        <el-row>
-          <el-col :span="24">
-            <a href>
-              <img
-                src="https://img10.jiuxian.com/bill/2017/1012/be85fffac1ea4ed1b1e4c9040f436c42.jpg"
-              />
-            </a>
-          </el-col>
-        </el-row>
-      </div>
-      <el-row :gutter="10" class="banner">
-        <el-col
-          :span="11"
-          v-for="(item,id) in goods1"
-          :key="id"
-          @click.native="goto(item._id,db)"
-          style="height:'248px'; width:'176px';background:#fff;margin:5px"
-        >
-          <el-card :body-style="{padding: '0',height:'248px'}">
-            <div style="text-align: center;">
-              <img :src="item.goods_thumb" class="image" />
-              <p class="names">{{item.goods_name}}</p>
-            </div>
-            <div class="orice">
-              <p class="goodlist">
-                <span class="price">￥{{item.price}}</span>
-                <del>{{item.shop_price}}</del>
-              </p>
-              <div style=" position: absolute;bottom:5px ;right:0px">
-                <el-button type="danger" size="mini">点击购买</el-button>
-              </div>
-            </div>
-          </el-card>
+    <scroll class="content" ref="a" :probe-type="3">
+      <el-row style="margin-top:40px" class="banner">
+        <el-col :span="24">
+          <a style="display:block;background:#f5f5f5">
+            <img
+              src="https://img07.jiuxian.com/bill/2017/1012/dbe13e18484448c4a3af7ae0e5bc75ce.jpg"
+            />
+          </a>
         </el-col>
       </el-row>
 
-      <div class="bottomBtn">
-        <a class="toTop"  @click="backclick">
-          <i></i>
-          <span>
-            返回
-            <br />顶部
-          </span>
-        </a>
+      <div class="tanbig" :db="db">
+        <div class="banner">
+          <el-row>
+            <el-col :span="24">
+              <a href>
+                <img
+                  src="https://img10.jiuxian.com/bill/2017/1012/04fdc638c8d94bee8024d49b7cbe389d.jpg"
+                />
+              </a>
+            </el-col>
+          </el-row>
+        </div>
+        <el-row :gutter="10" class="banner">
+          <el-col
+            :span="11"
+            v-for="(item,id) in goods1"
+            :key="id"
+            @click.native="goto(item._id,db)"
+            style="height:'248px'; width:'176px';background:#fff;margin:5px"
+          >
+            <el-card :body-style="{padding: '0',height:'248px'}">
+              <div style="text-align: center;">
+                <img v-lazy="item.goods_thumb" class="image" />
+                <p class="names">{{item.goods_name}}</p>
+              </div>
+              <div class="orice">
+                <p class="goodlist">
+                  <span class="price">￥{{item.price}}</span>
+                  <del>{{item.shop_price}}</del>
+                </p>
+                <div style=" position: absolute;bottom:5px ;right:0px">
+                  <el-button type="danger" size="mini">点击购买</el-button>
+                </div>
+              </div>
+            </el-card>
+          </el-col>
+        </el-row>
+        <div class="banner">
+          <el-row>
+            <el-col :span="24">
+              <a href>
+                <img
+                  src="https://img09.jiuxian.com/bill/2017/1012/cc6b11847cd149928a412436662b590e.jpg"
+                />
+              </a>
+            </el-col>
+          </el-row>
+        </div>
+        <el-row :gutter="10" class="banner">
+          <el-col
+            :span="11"
+            v-for="(item,id) in goods2"
+            :key="id"
+            @click.native="goto(item._id,db)"
+            style="height:'248px'; width:'176px';background:#fff;margin:5px"
+          >
+            <el-card :body-style="{padding: '0',height:'248px'}">
+              <div style="text-align: center;">
+                <img v-lazy="item.goods_thumb" class="image" />
+                <p class="names">{{item.goods_name}}</p>
+              </div>
+              <div class="orice">
+                <p class="goodlist">
+                  <span class="price">￥{{item.price}}</span>
+                  <del>{{item.shop_price}}</del>
+                </p>
+                <div style=" position: absolute;bottom:5px ;right:0px">
+                  <el-button type="danger" size="mini">点击购买</el-button>
+                </div>
+              </div>
+            </el-card>
+          </el-col>
+        </el-row>
+        <div class="banner">
+          <el-row>
+            <el-col :span="24">
+              <a href>
+                <img
+                  src="https://img10.jiuxian.com/bill/2017/1012/be85fffac1ea4ed1b1e4c9040f436c42.jpg"
+                />
+              </a>
+            </el-col>
+          </el-row>
+        </div>
+        <el-row :gutter="10" class="banner">
+          <el-col
+            :span="11"
+            v-for="(item,id) in goods1"
+            :key="id"
+            @click.native="goto(item._id,db)"
+            style="height:'248px'; width:'176px';background:#fff;margin:5px"
+          >
+            <el-card :body-style="{padding: '0',height:'248px'}">
+              <div style="text-align: center;">
+                <img v-lazy="item.goods_thumb" class="image" />
+                <p class="names">{{item.goods_name}}</p>
+              </div>
+              <div class="orice">
+                <p class="goodlist">
+                  <span class="price">￥{{item.price}}</span>
+                  <del>{{item.shop_price}}</del>
+                </p>
+                <div style=" position: absolute;bottom:5px ;right:0px">
+                  <el-button type="danger" size="mini">点击购买</el-button>
+                </div>
+              </div>
+            </el-card>
+          </el-col>
+        </el-row>
+
+        <div class="bottomBtn">
+          <a class="toTop" @click="backclick">
+            <i></i>
+            <span>
+              返回
+              <br />顶部
+            </span>
+          </a>
+        </div>
       </div>
-    </div>
     </scroll>
   </div>
 </template>
@@ -172,19 +174,19 @@ export default {
     scroll
   },
   methods: {
-     goto(id, db) {
-      this.$router.push({name: "goods", params: { id, db } });
+    goto(id, db) {
+      this.$router.push({ name: "goods", params: { id, db } });
     },
-      backclick() {
+    backclick() {
       this.$refs.a.scrollTo(0, 0);
-    },
+    }
   }
 };
 </script>
 <style scoped>
-.datan{
+.datan {
   height: 100vh;
-   margin-top:40px; 
+  margin-top: 40px;
 }
 .content {
   height: calc(100% - 49px);

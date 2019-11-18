@@ -23,9 +23,7 @@
       <div class="baibig" :db="db">
         <div style="height:80px;text-align:center;line-height:40px;margin:40px 0 10px;">
           <el-row :gutter="20">
-
             <el-col :span="6" v-for="(item) in text" :key="item.id" @click.native="change">{{item}}</el-col>
-
           </el-row>
           <div class="flil">
             <a>酒仙配送</a>
@@ -42,7 +40,7 @@
           >
             <el-card :body-style="{padding: '0',height:'248px'}">
               <div style="text-align: center;">
-                <img :src="item.goods_thumb" class="image" />
+                <img v-lazy="item.goods_thumb" class="image" />
                 <p class="names">{{item.goods_name}}</p>
               </div>
               <div class="orice">
@@ -82,9 +80,7 @@ export default {
       goods1: [],
 
       db: "sheet2",
-      text:["综合","销量","价格","筛选"],
-    
-
+      text: ["综合", "销量", "价格", "筛选"]
     };
   },
   async created() {
@@ -94,11 +90,9 @@ export default {
     } = await my.get("/gdlist", db);
     this.goods1 = goods;
 
-    this.goods1.forEach((item) => {
-      item.price=item.price.slice(1); 
+    this.goods1.forEach(item => {
+      item.price = item.price.slice(1);
     });
-
-
   },
   components: {
     NavBar,
@@ -110,40 +104,36 @@ export default {
     },
     backclick() {
       this.$refs.a.scrollTo(0, 0);
-
     },
-     change(){
-      let seft=this
-      seft.sorts=!seft.sorts
+    change() {
+      let seft = this;
+      seft.sorts = !seft.sorts;
       console.log(this.sorts);
 
       function compare(price) {
-        return function(object1,object2){
+        return function(object1, object2) {
           var val1 = object1[price];
           var val2 = object2[price];
-          if(seft.sorts==true){
-            return val1-val2;
-          }else if(seft.sorts==false){
-            return val2-val1;
-          }else{
+          if (seft.sorts == true) {
+            return val1 - val2;
+          } else if (seft.sorts == false) {
+            return val2 - val1;
+          } else {
             return 0;
           }
-        }
+        };
       }
-      
-      this.goods1=this.goods1.sort(compare("price"))
+
+      this.goods1 = this.goods1.sort(compare("price"));
       console.log(this.goods1);
-     
-
     }
-
   }
 };
 </script>
 <style scoped>
-.putao{
+.putao {
   height: 100vh;
-  margin-top:40px; 
+  margin-top: 40px;
 }
 .baibig {
   background-color: #fff;

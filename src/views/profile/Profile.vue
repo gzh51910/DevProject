@@ -54,7 +54,7 @@
           </div>
         </section>
         <el-row :gutter="20" class="listrow">
-          <el-col v-for="goods in list" :key="goods.id" :xs="8">
+          <el-col v-for="goods in list" :key="goods.id" :xs="8" @click="gwc(goods.con)">
             <div class="grid-content">
               <img :src="goods.src" alt />
               <span class="listspan">{{goods.con}}</span>
@@ -153,6 +153,11 @@ export default {
       // 在需要登录权限的页面退出登录
       // 需要跳转到登录页面
       this.$router.replace("/login");
+    },
+    gwc(con) {
+      if (con == "购物车") {
+        this.$router.replace("/cart");
+      }
     }
   }
 };

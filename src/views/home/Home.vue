@@ -28,14 +28,14 @@
       <article class="article">
         <div class="select">
           <div class="select1" v-for="item in teb" :key="item.id">
-            <img :src="item.src" alt />
+            <img v-lazy="item.src" alt />
           </div>
         </div>
         <div class="ly">
-          <img :src="ly.src1" alt />
+          <img v-lazy="ly.src1" alt />
           <div class="ly1">
-            <img :src="ly.src2" alt />
-            <img :src="ly.src3" alt />
+            <img v-lazy="ly.src2" alt />
+            <img v-lazy="ly.src3" alt />
           </div>
         </div>
         <div class="homes">

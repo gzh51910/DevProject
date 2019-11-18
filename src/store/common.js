@@ -19,6 +19,7 @@ export default {
 
             // 设置本地存储
             localStorage.setItem('user', JSON.stringify(user))
+            state.user = localStorage.getItem('user')
         },
         logout(state) {
             state.user = {};

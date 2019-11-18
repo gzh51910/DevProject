@@ -30,7 +30,7 @@
       </el-form-item>
 
       <div class="dt">
-        <el-input class="yzm"  placeholder="请输入校验码"></el-input>
+        <el-input class="yzm" placeholder="请输入校验码"></el-input>
         <el-button type="danger" style="background: #de4b45;">获取验证码</el-button>
       </div>
       <p></p>
@@ -62,6 +62,7 @@
 <script>
 import NavBar from "../../components/common/navBar/navBar.vue";
 import { my } from "../../network";
+import { VerifySlider } from "vue-verify-slider";
 export default {
   data() {
     var checkUsername = (rule, value, callback) => {
@@ -113,8 +114,8 @@ export default {
   },
   methods: {
     open() {
-        this.$message.error('该用户已注册');
-      },
+      this.$message.error("该用户已注册");
+    },
     back() {
       window.history.go(-1);
     },
@@ -135,7 +136,7 @@ export default {
             condition_value: username
           });
           if (jc.length > 0) {
-            this.open()
+            this.open();
           } else {
             let { data } = await my.post("/reg", {
               username,

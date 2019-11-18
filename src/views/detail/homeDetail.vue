@@ -35,7 +35,7 @@
         </el-col>
       </el-row>
       <!-- 商品图片详情 -->
-        <img :src="homeGoods.imgPath" alt="">
+        <img v-lazy="homeGoods.imgPath" alt="">
       <!-- 文字介绍 -->
       <el-row style="padding:0 10px;background:#fff;padding-bottom:20px">
         <el-col>

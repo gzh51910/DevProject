@@ -12,7 +12,7 @@
         <p></p>
       </div>
       <div class="yz">
-        <el-input suffix-icon v-model="input" placeholder="请输入内容"></el-input>
+        <VerifySlider></VerifySlider>
 
         <p></p>
       </div>
@@ -23,7 +23,7 @@
       <p></p>
       <el-button class="botton" type="danger">立即登录</el-button>
     </el-form>
-    <ul class="btn">
+    <ul class="btn1">
       <li @click="zhuce">免费注册</li>
       <li>找回密码</li>
     </ul>
@@ -31,11 +31,15 @@
 </template>
 
 <script>
+import { VerifySlider } from "vue-verify-slider";
 export default {
   data() {
     return {
       input: ""
     };
+  },
+  components: {
+    VerifySlider
   },
   methods: {
     zhuce() {
@@ -73,7 +77,7 @@ p {
   margin: 30px auto;
   background: #de4b45;
 }
-.btn {
+.btn1 {
   display: flex;
   width: 84%;
   margin: 0 auto;
