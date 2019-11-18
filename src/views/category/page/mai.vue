@@ -2,7 +2,7 @@
   <div class="mai">
     <nav-bar class="head">
       <div slot="left">
-        <a class="back" href="#/category"></a>
+        <a class="back" @click="$router.back(-1)"></a>
       </div>
       <div slot="center">
         <h2 class="headTitle">值得买（自营）</h2>

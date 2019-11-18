@@ -1,30 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/home/Home.vue'
-import Category from '../views/category/Category.vue'
-import Cart from '../views/cart/Cart.vue'
-import Settlement from '../views/cart/Settlement.vue'
-import Profile from '../views/profile/Profile.vue'
-import Reg from '../views/reg/Reg.vue'
-import Login from '../views/login/Login.vue'
-import Detail from '../views/detail/Detail.vue'
-import homeDetail from '../views/detail/homeDetail.vue'
-import homeList from '../views/detail/homeList.vue'
+// import Home from '../views/home/Home.vue'
+// import Category from '../views/category/Category.vue'
+// import Cart from '../views/cart/Cart.vue'
+// import Settlement from '../views/cart/Settlement.vue'
+// import Profile from '../views/profile/Profile.vue'
+// import Reg from '../views/reg/Reg.vue'
+// import Login from '../views/login/Login.vue'
+// import Detail from '../views/detail/Detail.vue'
+// import homeDetail from '../views/detail/homeDetail.vue'
+// import homeList from '../views/detail/homeList.vue'
 
-import { my } from "../network";
+// import { my } from "../network";
 
-import Zxg from '../views/category/page/zxg.vue'
-import Zhicai from '../views/category/page/zhicai.vue'
-import Temai from '../views/category/page/temai.vue'
-import Paihang from '../views/category/page/paihang.vue'
-import Mai from '../views/category/page/mai.vue'
-import Li from '../views/category/page/li.vue'
-import Laojiu from '../views/category/page/laojiu.vue'
-import Hongjiu from '../views/category/page/hongjiu.vue'
-import Datan from '../views/category/page/datan.vue'
-import Baijiu from '../views/category/page/baijiu.vue'
-import Yangjiu from '../views/category/page/yangjiu.vue'
-import Putao from '../views/category/page/putao.vue'
+// import Zxg from '../views/category/page/zxg.vue'
+// import Zhicai from '../views/category/page/zhicai.vue'
+// import Temai from '../views/category/page/temai.vue'
+// import Paihang from '../views/category/page/paihang.vue'
+// import Mai from '../views/category/page/mai.vue'
+// import Li from '../views/category/page/li.vue'
+// import Laojiu from '../views/category/page/laojiu.vue'
+// import Hongjiu from '../views/category/page/hongjiu.vue'
+// import Datan from '../views/category/page/datan.vue'
+// import Baijiu from '../views/category/page/baijiu.vue'
+// import Yangjiu from '../views/category/page/yangjiu.vue'
+// import Putao from '../views/category/page/putao.vue'
 
 
 Vue.use(VueRouter);
@@ -32,97 +32,98 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '',
-        redirect: '/home'
+        redirect: '/home',
+        component: r => require.ensure([], () => r(require('@/views/home/Home.vue')), 'demo')
     },
     {
         name: "home",
         path: '/home',
-        component: Home
+        component: r => require.ensure([], () => r(require('@/views/home/Home.vue')), 'demo')
     },
     {
         name: 'homelist',
         path: '/homelist/:id',
-        component: homeList
+        component: r => require.ensure([], () => r(require('@/views/detail/homeList.vue')), 'demo')
     },
     {
         path: '/category',
-        component: Category,
+        component: r => require.ensure([], () => r(require('@/views/category/Category.vue')), 'demo')
     },
     {
         path: '/cart',
-        component: Cart,
+        component: r => require.ensure([], () => r(require('@/views/cart/Cart.vue')), 'demo'),
         meta: { requiresAuth: true }
     },
     {
         path: '/settlement',
-        component: Settlement,
+        component: r => require.ensure([], () => r(require('@/views/cart/Settlement.vue')), 'demo'),
         meta: { requiresAuth: true }
     }, {
         name: 'hdetail',
         path: '/hdetail',
-        component: homeDetail,
+        component: r => require.ensure([], () => r(require('@/views/detail/homeDetail.vue')), 'demo')
     }, {
         path: '/profile',
-        component: Profile,
+        component: r => require.ensure([], () => r(require('@/views/profile/Profile.vue')), 'demo'),
         meta: { requiresAuth: true }
     }, {
         path: '/login',
-        component: Login
+        component: r => require.ensure([], () => r(require('@/views/login/Login.vue')), 'demo')
     }, {
         path: '/reg',
-        component: Reg
+        component: r => require.ensure([], () => r(require('@/views/reg/Reg.vue')), 'demo')
     }, {
         name: "goods",
         path: '/goods/:id',
-        component: Detail
+        component: r => require.ensure([], () => r(require('@/views/detail/Detail.vue')), 'demo')
     },
     {
         path: '/zxg',
-        component: Zxg
+        component: r => require.ensure([], () => r(require('@/views/category/page/zxg.vue')), 'demo')
     },
     {
         path: '/zhicai',
-        component: Zhicai
+        component: r => require.ensure([], () => r(require('@/views/category/page/zhicai.vue')), 'demo')
     },
     {
         path: '/temai',
-        component: Temai
+        component: r => require.ensure([], () => r(require('@/views/category/page/temai.vue')), 'demo')
     },
     {
         path: '/paihang',
-        component: Paihang
+        component: r => require.ensure([], () => r(require('@/views/category/page/paihang.vue')), 'demo')
     },
     {
         path: '/mai',
-        component: Mai
+        component: r => require.ensure([], () => r(require('@/views/category/page/mai.vue')), 'demo')
     },
     {
         path: '/li',
-        component: Li
+        component: r => require.ensure([], () => r(require('@/views/category/page/li.vue')), 'demo')
     },
     {
         path: '/datan',
-        component: Datan
+        component: r => require.ensure([], () => r(require('@/views/category/page/datan.vue')), 'demo')
     },
     {
         path: '/hongjiu',
-        component: Hongjiu
+        component: r => require.ensure([], () => r(require('@/views/category/page/hongjiu.vue')), 'demo')
     },
     {
         path: '/laojiu',
-        component: Laojiu
+        component: r => require.ensure([], () => r(require('@/views/category/page/laojiu.vue')), 'demo')
     },
     {
         path: '/baijiu',
-        component: Baijiu
+        component: r => require.ensure([], () => r(require('@/views/category/page/baijiu.vue')), 'demo')
     },
     {
         path: '/putao',
-        component: Putao
+        component: r => require.ensure([], () => r(require('@/views/category/page/putao.vue')), 'demo')
     },
     {
         path: '/yangjiu',
-        component: Yangjiu
+        component: r => require.ensure([], () => r(require('@/views/category/page/yangjiu.vue')), 'demo')
     },
 
 ];

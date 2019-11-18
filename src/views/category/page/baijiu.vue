@@ -2,7 +2,7 @@
   <div class="baijiu">
     <nav-bar class="head">
       <div slot="left">
-        <a class="back" href="#/category"></a>
+        <a class="back"  @click="$router.back(-1)"></a>
       </div>
       <div slot="center">
         <div style="line-height:40px">

@@ -2,7 +2,7 @@
   <div class="laojiu">
     <nav-bar class="head">
       <div slot="left">
-        <a class="back" href="#/category"></a>
+        <a class="back" @click="$router.back(-1)"></a>
       </div>
       <div slot="center">
         <h2 class="headTitle">老酒馆 增值收藏佳品</h2>
