@@ -28,7 +28,7 @@ export default {
   flex-direction: column;
 }
 .jxpd > img {
-  height: 38px;
+  height: 100%;
   width: 100%;
 }
 .jx1 {

@@ -36,7 +36,7 @@ const routes = [
         component: r => require.ensure([], () => r(require('@/views/home/Home.vue')), 'demo')
     },
     {
-        name: "home",
+        name:"home",
         path: '/home',
         component: r => require.ensure([], () => r(require('@/views/home/Home.vue')), 'demo')
     },

@@ -27,10 +27,12 @@
       </el-carousel>
       <article class="article">
         <div class="select">
-          <div class="select1" v-for="item in teb" :key="item.id">
+          <div class="select1" v-for="(item,index) in teb" :key="item.id">
             <img :src="item.src" alt />
+            <a href="#" v-if="index<4" class="pictrueSkip" @click="$router.push(`/category`)"></a>
           </div>
         </div>
+
         <div class="ly">
           <img :src="ly.src1" alt />
           <div class="ly1">
@@ -55,6 +57,7 @@
         <photo></photo>
         <itemFlex></itemFlex>
         <jxpd></jxpd>
+        <jxAdBox></jxAdBox>
         <bktj></bktj>
       </article>
     </scroll>
@@ -74,6 +77,7 @@ import photo from "./photo.vue";
 import itemFlex from "./itemFlex.vue";
 import jxpd from "./jxpd.vue";
 import bktj from "./bktj.vue";
+import jxAdBox from "./jxAdBox.vue";
 BScroll.use(NestedScroll);
 export default {
   data() {
@@ -145,7 +149,7 @@ export default {
     itemFlex,
     jxpd,
     bktj,
-    backtop
+    backtop,jxAdBox
   },
   async created() {
     let {
@@ -220,6 +224,7 @@ img {
 }
 .select1 {
   width: 20%;
+position: relative;
 }
 .select1 img {
   width: 100%;
@@ -263,5 +268,13 @@ img {
 }
 .active {
   background: #e5383b;
+}
+.pictrueSkip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 </style>

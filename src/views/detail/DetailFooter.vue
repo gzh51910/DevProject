@@ -82,7 +82,6 @@ export default {
     async addToCart() {
       if (this.goods) {
         let data = this.goods;
-        console.log("111111", data);
         let id = this.id;
         let qty = data.qty;
         let selected = false;
@@ -91,11 +90,9 @@ export default {
           data.price.slice(0, 1) == "￥" ? data.price : "￥" + data.price;
         let goods_thumb = data.goods_thumb;
         let goods_name = data.goods_name;
-        console.log(this.$store.state.cart.goodslist);
         let username = this.$store.state.common.user.username;
-        console.log(this.id);
-
-        console.log(this.$store.state.cart.goodslist);
+        let current = this.$store.state.cart.goodslist.filter(item => item.id == this.id)[0]
+        if(current){
 
         let current = this.$store.state.cart.goodslist.filter(
           item => item.id == this.id
@@ -153,6 +150,7 @@ export default {
         //       }
         // })
       }
+    }
     },
     async homeAddToCart() {
       if (this.homeGoods) {
